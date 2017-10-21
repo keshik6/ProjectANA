@@ -1,2 +1,2 @@
 # ProjectANA
-2D Project
+Interactive Learning
