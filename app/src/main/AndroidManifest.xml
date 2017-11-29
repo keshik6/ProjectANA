@@ -24,7 +24,7 @@
         <activity
             android:name=".QuestionListActivity"
             android:label="@string/title_question_list"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".QuestionDetailActivity"
             android:label="@string/title_question_detail"
@@ -34,6 +34,18 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="sutdcreations.projectana.QuestionListActivity" />
         </activity>
+        <activity
+            android:name=".FeedbackActivity"
+            android:label="@string/title_activity_feedback"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ProfileActivity"
+            android:label="@string/title_activity_profile"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".SnoopActivity"
+            android:label="@string/title_activity_snoop"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

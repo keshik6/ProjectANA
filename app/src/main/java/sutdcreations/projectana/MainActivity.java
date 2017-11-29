@@ -1,10 +1,13 @@
 package sutdcreations.projectana;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -39,6 +42,42 @@ public class MainActivity extends AppCompatActivity {
         mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        Button courseButton = (Button) findViewById(R.id.testCourse);
+        courseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, QuestionListActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Button profileButton = (Button) findViewById(R.id.testProfile);
+        profileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Button feedbackButton = (Button) findViewById(R.id.testFeedback);
+        feedbackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, FeedbackActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Button snoopButton = (Button) findViewById(R.id.testSnoop);
+        snoopButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, SnoopActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 }
