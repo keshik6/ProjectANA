@@ -1,71 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="sutdcreations.projectana.MainActivity">
 
-    <Button
-        android:id="@+id/signInBt"
+    <TextView
+        android:id="@+id/message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="92dp"
-        android:singleLine="false"
-        android:text="Sign In"
-        tools:layout_editor_absoluteX="148dp"
-        tools:layout_editor_absoluteY="284dp" />
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:text="@string/title_home"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/emailTF"
-        android:layout_width="220dp"
-        android:layout_height="44dp"
-        android:layout_alignBottom="@+id/passwordTF"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="48dp"
-        android:ems="10"
-        android:hint="Email"
-        android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="207dp"
-        tools:layout_editor_absoluteY="35dp" />
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/navigation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="0dp"
+        android:layout_marginStart="0dp"
+        android:background="?android:attr/windowBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:menu="@menu/navigation" />
 
-    <EditText
-        android:id="@+id/passwordTF"
-        android:layout_width="220dp"
-        android:layout_height="44dp"
-        android:layout_alignBottom="@+id/signInBt"
-        android:layout_alignEnd="@+id/emailTF"
-        android:layout_marginBottom="68dp"
-        android:ems="10"
-        android:hint="Password"
-        android:inputType="textPassword"
-        tools:layout_editor_absoluteX="207dp"
-        tools:layout_editor_absoluteY="106dp" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:textStyle="bold"
-        android:layout_width="220dp"
-        android:layout_height="50dp"
-        android:layout_above="@+id/emailTF"
-        android:layout_alignEnd="@+id/emailTF"
-        android:layout_marginBottom="18dp"
-        android:gravity="center"
-        android:text="DYNAMIC EDUCATIONAL PLATFORM"
-        android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
-
-    <TextView
-        android:id="@+id/textView1"
-        android:textStyle="bold"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_above="@+id/textView2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="13dp"
-        android:gravity="center_horizontal"
-        android:text="A. N. A"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
-
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>
