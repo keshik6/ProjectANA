@@ -9,8 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import sutdcreations.projectana.dummy.DummyContent;
-
 /**
  * A fragment representing a single Question detail screen.
  * This fragment is either contained in a {@link QuestionListActivity}
