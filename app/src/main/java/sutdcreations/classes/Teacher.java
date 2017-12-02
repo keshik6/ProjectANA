@@ -19,11 +19,13 @@ public class Teacher extends User {
         subjects.add(subject);
     }
 
-    public void createSubject(int subjectCode, String subjectTitle) {
+    public void createSubject(String subjectCode, String subjectTitle) {
+        Subject subject = new Subject(subjectCode,subjectTitle);
     }
 
     public void createTopic(String title, Subject subject) {
-
+        Topic topic = new Topic(title);
+        subject.addTopic(topic);
     }
 
     public double getParticipation(Student student) {
@@ -31,6 +33,6 @@ public class Teacher extends User {
     }
 
     public void markasCompleted(Question question) {
-
+        question.close();
     }
 }

@@ -12,42 +12,74 @@ public class Question {
     String title;
     String body;
     int votes;
-    ArrayList<User> voted;
-    ArrayList<Answer> answers;
-    ArrayList<String> tags;
-    boolean isClosed;
+    ArrayList<User> voted = new ArrayList<>();
+    ArrayList<Answer> answers = new ArrayList<>();
+    ArrayList<String> tags = new ArrayList<>();
+    boolean isClosed = false;
 
     public Question(){//default constructor for Firebase
     }
 
     public Question(String title, String body, ArrayList<String> tags) {
+        this.title = title;
+        this.body = body;
+        this.tags = tags;
     }
 
-    public void upVote() {
+    public void upVote(User user) {
+        votes+=1;
+        voted.add(user);
     }
 
-    public void downVote() {
+    public void downVote(User user) {
+        votes -= 1;
+        voted.add(user);
     }
 
     public void addAnswer(Answer answer) {
+        answers.add(answer);
     }
 
     public void close() {
+        isClosed = true;
     }
 
     public void removeAnswer(Answer answer) {
+        answers.remove(answer);
     }
 
     //public getters for Firebase
 
-    public Question(User asker, String title, String body, int votes, ArrayList<User> voted, ArrayList<Answer> answers, ArrayList<String> tags, boolean isClosed) {
-        this.asker = asker;
-        this.title = title;
-        this.body = body;
-        this.votes = votes;
-        this.voted = voted;
-        this.answers = answers;
-        this.tags = tags;
-        this.isClosed = isClosed;
+
+    public User getAsker() {
+        return asker;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getBody() {
+        return body;
+    }
+
+    public int getVotes() {
+        return votes;
+    }
+
+    public ArrayList<User> getVoted() {
+        return voted;
+    }
+
+    public ArrayList<Answer> getAnswers() {
+        return answers;
+    }
+
+    public ArrayList<String> getTags() {
+        return tags;
+    }
+
+    public boolean isClosed() {
+        return isClosed;
     }
 }

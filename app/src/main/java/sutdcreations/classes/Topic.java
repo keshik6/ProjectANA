@@ -9,22 +9,22 @@ import java.util.ArrayList;
 public class Topic {
 
     String title;
-    ArrayList<Question> questions;
+    ArrayList<Question> questions = new ArrayList<>();
 
     public Topic(){
         //default constructor for Firebase
     }
 
     public Topic(String title) {
-
+        this.title = title;
     }
 
     public void addQuestion(Question question) {
-
+        questions.add(question);
     }
 
     public void removeQuestion(Question question) {
-
+        questions.remove(question);
     }
 
     //public getters for Firebase

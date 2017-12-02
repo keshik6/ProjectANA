@@ -77,8 +77,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 // signed in user can be handled in the listener.
                 if (!task.isSuccessful()) {
                     //Log.w(TAG, "signInWithEmail:failed", task.getException());
-                    Toast.makeText(LoginActivity.this, "Failed Authentication",
+                    Toast.makeText(LoginActivity.this, "Wrong username or password",
                             Toast.LENGTH_SHORT).show();
+                    signInButton.setText("Sign in");
                 }
                 else{
                     Toast.makeText(LoginActivity.this, "Successfully signed in",
@@ -92,6 +93,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
+        signInButton.setText("Signing in...");
         signIn();
     }
 

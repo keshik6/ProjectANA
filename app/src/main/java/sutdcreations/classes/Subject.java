@@ -10,7 +10,7 @@ public class Subject {
 
     String subjectCode;
     String subjectTitle;
-    ArrayList<Topic> topics;
+    ArrayList<Topic> topics = new ArrayList<>();
     boolean isLive;
 
     public Subject(){
@@ -23,7 +23,7 @@ public class Subject {
     }
 
     public void addTopic(Topic topic) {
-
+        topics.add(topic);
     }
 
     //public getters for Firebase
@@ -44,7 +44,9 @@ public class Subject {
     }
 
     public void toggleLive() {
-
-
+        if (isLive){
+            isLive = false;
+        }
+        else isLive=true;
     }
 }

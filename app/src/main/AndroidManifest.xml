@@ -3,6 +3,7 @@
     package="sutdcreations.projectana">
 
     <application
+        android:name=".GlobalData"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -45,7 +46,9 @@
         <activity
             android:name=".SnoopActivity"
             android:label="@string/title_activity_snoop"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".DatabaseMgmtActivity"></activity>
+        <activity android:name=".CourseTopicActivity"></activity>
     </application>
 
 </manifest>

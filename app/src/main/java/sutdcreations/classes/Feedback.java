@@ -10,9 +10,19 @@ public class Feedback {
 
     int understand;
     int dont_understand;
-    ArrayList<User> voted;
+    ArrayList<User> voted = new ArrayList<>();
     public Feedback(){
         //default constructor for Firebase
+    }
+
+    public void incUnderstand(User user){
+        voted.add(user);
+        understand+=1;
+    }
+
+    public void decUnderstand(User user){
+        dont_understand+=1;
+        voted.add(user);
     }
 
     //public getters for Firebase
