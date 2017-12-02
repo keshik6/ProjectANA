@@ -3,11 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ProjectANA.iml" filepath="$PROJECT_DIR$/ProjectANA.iml" />
-      <module fileurl="file://D:\OneDrive - Singapore University of Technology and Design\work\SUTD\50.001 Intro to Infosys\ProjectANA\ProjectANA.iml" filepath="D:\OneDrive - Singapore University of Technology and Design\work\SUTD\50.001 Intro to Infosys\ProjectANA\ProjectANA.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://D:\OneDrive - Singapore University of Technology and Design\work\SUTD\50.001 Intro to Infosys\ProjectANA\app\app.iml" filepath="D:\OneDrive - Singapore University of Technology and Design\work\SUTD\50.001 Intro to Infosys\ProjectANA\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/architecture/architecture.iml" filepath="$PROJECT_DIR$/architecture/architecture.iml" />
-      <module fileurl="file://D:\OneDrive - Singapore University of Technology and Design\work\SUTD\50.001 Intro to Infosys\ProjectANA\architecture\architecture.iml" filepath="D:\OneDrive - Singapore University of Technology and Design\work\SUTD\50.001 Intro to Infosys\ProjectANA\architecture\architecture.iml" />
     </modules>
   </component>
 </project>
