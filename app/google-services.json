@@ -59,6 +59,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "963724810706-dtl3n6m5ang8bkglqr18m500v86dj8st.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "sutdcreations.projectana",
+            "certificate_hash": "9ae27e6862bad57cf99663820ae8acc42487f4cf"
+          }
+        },
+        {
           "client_id": "963724810706-r7crhtafva1iiouq29tf0v53f5bkr5om.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -88,6 +96,37 @@
               "client_type": 3
             }
           ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:963724810706:android:2fd3206ddd12d364",
+        "android_client_info": {
+          "package_name": "com.example.kahwee.chatroomapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "963724810706-e99lsmd5676alhh3pv8gsfcdumtpaaub.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQx8fNTjvQFnQ1B-EVyQQ7v1rQqlHYvyY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
         },
         "ads_service": {
           "status": 2
