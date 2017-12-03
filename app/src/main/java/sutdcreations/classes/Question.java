@@ -11,6 +11,7 @@ public class Question {
     User asker;
     String title;
     String body;
+    String key;
     int votes;
     ArrayList<User> voted = new ArrayList<>();
     ArrayList<Answer> answers = new ArrayList<>();
@@ -48,6 +49,10 @@ public class Question {
         answers.remove(answer);
     }
 
+    public void setKey(String k){
+        this.key = k;
+    }
+
     //public getters for Firebase
 
 
@@ -82,4 +87,6 @@ public class Question {
     public boolean isClosed() {
         return isClosed;
     }
+
+    public String getKey(){return key;}
 }

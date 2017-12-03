@@ -121,10 +121,10 @@ public class DatabaseMgmtActivity extends AppCompatActivity {
 //        tag52.add("BNE/BEQ");
 //        Question question52 = new Question("Z in Beta",
 //                "What does the Z value represent in Beta? I know it's used for BEQ and BNE, but what does it mean?", tag52);
-//        Topic topic5 = new Topic("Recursion");
+//        Topic topic5 = new Topic("Beta Architecture");
 //        topic5.addQuestion(question51);
 //        topic5.addQuestion(question52);
-//        database.getReference().child("Beta Architecture").child(topicName5).setValue(topic5);
+//        database.getReference().child("Topics").child(topicName5).setValue(topic5);
 //        database.getReference().child("Questions").child(topicName5+" "+"Separation of code and data memory").setValue(question51);
 //        database.getReference().child("Questions").child(topicName5+" "+"Z in Beta").setValue(question52);
 //

@@ -23,7 +23,13 @@ public class Subject {
     }
 
     public void addTopic(Topic topic) {
+        topic.setKey(getKey()+" "+topic.getTitle());
         topics.add(topic);
+    }
+
+    //get database key, for ease in retrieving value from database
+    public String getKey(){
+        return subjectCode.replace(".","");
     }
 
     //public getters for Firebase
@@ -49,4 +55,5 @@ public class Subject {
         }
         else isLive=true;
     }
+
 }
