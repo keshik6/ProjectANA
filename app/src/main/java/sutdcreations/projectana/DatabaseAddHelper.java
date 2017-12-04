@@ -20,6 +20,7 @@ import sutdcreations.classes.Topic;
  */
 
 public class DatabaseAddHelper {
+
     //adds a new subject to Firebase
     public static void addSubject(FirebaseDatabase database, Subject subject){
         //get Firebase reference for all subjects in Firebase
@@ -62,4 +63,28 @@ public class DatabaseAddHelper {
         question.addAnswer(answer);
         questionDatabaseReference.setValue(question);
     }
+
+    //update existing subject in Firebase
+    public static void updateSubject(FirebaseDatabase database, Subject subject){
+        addSubject(database,subject);
+    }
+
+    //update existing topic in Firebase
+    public static void updateTopic(FirebaseDatabase database, Topic topic){
+        DatabaseReference databaseReference = database.getReference().child("Topics").child(topic.getKey());
+        databaseReference.setValue(topic);
+    }
+
+    //update existing question in Firebase
+    public static void updateQuestion(FirebaseDatabase database, Question question){
+        DatabaseReference databaseReference = database.getReference().child("Questions").child(question.getKey());
+        databaseReference.setValue(question);
+    }
+
+    //update an existing answer
+    public static void updateAnswer(FirebaseDatabase database, Question question, Answer answer){
+        addAnswer(database,answer,question);
+    }
+
+
 }
