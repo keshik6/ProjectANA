@@ -14,11 +14,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 import sutdcreations.classes.Student;
 import sutdcreations.classes.Subject;
@@ -33,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     User user;
     String uid;
     String user_type;
+    ArrayList<Subject> subjects = new ArrayList<>();
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -67,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         courseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, QuestionListActivity.class);
+                Intent intent = new Intent(MainActivity.this, DatabaseMgmtActivity.class);
                 startActivity(intent);
             }
         });
@@ -131,8 +135,8 @@ public class MainActivity extends AppCompatActivity {
                         }
                         //set user as global data to be accessed from any activity
                         ((GlobalData) getApplication()).setUser(user);
-                        //add subjects as buttons to layout
-                        addSubjectsToLayout();
+                        //get full subjects from Firebase
+                        getSubjects();
                     }
 
 
@@ -149,18 +153,72 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-
-
-
     }
 
-    public void addSubjectsToLayout(){
+    public void getSubjects(){
+        DatabaseReference subjRef = database.getReference().child("Subjects");
+        subjRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                ArrayList<String> subjKeys = new ArrayList<>();
+                for (Subject subj : user.getSubjects()){
+                    subjKeys.add(subj.getKey());
+                }
+                ArrayList<Subject> subjects = new ArrayList<>();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    if (subjKeys.contains(snapshot.getKey())){
+                        Subject subject = snapshot.getValue(Subject.class);
+                        subjects.add(subject);
+                    }
+                }
+                addSubjectsToLayout(subjects);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+//        subjRef.addChildEventListener(new ChildEventListener() {
+//            @Override
+//            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+//                Subject subj = dataSnapshot.getValue(Subject.class);
+//                subjects.add(subj);
+//                addSubjectsToLayout(subjects);
+//            }
+//
+//            @Override
+//            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+//
+//            }
+//
+//            @Override
+//            public void onChildRemoved(DataSnapshot dataSnapshot) {
+//
+//            }
+//
+//            @Override
+//            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
+    }
+
+    public void addSubjectsToLayout(ArrayList<Subject> subjects){
         LinearLayout layout = findViewById(R.id.HoldMyButtons);
-        for (Subject s: user.getSubjects()){
+        for (Subject s: subjects){
+            Log.i("isLive",""+s.isLive());
             final Subject subj = s;
             Button button = new Button(this);
-            button.setText(s.getSubjectCode()+" "+s.getSubjectTitle());
+            if (s.isLive()){
+                button.setText(s.getSubjectCode()+" "+s.getSubjectTitle() + " "+ "(Live)");
+            }
+            else button.setText(s.getSubjectCode()+" "+s.getSubjectTitle());
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

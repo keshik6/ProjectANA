@@ -1,5 +1,7 @@
 package sutdcreations.classes;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 /**
@@ -11,6 +13,7 @@ public class Topic {
     String title;
     ArrayList<Question> questions = new ArrayList<>();
     String key;
+    boolean isLive = false;
 
     public Topic(){
         //default constructor for Firebase
@@ -27,9 +30,21 @@ public class Topic {
     }
 
     public void addQuestion(Question question) {
-        question.setKey(getKey() + question.getTitle());
+        question.setKey(getKey() + " " + question.getTitle());
         questions.add(question);
     }
+
+    public void toggleLive() {
+        if (isLive){
+            isLive = false;
+        }
+        else isLive=true;
+    }
+
+    public void setIsLive(boolean isLive) {
+        this.isLive = isLive;
+    }
+
 
     public void removeQuestion(Question question) {
         questions.remove(question);
@@ -46,4 +61,6 @@ public class Topic {
     public String getKey() {
         return key;
     }
+    public boolean isLive(){ return isLive;}
+    public boolean getIsLive(){return isLive;}
 }

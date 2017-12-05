@@ -49,6 +49,12 @@ public class Subject {
         return isLive;
     }
 
+    public boolean getIsLive(){return isLive;}
+
+    public void setIsLive(boolean isLive) {
+        this.isLive = isLive;
+    }
+
     public void toggleLive() {
         if (isLive){
             isLive = false;
