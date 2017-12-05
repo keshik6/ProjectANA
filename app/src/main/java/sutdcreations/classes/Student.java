@@ -26,4 +26,6 @@ public class Student extends User {
     //public getter for Firebase
     public double getParticipation(){return participation;}
 
+    
+
 }

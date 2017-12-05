@@ -15,6 +15,7 @@ import sutdcreations.classes.Feedback;
 import sutdcreations.classes.Question;
 import sutdcreations.classes.Subject;
 import sutdcreations.classes.Topic;
+import sutdcreations.classes.User;
 
 /**
  * Created by Beng Haun on 3/12/2017.
@@ -96,6 +97,11 @@ public class DatabaseAddHelper {
     //update existing feedback
     public static void updateFeedback(FirebaseDatabase database, Feedback feedback){
         addFeedback(database,feedback);
+    }
+
+    public static void updateUser(FirebaseDatabase database, User user){
+        DatabaseReference userRef = database.getReference().child("UserInfo").child(user.getUid());
+        userRef.setValue(user);
     }
 
 

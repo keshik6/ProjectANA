@@ -2,6 +2,8 @@ package sutdcreations.classes;
 
 import java.util.ArrayList;
 
+import sutdcreations.projectana.GlobalData;
+
 /* TODO: Implement these classes. */
 
 public abstract class User {
@@ -26,6 +28,11 @@ public abstract class User {
     }
 
     public String getUid(){return uid;}
+
+    public String getUserName(){
+        return null;
+    }
+
 }
 
 
