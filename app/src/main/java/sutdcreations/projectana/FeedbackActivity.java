@@ -1,5 +1,6 @@
 package sutdcreations.projectana;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,6 +32,19 @@ public class FeedbackActivity extends AppCompatActivity {
     String feedbackKey;
     User user;
     Feedback feedback;
+    boolean inForeground = true;
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+        inForeground = false;
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        inForeground = true;
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +58,19 @@ public class FeedbackActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 feedback = dataSnapshot.getValue(Feedback.class);
-                updateLayout();
+                if (feedback == null){
+                    //Feedback session was ended by teacher, display toast and return to answer activity
+                    if (inForeground) {
+                        Toast.makeText(getApplicationContext(), "Feedback session has ended", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(getApplicationContext(), simpleAnswerActivity.class);
+                        intent.putExtra("questionKey", feedbackKey);
+                        startActivity(intent);
+                    }
+                }
+                else {
+                    //constantly update layout real-time with latest numbers from Firebase
+                    updateLayout();
+                }
             }
 
             @Override
@@ -122,18 +149,20 @@ public class FeedbackActivity extends AppCompatActivity {
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             Question question = dataSnapshot.getValue(Question.class);
                             question.setFeedback(false);
+                            Intent intent = new Intent(getApplicationContext(), simpleAnswerActivity.class);
+                            intent.putExtra("questionKey",feedbackKey);
+                            startActivity(intent);
                             DatabaseAddHelper.updateQuestion(FirebaseDatabase.getInstance(),question);
+
                         }
 
                         @Override
                         public void onCancelled(DatabaseError databaseError) {
                         }
                     });
-
-
-
                 }
             });
+            layout.addView(endFeedback);
         }
     }
 
@@ -155,7 +184,7 @@ public class FeedbackActivity extends AppCompatActivity {
         });
     }
 
-    //increment the understand attribute in the existing Feedback object in Firebase
+    //increment the dont_understand attribute in the existing Feedback object in Firebase
     public void dontUnderstand(){
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Feedback").child(feedbackKey);
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
