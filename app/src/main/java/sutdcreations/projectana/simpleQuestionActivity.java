@@ -1,15 +1,22 @@
 package sutdcreations.projectana;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.provider.Settings;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -30,6 +37,9 @@ public class simpleQuestionActivity extends AppCompatActivity {
     FirebaseDatabase database;
     User user;
     Topic topic;
+    MyAdapter adapter;
+    RecyclerView r1;
+    ArrayList<Question> questions = new ArrayList<Question>();
     boolean inForeground = true;
 
     @Override
@@ -52,6 +62,12 @@ public class simpleQuestionActivity extends AppCompatActivity {
         final String topicKey = getIntent().getStringExtra("topicTitle");
         database = FirebaseDatabase.getInstance();
         user = ((GlobalData) getApplication()).getUser();
+
+        //Set up RecyclerView
+        r1 = (RecyclerView) findViewById(R.id.questionRecyclerView);
+        adapter=new MyAdapter(this,questions);
+        r1.setAdapter(adapter);
+        r1.setLayoutManager(new LinearLayoutManager(this));
 
         //get Topic object from Firebase
         DatabaseReference topicRef = database.getReference().child("Topics").child(topicKey);
@@ -76,7 +92,7 @@ public class simpleQuestionActivity extends AppCompatActivity {
         questionReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                ArrayList<Question> questions = new ArrayList<>();
+                //ArrayList<Question> questions = new ArrayList<>();
 
                 //iterate through all questions
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()){
@@ -87,7 +103,8 @@ public class simpleQuestionActivity extends AppCompatActivity {
                         questions.add(question);
                     }
                 }
-                addQuestionsToLayout(questions);
+                //addQuestionsToLayout(questions);
+                addQuestionsToLayout();
             }
 
             @Override
@@ -212,9 +229,8 @@ public class simpleQuestionActivity extends AppCompatActivity {
         });
     }
 
-    public void addQuestionsToLayout(final ArrayList<Question> questions){
-        LinearLayout layout = findViewById(R.id.simpleQuestionLayout);
-        for (Question question : questions){
+    public void addQuestionsToLayout(){
+        /*for (Question question : questions){
             final Question final_question = question;
             Button button = new Button(this);
             if (question.isLive()) button.setText(question.getTitle()+ " (Live)");
@@ -226,8 +242,56 @@ public class simpleQuestionActivity extends AppCompatActivity {
                     intent.putExtra("questionKey",final_question.getKey());
                     startActivity(intent);
                 }
-            });
-            layout.addView(button);
+            });*/
+            //layout.addView(button);
+            adapter.notifyDataSetChanged();
         }
     }
-}
+
+    class MyAdapter extends RecyclerView.Adapter<MyAdapter.myHolder>{
+
+        ArrayList<Question> questions;
+        Context context;
+
+        public MyAdapter(Context context,ArrayList<Question> questions) {
+            this.context=context;
+            this.questions=questions;
+        }
+
+        @Override
+        public MyAdapter.myHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            LayoutInflater myInflator = LayoutInflater.from(context);
+            View myView = myInflator.inflate(R.layout.single_question_layout,parent,false);
+            return new myHolder(myView);
+        }
+
+        @Override
+        public void onBindViewHolder(MyAdapter.myHolder holder, int position) {
+            final Question final_question=questions.get(position);
+            holder.questionTitle.setText(final_question.getTitle());
+            holder.questionTitle.setOnClickListener(
+                    new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(context,simpleAnswerActivity.class);
+                            intent.putExtra("questionKey",final_question.getKey());
+                            context.startActivity(intent);
+                        }
+                    }
+            );
+        }
+
+        @Override
+        public int getItemCount() {
+            return questions.size();
+        }
+
+        public class myHolder extends RecyclerView.ViewHolder{
+            Button questionTitle;
+            public myHolder(View itemView) {
+                super(itemView);
+                questionTitle=(Button)itemView.findViewById(R.id.questionTitle);
+            }
+        }
+    }
+
