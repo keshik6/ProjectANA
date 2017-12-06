@@ -1,6 +1,10 @@
 package sutdcreations.classes;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Created by Beng Haun on 2/12/2017.
@@ -16,6 +20,8 @@ public class Question {
     ArrayList<User> voted = new ArrayList<>();
     ArrayList<Answer> answers = new ArrayList<>();
     ArrayList<String> tags = new ArrayList<>();
+    HashMap<User,String> animalMap = new HashMap<>();
+    ArrayList<String> animalList = new ArrayList<>();
     boolean isClosed = false;
     boolean isLive = false;
     boolean feedback = false;
@@ -23,10 +29,16 @@ public class Question {
     public Question(){//default constructor for Firebase
     }
 
-    public Question(String title, String body, ArrayList<String> tags) {
+    public Question(String title, String body, ArrayList<String> tags, User asker) {
         this.title = title;
         this.body = body;
         this.tags = tags;
+        this.asker = asker;
+        animalList.addAll(Arrays.asList("alligator", "anteater", "armadillo", "auroch", "axolotl", "badger", "bat", "beaver", "buffalo", "camel", "chameleon", "cheetah", "chipmunk", "chinchilla", "chupacabra", "cormorant", "coyote", "crow", "dingo", "dinosaur", "dog", "dolphin", "duck", "elephant", "ferret", "fox", "frog", "giraffe", "gopher", "grizzly", "hedgehog", "hippo", "hyena", "jackal", "ibex", "ifrit", "iguana", "kangaroo", "koala", "kraken", "lemur", "leopard", "liger", "lion", "llama", "manatee", "mink", "monkey", "moose", "narwhal", "nyan cat", "orangutan", "otter", "panda", "penguin", "platypus", "python", "pumpkin", "quagga", "rabbit", "raccoon", "rhino", "sheep", "shrew", "skunk", "slow loris", "squirrel", "tiger", "turtle", "walrus", "wolf", "wolverine", "wombat"));
+        int randNum = ThreadLocalRandom.current().nextInt(0,animalList.size());
+        String randAnimal = animalList.get(randNum);
+        animalMap.put(asker,randAnimal);
+        animalList.remove(randAnimal);
     }
 
     public void upVote(User user) {
@@ -41,6 +53,11 @@ public class Question {
 
     public void addAnswer(Answer answer) {
         answers.add(answer);
+        User answerer = answer.getAnswerer();
+        int randNum = ThreadLocalRandom.current().nextInt(0,animalList.size());
+        String randAnimal = animalList.get(randNum);
+        animalMap.put(answerer,randAnimal);
+        animalList.remove(randAnimal);
     }
 
     public void close() {
@@ -50,6 +67,8 @@ public class Question {
     public void removeAnswer(Answer answer) {
         answers.remove(answer);
     }
+
+    //public getters and setters for Firebase
 
     public void setKey(String k){
         this.key = k;
@@ -63,8 +82,25 @@ public class Question {
         feedback = fb;
     }
 
-    //public getters for Firebase
+    public void setAsker(User user){
+        asker = user;
+    }
 
+    public void setAnimalMap(HashMap<User, String> animalMap){
+        this.animalMap = animalMap;
+    }
+
+    public void setAnimalList(ArrayList<String> animalList){
+        this.animalList = animalList;
+    }
+
+    public HashMap<User, String> getAnimalMap() {
+        return animalMap;
+    }
+
+    public ArrayList<String> getAnimalList() {
+        return animalList;
+    }
 
     public User getAsker() {
         return asker;
