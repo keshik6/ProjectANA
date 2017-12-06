@@ -20,7 +20,7 @@ public class Question {
     ArrayList<User> voted = new ArrayList<>();
     ArrayList<Answer> answers = new ArrayList<>();
     ArrayList<String> tags = new ArrayList<>();
-    HashMap<User,String> animalMap = new HashMap<>();
+    HashMap<String,String> animalMap = new HashMap<>();
     ArrayList<String> animalList = new ArrayList<>();
     boolean isClosed = false;
     boolean isLive = false;
@@ -37,7 +37,7 @@ public class Question {
         animalList.addAll(Arrays.asList("alligator", "anteater", "armadillo", "auroch", "axolotl", "badger", "bat", "beaver", "buffalo", "camel", "chameleon", "cheetah", "chipmunk", "chinchilla", "chupacabra", "cormorant", "coyote", "crow", "dingo", "dinosaur", "dog", "dolphin", "duck", "elephant", "ferret", "fox", "frog", "giraffe", "gopher", "grizzly", "hedgehog", "hippo", "hyena", "jackal", "ibex", "ifrit", "iguana", "kangaroo", "koala", "kraken", "lemur", "leopard", "liger", "lion", "llama", "manatee", "mink", "monkey", "moose", "narwhal", "nyan cat", "orangutan", "otter", "panda", "penguin", "platypus", "python", "pumpkin", "quagga", "rabbit", "raccoon", "rhino", "sheep", "shrew", "skunk", "slow loris", "squirrel", "tiger", "turtle", "walrus", "wolf", "wolverine", "wombat"));
         int randNum = ThreadLocalRandom.current().nextInt(0,animalList.size());
         String randAnimal = animalList.get(randNum);
-        animalMap.put(asker,randAnimal);
+        animalMap.put(asker.getUid(),randAnimal);
         animalList.remove(randAnimal);
     }
 
@@ -56,7 +56,7 @@ public class Question {
         User answerer = answer.getAnswerer();
         int randNum = ThreadLocalRandom.current().nextInt(0,animalList.size());
         String randAnimal = animalList.get(randNum);
-        animalMap.put(answerer,randAnimal);
+        animalMap.put(answerer.getUid(),randAnimal);
         animalList.remove(randAnimal);
     }
 
@@ -86,7 +86,7 @@ public class Question {
         asker = user;
     }
 
-    public void setAnimalMap(HashMap<User, String> animalMap){
+    public void setAnimalMap(HashMap<String, String> animalMap){
         this.animalMap = animalMap;
     }
 
@@ -94,7 +94,7 @@ public class Question {
         this.animalList = animalList;
     }
 
-    public HashMap<User, String> getAnimalMap() {
+    public HashMap<String, String> getAnimalMap() {
         return animalMap;
     }
 
