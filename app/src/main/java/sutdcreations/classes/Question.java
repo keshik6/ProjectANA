@@ -7,8 +7,7 @@ import java.util.ArrayList;
  */
 
 public class Question {
-
-    User asker;
+    Student asker;
     String title;
     String body;
     String key;
@@ -23,10 +22,13 @@ public class Question {
     public Question(){//default constructor for Firebase
     }
 
-    public Question(String title, String body, ArrayList<String> tags) {
+    public Question(String title, String body, ArrayList<String> tags,Student asker) {
         this.title = title;
         this.body = body;
         this.tags = tags;
+        this.asker = asker;
+        String courseCode = this.getKey().split(" ")[0];
+        this.asker.questionMap.put(courseCode,this.asker.questionMap.get(courseCode)+1);
     }
 
     public void upVote(User user) {
@@ -41,6 +43,11 @@ public class Question {
 
     public void addAnswer(Answer answer) {
         answers.add(answer);
+        if (answer.answerer instanceof Student){
+            Student student = (Student)answer.answerer;
+            String courseCode = this.getKey().split(" ")[0];
+            student.answerMap.put(courseCode,student.answerMap.get(courseCode)+1);
+        }
     }
 
     public void close() {
@@ -66,7 +73,7 @@ public class Question {
     //public getters for Firebase
 
 
-    public User getAsker() {
+    public Student getAsker() {
         return asker;
     }
 
@@ -108,5 +115,9 @@ public class Question {
 
     public boolean isFeedback() {
         return feedback;
+    }
+
+    public int getAnswersTotal(){
+        return answers.size();
     }
 }

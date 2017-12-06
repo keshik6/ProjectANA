@@ -16,8 +16,9 @@ public class Answer {
         //default constructor for Firebase
     }
 
-    public Answer(String body) {
+    public Answer(String body,User answerer) {
         this.body = body;
+        this.answerer = answerer;
     }
 
     public void upVote(User user) {

@@ -1,6 +1,8 @@
 package sutdcreations.classes;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Beng Haun on 2/12/2017.
@@ -8,10 +10,14 @@ import java.util.ArrayList;
 
 public class Subject {
 
+    static Map<String,Integer> totalStudentsByCourse = new HashMap<>();
+
     String subjectCode;
     String subjectTitle;
-    ArrayList<Topic> topics = new ArrayList<>();
+    static ArrayList<Topic> topics = new ArrayList<>();
     boolean isLive;
+
+    int totalStudents = 0;
 
     public Subject(){
         //default constructor for Firebase
@@ -20,6 +26,7 @@ public class Subject {
     public Subject(String subjectCode, String subjectTitle) {
         this.subjectCode = subjectCode;
         this.subjectTitle = subjectTitle;
+        totalStudentsByCourse.put(subjectCode,0);
     }
 
     public void addTopic(Topic topic) {
@@ -61,5 +68,23 @@ public class Subject {
         }
         else isLive=true;
     }
+
+    public void addStudent(String key){
+        if (totalStudentsByCourse.containsKey(key)){
+            totalStudentsByCourse.put(key,totalStudentsByCourse.get(key) +1);
+        }
+        else{
+            totalStudentsByCourse.put(key,1);
+        }
+    }
+
+    public static double getTotalStudents(String key){
+        if (totalStudentsByCourse.containsKey(key)){
+            return totalStudentsByCourse.get(key);
+        }
+        return -1;
+
+    }
+
 
 }
