@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/upVote"
+        android:layout_width="50dp"
+        android:layout_height="20dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/upvote" />
+
+    <TextView
+        android:id="@+id/vote"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        android:layout_below="@id/upVote"
+        android:text="50" />
+    <ImageView
+        android:id="@+id/downVote"
+        android:layout_width="50dp"
+        android:layout_height="20dp"
+        android:layout_alignStart="@+id/upVote"
+        android:layout_below="@+id/vote"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/downvote" />
+
+    <Button
+        android:id="@+id/questionTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/upVote"
+        android:text="question title"
+        android:textSize="24sp" />
+
+</RelativeLayout>

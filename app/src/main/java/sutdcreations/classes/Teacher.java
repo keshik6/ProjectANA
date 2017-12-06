@@ -11,8 +11,8 @@ public class Teacher extends User {
         //default constructor for Firebase
     }
 
-    public Teacher(String email_add) {
-        super(email_add);
+    public Teacher(String email_add,String uid) {
+        super(email_add, uid);
     }
 
     public void addSubject(Subject subject){

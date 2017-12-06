@@ -47,8 +47,10 @@
             android:name=".SnoopActivity"
             android:label="@string/title_activity_snoop"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".DatabaseMgmtActivity"></activity>
-        <activity android:name=".CourseTopicActivity"></activity>
+        <activity android:name=".DatabaseMgmtActivity" />
+        <activity android:name=".CourseTopicActivity" />
+        <activity android:name=".simpleQuestionActivity" />
+        <activity android:name=".simpleAnswerActivity"></activity>
     </application>
 
 </manifest>

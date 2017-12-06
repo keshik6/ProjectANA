@@ -6,23 +6,49 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
+
+import sutdcreations.classes.Subject;
+import sutdcreations.classes.User;
 
 public class ProfileActivity extends AppCompatActivity {
+
+    TextView userNameTF;
+    TextView coursesTF;
+    TextView noOfQuestionsTF;
+    TextView noOfRepliesTF;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        userNameTF = (TextView)findViewById(R.id.NameTF);
+        coursesTF = (TextView)findViewById(R.id.CoursesTF);
+        noOfQuestionsTF = (TextView)findViewById(R.id.NoOfQuestionsTF);
+        noOfRepliesTF = (TextView)findViewById(R.id.NoOfRepliesTF);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+        //Get user Name
+        User user = ((GlobalData) getApplication()).getUser();
+        String user_name = user.getUser_name();
+        userNameTF.setText(user_name);
+
+        //Get course codes for all the subjects enrolled
+        ArrayList<Subject> subjectsList = ((GlobalData)getApplication()).getUser().getSubjects();
+        String courseCodes = "";
+        for (Subject s: subjectsList){
+            courseCodes += s.getSubjectCode();
+            if (subjectsList.get(subjectsList.size()-1) != s){
+                courseCodes += "\n";
             }
-        });
+        }
+        coursesTF.setText(courseCodes);
+
+        //Get the no.Of Questions
+
+
     }
 }

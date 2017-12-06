@@ -2,12 +2,20 @@ package sutdcreations.projectana;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+import sutdcreations.classes.Answer;
 import sutdcreations.classes.Question;
 import sutdcreations.classes.Student;
 import sutdcreations.classes.Subject;
@@ -165,5 +173,40 @@ public class DatabaseMgmtActivity extends AppCompatActivity {
 //        topic8.addQuestion(question81);
 //        database.getReference().child("Topics").child(topicName8).setValue(topic8);
 //        database.getReference().child("Questions").child(topicName8+" "+"Top-down vs bottom-up?").setValue(question81);
+        DatabaseReference subjReference = database.getReference().child("Topics");
+        subjReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+//                Topic topic = dataSnapshot.getValue(Topic.class);
+//                String title = topic.getTitle();
+//                Log.i("DBtest",topic.getTitle());
+                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()){
+                    String key = postSnapshot.getKey();
+                    try {
+                        Log.i("updateDB", "key of node: " + key);
+                        Topic topic = postSnapshot.getValue(Topic.class);
+                        Map<String, String> map = (Map<String, String>) postSnapshot.getValue();
+                        Log.i("updateDB", topic.getTitle());
+                        Log.i("updateDB", map.get("key"));
+                        Log.i("updateDB", topic.getKey());
+                        List<Question> questions = topic.getQuestions();
+                        for (int i = questions.size() - 1; i >= 0; i--) {
+                            Question question = questions.get(i);
+                            Log.i("updateDB", "question extracted: " + question.getTitle());
+                            questions.remove(i);
+                            DatabaseAddHelper.addQuestion(database, question, topic);
+                        }
+                    }
+                    catch (Exception e){
+                        Log.i("updateDBExcept", "exception caught at current topic");
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 }
