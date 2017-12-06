@@ -16,7 +16,7 @@ public class Answer {
         //default constructor for Firebase
     }
 
-    public Answer(String body,User answerer) {
+    public Answer(String body, User answerer) {
         this.body = body;
         this.answerer = answerer;
     }

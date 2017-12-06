@@ -1,5 +1,7 @@
 package sutdcreations.classes;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,14 +12,14 @@ import java.util.Map;
 
 public class Subject {
 
-    static Map<String,Integer> totalStudentsByCourse = new HashMap<>();
-
     String subjectCode;
     String subjectTitle;
-    static ArrayList<Topic> topics = new ArrayList<>();
+    ArrayList<Topic> topics = new ArrayList<>();
+    static ArrayList<Topic> allTopics = new ArrayList<>();
     boolean isLive;
 
-    int totalStudents = 0;
+    //Store the course key and the no.of students enrolled for the course
+    static Map<String,Integer> totalStudentsByCourse = new HashMap<>();
 
     public Subject(){
         //default constructor for Firebase
@@ -32,6 +34,25 @@ public class Subject {
     public void addTopic(Topic topic) {
         topic.setKey(getKey()+" "+topic.getTitle());
         topics.add(topic);
+        allTopics.add(topic);
+    }
+
+    public void addStudent(String key){
+        if (totalStudentsByCourse.containsKey(key)){
+            totalStudentsByCourse.put(key,totalStudentsByCourse.get(key) + 1);
+        }
+        else{
+            totalStudentsByCourse.put(key,1);
+        }
+    }
+
+    public static double getTotalStudents(String key){
+        if (totalStudentsByCourse.containsKey(key)){
+            return totalStudentsByCourse.get(key);
+        }
+        Log.e("Keshik","There is an error");
+        return -1;
+
     }
 
     //get database key, for ease in retrieving value from database
@@ -68,23 +89,5 @@ public class Subject {
         }
         else isLive=true;
     }
-
-    public void addStudent(String key){
-        if (totalStudentsByCourse.containsKey(key)){
-            totalStudentsByCourse.put(key,totalStudentsByCourse.get(key) +1);
-        }
-        else{
-            totalStudentsByCourse.put(key,1);
-        }
-    }
-
-    public static double getTotalStudents(String key){
-        if (totalStudentsByCourse.containsKey(key)){
-            return totalStudentsByCourse.get(key);
-        }
-        return -1;
-
-    }
-
 
 }
