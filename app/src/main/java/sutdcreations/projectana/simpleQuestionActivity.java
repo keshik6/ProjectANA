@@ -28,6 +28,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import sutdcreations.classes.Feedback;
 import sutdcreations.classes.Question;
@@ -67,18 +69,18 @@ public class simpleQuestionActivity extends AppCompatActivity {
         System.out.println("start");
         user = ((GlobalData) getApplication()).getUser();
 
-        //make ask question button invisible for teachers as they are not supposed to be asking questions
-        Button askQuestion = findViewById(R.id.askQuestion);
-        if (user instanceof Teacher){
-            askQuestion.setVisibility(View.INVISIBLE);
-        }
-
 
         //Set up RecyclerView
         r1 = (RecyclerView) findViewById(R.id.questionRecyclerView);
         adapter=new MyAdapter(this,questions,user);
         r1.setAdapter(adapter);
         r1.setLayoutManager(new LinearLayoutManager(this));
+
+        //make ask question button invisible for teachers as they are not supposed to be asking questions
+        Button askQuestion = findViewById(R.id.askQuestion);
+        if (user instanceof Teacher){
+            askQuestion.setVisibility(View.INVISIBLE);
+        }
 
         //get Topic object from Firebase
         DatabaseReference topicRef = database.getReference().child("Topics").child(topicKey);
@@ -100,12 +102,13 @@ public class simpleQuestionActivity extends AppCompatActivity {
             }
         });
         DatabaseReference questionReference = database.getReference().child("Questions");
-        questionReference.addListenerForSingleValueEvent(new ValueEventListener() {
+        questionReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 //ArrayList<Question> questions = new ArrayList<>();
                 //iterate through all questions
                 try {
+                    questions.clear();
                     for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                         Question question = postSnapshot.getValue(Question.class);
 
@@ -118,7 +121,10 @@ public class simpleQuestionActivity extends AppCompatActivity {
                     ex.printStackTrace();
                 }
                 //addQuestionsToLayout(questions);
-                addQuestionsToLayout();
+                Collections.sort(questions, new QuestionComparator());
+                //addQuestionsToLayout();
+                adapter.notifyDataSetChanged();
+                adapter.notifyItemMoved(0,questions.size()-1);
             }
 
             @Override
@@ -243,29 +249,28 @@ public class simpleQuestionActivity extends AppCompatActivity {
         });
     }
 
-    public void addQuestionsToLayout(){
-        /*for (Question question : questions){
-            final Question final_question = question;
-            Button button = new Button(this);
-            if (question.isLive()) button.setText(question.getTitle()+ " (Live)");
-            else button.setText(question.getTitle());
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(getApplicationContext(),simpleAnswerActivity.class);
-                    intent.putExtra("questionKey",final_question.getKey());
-                    startActivity(intent);
-                }
-            });*/
-        //layout.addView(button);
-        adapter.notifyDataSetChanged();
-    }
-
     //onClick method for button for students to ask questions
     public void onClickAskQuestion(View v){
         Intent intent = new Intent(this, AskQuestionActivity.class);
         intent.putExtra("topicKey",topic.getKey());
         startActivity(intent);
+    }
+
+    // Compare questions by vote counts
+    class QuestionComparator implements Comparator<Question> {
+
+        @Override
+        public int compare(Question q1, Question q2) {
+            if (q1.getVotes()>q2.getVotes()) {
+                return -1;
+            }
+            else if (q1.getVotes()<q2.getVotes()) {
+                return 1;
+            }
+            else {
+                return 0;
+            }
+        }
     }
 }
 
@@ -291,7 +296,20 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.myHolder>{
     @Override
     public void onBindViewHolder(MyAdapter.myHolder holder, int position) {
         final Question final_question=questions.get(position);
-        holder.questionTitle.setText(final_question.getTitle());
+        final ImageButton upVote=holder.upVote;
+        final ImageButton downVote=holder.downVote;
+        if (final_question.isLive()) holder.questionTitle.setText(final_question.getTitle()+ " (Live)");
+        else holder.questionTitle.setText(final_question.getTitle());
+        if (checkUpVoted(user,final_question)) {
+            upVote.setBackgroundResource(R.drawable.upvote);
+        } else {
+            upVote.setBackgroundResource(R.drawable.upvote_red);
+        }
+        if (checkDownVoted(user,final_question)) {
+            downVote.setBackgroundResource(R.drawable.downvote);
+        } else {
+            downVote.setBackgroundResource(R.drawable.downvote_blue);
+        }
         holder.questionTitle.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -308,13 +326,27 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.myHolder>{
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if (checkVoted(user,final_question)) {
-                            Toast toast=Toast.makeText(context,"You have already voted",Toast.LENGTH_SHORT);
-                            toast.show();
-                        } else {
+                        if (checkDownVoted(user,final_question)) {
+                            final_question.removeDownVote((Student)user);
+                            final_question.upVote((Student) user);
+                            DatabaseAddHelper.updateQuestion(FirebaseDatabase.getInstance(),final_question);
+                            upVote.setBackgroundResource(R.drawable.upvote);
+                            downVote.setBackgroundResource(R.drawable.downvote_blue);
+                            voteCount.setText("" + final_question.getVotes());
+                        }
+                        else if (checkUpVoted(user,final_question)) {
+                            final_question.removeUpVote((Student)user);
+                            DatabaseAddHelper.updateQuestion(FirebaseDatabase.getInstance(),final_question);
+                            upVote.setBackgroundResource(R.drawable.upvote_red);
+                            voteCount.setText("" + final_question.getVotes());
+                            /*Toast toast=Toast.makeText(context,"You have already voted",Toast.LENGTH_SHORT);
+                            toast.show();*/
+                        }
+                        else {
                             final_question.upVote((Student) user);
                             //TODO: After running with this line it throws an error: Can't instantiate abstract class sutdcreations.classes.User
                             DatabaseAddHelper.updateQuestion(FirebaseDatabase.getInstance(),final_question);
+                            upVote.setBackgroundResource(R.drawable.upvote);
                             voteCount.setText("" + final_question.getVotes());
                         }
                     }
@@ -324,11 +356,24 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.myHolder>{
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if (checkVoted(user,final_question)) {
-                            Toast toast=Toast.makeText(context,"You have already voted",Toast.LENGTH_SHORT);
-                            toast.show();
+                        if (checkUpVoted(user,final_question)) {
+                            final_question.removeUpVote((Student)user);
+                            final_question.downVote((Student) user);
+                            DatabaseAddHelper.updateQuestion(FirebaseDatabase.getInstance(),final_question);
+                            upVote.setBackgroundResource(R.drawable.upvote_red);
+                            downVote.setBackgroundResource(R.drawable.downvote);
+                            voteCount.setText("" + final_question.getVotes());
+                        }
+                        else if (checkDownVoted(user,final_question)) {
+                            final_question.removeDownVote((Student)user);
+                            DatabaseAddHelper.updateQuestion(FirebaseDatabase.getInstance(),final_question);
+                            downVote.setBackgroundResource(R.drawable.downvote_blue);
+                            voteCount.setText("" + final_question.getVotes());
+                            /*Toast toast=Toast.makeText(context,"You have already voted",Toast.LENGTH_SHORT);
+                            toast.show();*/
                         } else {
                             final_question.downVote((Student) user);
+                            downVote.setBackgroundResource(R.drawable.downvote);
                             DatabaseAddHelper.updateQuestion(FirebaseDatabase.getInstance(),final_question);
                             voteCount.setText("" + final_question.getVotes());
                         }
@@ -357,13 +402,23 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.myHolder>{
         }
     }
 
-    private boolean checkVoted(User user, Question question) {
-        for (User voted:question.getVoted()) {
-            if (user.equals(voted)){
+    private boolean checkUpVoted(User user, Question question) {
+        for (String votedUid:question.getUpVoted()) {
+            if (user.getUid().equals(votedUid)){
                 return true;
             }
         }
         return false;
     }
+
+    private boolean checkDownVoted(User user, Question question) {
+        for (String votedUid:question.getDownVoted()) {
+            if (user.getUid().equals(votedUid)){
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
 

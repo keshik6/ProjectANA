@@ -17,7 +17,8 @@ public class Question {
     String body;
     String key;
     int votes;
-    ArrayList<Student> voted = new ArrayList<>();
+    ArrayList<String> upVoted = new ArrayList<>();
+    ArrayList<String> downVoted = new ArrayList<>();
     ArrayList<Answer> answers = new ArrayList<>();
     ArrayList<String> tags = new ArrayList<>();
     HashMap<String,String> animalMap = new HashMap<>();
@@ -42,17 +43,26 @@ public class Question {
         animalMap.put(asker.getUid(),randAnimal);
         animalList.remove(randAnimal);
 
-
     }
 
     public void upVote(Student student) {
         votes+=1;
-        voted.add(student);
+        upVoted.add(student.getUid());
     }
 
     public void downVote(Student student) {
         votes -= 1;
-        voted.add(student);
+        downVoted.add(student.getUid());
+    }
+
+    public void removeUpVote(Student student) {
+        votes-=1;
+        upVoted.remove(student.getUid());
+    }
+
+    public void removeDownVote(Student student) {
+        votes+=1;
+        downVoted.remove(student.getUid());
     }
 
     public void addAnswer(Answer answer) {
@@ -131,8 +141,12 @@ public class Question {
         return votes;
     }
 
-    public ArrayList<Student> getVoted() {
-        return voted;
+    public ArrayList<String> getUpVoted() {
+        return upVoted;
+    }
+
+    public ArrayList<String> getDownVoted() {
+        return downVoted;
     }
 
     public ArrayList<Answer> getAnswers() {
