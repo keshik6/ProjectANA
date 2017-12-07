@@ -51,8 +51,7 @@ public class Student extends User {
     //Calculate grades for the courses individually using mean and standard deviation
     //In fact we are getting the average of the z scores of questions and answers
 
-
-    public void calculateScore() {
+    public void calculatescore() {
         Map<String, Integer> qnsForCourses = new HashMap<>();
         for (Topic t : Subject.allTopics) {
             if (questionMap.containsKey(t.getKey())) {
@@ -97,6 +96,7 @@ public class Student extends User {
             double val = answerMap.get(courseCode) - mean;
             scoresAns.put(courseCode,val);
         }
+
 
         //Calculate final grade
         for (String courseCode: answerMap.keySet()){
@@ -146,5 +146,7 @@ public class Student extends User {
     public void setFinalGrade(Map<String, Double> finalGrade) {
         this.finalGrade = finalGrade;
     }
+
+    
 
 }

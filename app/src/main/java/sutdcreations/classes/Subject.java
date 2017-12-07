@@ -1,7 +1,5 @@
 package sutdcreations.classes;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -19,9 +17,6 @@ public class Subject {
     boolean isLive;
     static Map<String,Integer> totalStudentsByCourse = new HashMap<>();
     int totalStudents = 0;
-
-    //Store the course key and the no.of students enrolled for the course
-    static Map<String,Integer> totalStudentsByCourse = new HashMap<>();
 
     public Subject(){
         //default constructor for Firebase
@@ -52,10 +47,6 @@ public class Subject {
         if (totalStudentsByCourse.containsKey(key)){
             return totalStudentsByCourse.get(key);
         }
-<<<<<<< HEAD
-        Log.e("Keshik","There is an error");
-=======
->>>>>>> benghaun
         return -1;
 
     }
