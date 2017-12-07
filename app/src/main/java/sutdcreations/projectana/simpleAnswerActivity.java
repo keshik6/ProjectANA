@@ -208,14 +208,22 @@ to the same student, due to them being retrieved from Firebase at different time
         //add questions and answers as TextView
         TextView questionTitle = new TextView(this);
         questionTitle.setText(question.getTitle());
+        questionTitle.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        questionTitle.setTextSize(20);
         TextView questionBody = new TextView(this);
         questionBody.setText(question.getBody());
+        questionBody.setTextSize(15);
+        questionBody.setPadding(0,0,0,50);
         layout.addView(questionTitle);
         layout.addView(questionBody);
         for (Answer answer : question.getAnswers()){
             TextView answerView = new TextView(this);
             answerView.setText(answer.getBody());
+            TextView postedBy = new TextView(this);
+            postedBy.setText("Posted by: "+question.getAnimalMap().get(answer.getAnswerer().getUid()));
+            postedBy.setPadding(0,0,0,50);
             layout.addView(answerView);
+            layout.addView(postedBy);
         }
 
         User user = ((GlobalData) getApplication()).getUser();

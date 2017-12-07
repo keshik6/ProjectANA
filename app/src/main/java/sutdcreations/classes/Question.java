@@ -79,7 +79,12 @@ public class Question {
         if (answer.getAnswerer() instanceof Student){
             Student student = (Student) answerer;
             String courseCode = this.getKey().split(" ")[0];
-            student.answersMap.put(courseCode,student.answersMap.get(courseCode)+1);
+            if (student.answersMap.containsKey(courseCode)) {
+                student.answersMap.put(courseCode, student.answersMap.get(courseCode) + 1);
+            }
+            else{
+                student.answersMap.put(courseCode, 1);
+            }
         }
     }
 

@@ -50,6 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="See my courses"
+            android:visibility="invisible"
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="43dp" />
 
@@ -57,7 +58,8 @@
             android:id="@+id/testFeedback"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Test Feedback" />
+            android:text="Test Feedback"
+            android:visibility="invisible" />
 
         <Button
             android:id="@+id/testSnoop"

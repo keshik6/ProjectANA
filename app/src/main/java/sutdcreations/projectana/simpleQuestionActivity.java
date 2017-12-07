@@ -88,7 +88,8 @@ public class simpleQuestionActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 topic = dataSnapshot.getValue(Topic.class);
-
+                TextView topicTitle = findViewById(R.id.topicTitleQuestionList);
+                topicTitle.setText(topic.getTitle());
                 //listen for new feedback request if topic is live, and if user is a student
                 if (topic.isLive() && user instanceof Student){
                     Log.i("debugAlert","calling waitForFeedback in question list");
@@ -101,6 +102,8 @@ public class simpleQuestionActivity extends AppCompatActivity {
 
             }
         });
+
+        //get list of questions from Firebase
         DatabaseReference questionReference = database.getReference().child("Questions");
         questionReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -298,6 +301,7 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.myHolder>{
         final Question final_question=questions.get(position);
         final ImageButton upVote=holder.upVote;
         final ImageButton downVote=holder.downVote;
+        holder.postedBy.setText("Posted by: "+final_question.getAnimalMap().get(final_question.getAsker().getUid()));
         if (final_question.isLive()) holder.questionTitle.setText(final_question.getTitle()+ " (Live)");
         else holder.questionTitle.setText(final_question.getTitle());
         if (checkUpVoted(user,final_question)) {
@@ -389,12 +393,14 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.myHolder>{
         ImageButton upVote;
         ImageButton downVote;
         TextView voteCount;
+        TextView postedBy;
         public myHolder(View itemView) {
             super(itemView);
             questionTitle=(Button)itemView.findViewById(R.id.questionTitle);
             upVote=(ImageButton)itemView.findViewById(R.id.upVote);
             downVote=(ImageButton)itemView.findViewById(R.id.downVote);
             voteCount=(TextView)itemView.findViewById(R.id.voteCount);
+            postedBy = (TextView) itemView.findViewById(R.id.postedBy);
         }
     }
 
