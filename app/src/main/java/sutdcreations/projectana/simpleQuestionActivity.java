@@ -327,23 +327,21 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.myHolder>{
                     @Override
                     public void onClick(View view) {
                         if (checkDownVoted(user,final_question)) {
-                            final_question.removeDownVote((Student)user);
-                            final_question.upVote((Student) user);
+                            final_question.removeDownVote(user);
+                            final_question.upVote(user);
                             DatabaseAddHelper.updateQuestion(FirebaseDatabase.getInstance(),final_question);
                             upVote.setBackgroundResource(R.drawable.upvote);
                             downVote.setBackgroundResource(R.drawable.downvote_blue);
                             voteCount.setText("" + final_question.getVotes());
                         }
                         else if (checkUpVoted(user,final_question)) {
-                            final_question.removeUpVote((Student)user);
+                            final_question.removeUpVote(user);
                             DatabaseAddHelper.updateQuestion(FirebaseDatabase.getInstance(),final_question);
                             upVote.setBackgroundResource(R.drawable.upvote_red);
                             voteCount.setText("" + final_question.getVotes());
-                            /*Toast toast=Toast.makeText(context,"You have already voted",Toast.LENGTH_SHORT);
-                            toast.show();*/
                         }
                         else {
-                            final_question.upVote((Student) user);
+                            final_question.upVote((User) user);
                             //TODO: After running with this line it throws an error: Can't instantiate abstract class sutdcreations.classes.User
                             DatabaseAddHelper.updateQuestion(FirebaseDatabase.getInstance(),final_question);
                             upVote.setBackgroundResource(R.drawable.upvote);
@@ -357,22 +355,20 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.myHolder>{
                     @Override
                     public void onClick(View view) {
                         if (checkUpVoted(user,final_question)) {
-                            final_question.removeUpVote((Student)user);
-                            final_question.downVote((Student) user);
+                            final_question.removeUpVote(user);
+                            final_question.downVote(user);
                             DatabaseAddHelper.updateQuestion(FirebaseDatabase.getInstance(),final_question);
                             upVote.setBackgroundResource(R.drawable.upvote_red);
                             downVote.setBackgroundResource(R.drawable.downvote);
                             voteCount.setText("" + final_question.getVotes());
                         }
                         else if (checkDownVoted(user,final_question)) {
-                            final_question.removeDownVote((Student)user);
+                            final_question.removeDownVote(user);
                             DatabaseAddHelper.updateQuestion(FirebaseDatabase.getInstance(),final_question);
                             downVote.setBackgroundResource(R.drawable.downvote_blue);
                             voteCount.setText("" + final_question.getVotes());
-                            /*Toast toast=Toast.makeText(context,"You have already voted",Toast.LENGTH_SHORT);
-                            toast.show();*/
                         } else {
-                            final_question.downVote((Student) user);
+                            final_question.downVote(user);
                             downVote.setBackgroundResource(R.drawable.downvote);
                             DatabaseAddHelper.updateQuestion(FirebaseDatabase.getInstance(),final_question);
                             voteCount.setText("" + final_question.getVotes());

@@ -45,24 +45,24 @@ public class Question {
 
     }
 
-    public void upVote(Student student) {
+    public void upVote(User user) {
         votes+=1;
-        upVoted.add(student.getUid());
+        upVoted.add(user.getUid());
     }
 
-    public void downVote(Student student) {
+    public void downVote(User user) {
         votes -= 1;
-        downVoted.add(student.getUid());
+        downVoted.add(user.getUid());
     }
 
-    public void removeUpVote(Student student) {
+    public void removeUpVote(User user) {
         votes-=1;
-        upVoted.remove(student.getUid());
+        upVoted.remove(user.getUid());
     }
 
-    public void removeDownVote(Student student) {
+    public void removeDownVote(User user) {
         votes+=1;
-        downVoted.remove(student.getUid());
+        downVoted.remove(user.getUid());
     }
 
     public void addAnswer(Answer answer) {
