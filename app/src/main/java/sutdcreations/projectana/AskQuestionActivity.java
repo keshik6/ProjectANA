@@ -93,6 +93,7 @@ public class AskQuestionActivity extends AppCompatActivity {
         Intent intent = new Intent(this, simpleQuestionActivity.class);
         intent.putExtra("topicTitle",topicKey);
         startActivity(intent);
+        finish();
 
     }
 }

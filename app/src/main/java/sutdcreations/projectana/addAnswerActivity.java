@@ -56,5 +56,6 @@ public class addAnswerActivity extends AppCompatActivity {
         Intent intent = new Intent(this, simpleAnswerActivity.class);
         intent.putExtra("questionKey",questionKey);
         startActivity(intent);
+        finish();
     }
 }

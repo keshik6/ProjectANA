@@ -52,7 +52,9 @@
         <activity android:name=".simpleQuestionActivity" />
         <activity android:name=".simpleAnswerActivity" />
         <activity android:name=".AskQuestionActivity" />
-        <activity android:name=".addAnswerActivity"></activity>
+        <activity android:name=".addAnswerActivity" />
+        <activity android:name=".AddSubjectActivity" />
+        <activity android:name=".AddTopicActivity"></activity>
     </application>
 
 </manifest>

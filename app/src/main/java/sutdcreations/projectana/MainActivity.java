@@ -231,6 +231,20 @@ public class MainActivity extends AppCompatActivity {
             });
             layout.addView(button);
         }
+
+        //add button to create new subjects for teachers
+        if (user instanceof Teacher){
+            Button newSubjectButton = new Button(this);
+            newSubjectButton.setText("Create new subject");
+            newSubjectButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(getApplicationContext(), AddSubjectActivity.class);
+                    startActivity(intent);
+                }
+            });
+            layout.addView(newSubjectButton);
+        }
     }
 
 }

@@ -65,6 +65,7 @@ public class FeedbackActivity extends AppCompatActivity {
                         Intent intent = new Intent(getApplicationContext(), simpleAnswerActivity.class);
                         intent.putExtra("questionKey", feedbackKey);
                         startActivity(intent);
+                        finish();
                     }
                 }
                 else {

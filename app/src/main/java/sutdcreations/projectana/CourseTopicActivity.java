@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import sutdcreations.classes.Feedback;
 import sutdcreations.classes.Student;
 import sutdcreations.classes.Subject;
+import sutdcreations.classes.Teacher;
 import sutdcreations.classes.Topic;
 import sutdcreations.classes.User;
 
@@ -196,6 +197,20 @@ public class CourseTopicActivity extends AppCompatActivity {
                 }
             });
             layout.addView(button);
+        }
+        //add button to create new topics for teachers
+        if (user instanceof Teacher){
+            Button newTopicButton = new Button(this);
+            newTopicButton.setText("Create new topic");
+            newTopicButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(getApplicationContext(), AddTopicActivity.class);
+                    intent.putExtra("subjectKey",subject.getKey());
+                    startActivity(intent);
+                }
+            });
+            layout.addView(newTopicButton);
         }
     }
 
