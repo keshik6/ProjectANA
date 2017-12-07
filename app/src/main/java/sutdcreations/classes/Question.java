@@ -42,9 +42,7 @@ public class Question {
         animalMap.put(asker.getUid(),randAnimal);
         animalList.remove(randAnimal);
 
-        //add 1 to number of questions asked by student for this subject
-        String courseCode = this.getKey().split(" ")[0];
-        this.asker.questionMap.put(courseCode,this.asker.questionMap.get(courseCode)+1);
+
     }
 
     public void upVote(Student student) {
@@ -68,10 +66,10 @@ public class Question {
         animalList.remove(randAnimal);
 
         //add 1 to number of answers by student for this subject
-        if (answer.answerer instanceof Student){
+        if (answer.getAnswerer() instanceof Student){
             Student student = (Student) answerer;
             String courseCode = this.getKey().split(" ")[0];
-            student.answerMap.put(courseCode,student.answerMap.get(courseCode)+1);
+            student.answersMap.put(courseCode,student.answersMap.get(courseCode)+1);
         }
     }
 

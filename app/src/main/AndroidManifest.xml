@@ -50,7 +50,9 @@
         <activity android:name=".DatabaseMgmtActivity" />
         <activity android:name=".CourseTopicActivity" />
         <activity android:name=".simpleQuestionActivity" />
-        <activity android:name=".simpleAnswerActivity"></activity>
+        <activity android:name=".simpleAnswerActivity" />
+        <activity android:name=".AskQuestionActivity" />
+        <activity android:name=".addAnswerActivity"></activity>
     </application>
 
 </manifest>

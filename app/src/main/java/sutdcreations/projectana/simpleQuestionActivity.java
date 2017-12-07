@@ -32,6 +32,7 @@ import java.util.ArrayList;
 import sutdcreations.classes.Feedback;
 import sutdcreations.classes.Question;
 import sutdcreations.classes.Student;
+import sutdcreations.classes.Teacher;
 import sutdcreations.classes.Topic;
 import sutdcreations.classes.User;
 
@@ -65,6 +66,12 @@ public class simpleQuestionActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         System.out.println("start");
         user = ((GlobalData) getApplication()).getUser();
+
+        //make ask question button invisible for teachers as they are not supposed to be asking questions
+        Button askQuestion = findViewById(R.id.askQuestion);
+        if (user instanceof Teacher){
+            askQuestion.setVisibility(View.INVISIBLE);
+        }
 
 
         //Set up RecyclerView
@@ -252,6 +259,13 @@ public class simpleQuestionActivity extends AppCompatActivity {
             });*/
         //layout.addView(button);
         adapter.notifyDataSetChanged();
+    }
+
+    //onClick method for button for students to ask questions
+    public void onClickAskQuestion(View v){
+        Intent intent = new Intent(this, AskQuestionActivity.class);
+        intent.putExtra("topicKey",topic.getKey());
+        startActivity(intent);
     }
 }
 

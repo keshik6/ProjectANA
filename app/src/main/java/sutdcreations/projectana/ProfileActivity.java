@@ -8,14 +8,22 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import org.w3c.dom.Text;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import sutdcreations.classes.Student;
 import sutdcreations.classes.Subject;
+import sutdcreations.classes.Topic;
 import sutdcreations.classes.User;
 
 public class ProfileActivity extends AppCompatActivity {
@@ -25,6 +33,9 @@ public class ProfileActivity extends AppCompatActivity {
     TextView noOfRepliesTF;
     TextView questionsLabel;
     TextView repliesLabel;
+    TextView gradesLabel;
+    TextView gradesTF;
+    User user;
 
 
     @Override
@@ -40,8 +51,13 @@ public class ProfileActivity extends AppCompatActivity {
         questionsLabel = (TextView)findViewById(R.id.QuestionsLabel);
         repliesLabel = (TextView)findViewById(R.id.ReplyLabel);
 
+        //Get the reference to grades label and text box
+        gradesLabel = (TextView)findViewById(R.id.ReplyLabel);
+        gradesTF = (TextView)findViewById(R.id.GradesTF);
+
+
         //Get the user object
-        User user = ((GlobalData) getApplication()).getUser();
+        user = ((GlobalData) getApplication()).getUser();
 
         //Get user Name
         String user_name = user.getUser_name();
@@ -57,23 +73,42 @@ public class ProfileActivity extends AppCompatActivity {
             }
         }
         coursesTF.setText(courseCodes);
+        DatabaseReference allTopicsRef = FirebaseDatabase.getInstance().getReference().child("Topics");
+        allTopicsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                ArrayList<Topic> topics = new ArrayList<>();
+                for (DataSnapshot childSnapshot : dataSnapshot.getChildren()){
+                    Topic topic = childSnapshot.getValue(Topic.class);
+                    topics.add(topic);
+                }
+                updateScore(topics);
+            }
 
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+    }
+
+    private void updateScore(ArrayList<Topic> topics){
         //Get the no.Of Questions and replies
         if (user instanceof Student){
             Student student = (Student)user;
-            //noOfQuestionsTF.setText(String.valueOf(student.getQuestions_count()));
-            //noOfRepliesTF.setText(String.valueOf(student.getReplies_count()));
+            noOfQuestionsTF.setText(String.valueOf(student.getTotalQuestionsAsked()));
+            noOfRepliesTF.setText(String.valueOf(student.getTotalReplies()));
+            gradesTF.setText(student.calculateScore(topics));
         }
         else{
             noOfQuestionsTF.setVisibility(View.INVISIBLE);
             noOfRepliesTF.setVisibility(View.INVISIBLE);
             questionsLabel.setVisibility(View.INVISIBLE);
             repliesLabel.setVisibility(View.INVISIBLE);
+            gradesLabel.setVisibility(View.INVISIBLE);
+            gradesTF.setVisibility(View.INVISIBLE);
         }
-
-
-
-
-
     }
 }

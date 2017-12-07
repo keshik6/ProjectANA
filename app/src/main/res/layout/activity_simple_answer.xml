@@ -8,4 +8,11 @@
     android:id="@+id/simpleAnswerLayout"
     tools:context="sutdcreations.projectana.simpleAnswerActivity">
 
+    <Button
+        android:id="@+id/newAnswerBut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClickGoToAddAnswer"
+        android:text="Add answer" />
+
 </LinearLayout>

@@ -34,6 +34,7 @@ public class simpleAnswerActivity extends AppCompatActivity {
     User user;
     boolean inForeground = true;
     boolean waitingForFeedback;
+    Button newAnswerBut;
     ValueEventListener listener; //keep track of if a listener is added to questionRef, make sure only one is added
 
     @Override
@@ -56,7 +57,7 @@ public class simpleAnswerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_simple_answer);
         database = FirebaseDatabase.getInstance();
         user = ((GlobalData) getApplication()).getUser();
-
+        newAnswerBut = findViewById(R.id.newAnswerBut);
         if (listener == null) { //be sure to only add one listener
             Log.i("debugAlert","adding listener");
             listener = new ValueEventListener() {
@@ -254,7 +255,15 @@ to the same student, due to them being retrieved from Firebase at different time
                 });
                 layout.addView(giveFeedback);
             }
-
         }
+
+        layout.addView(newAnswerBut);
+    }
+
+    //onClick method for button that leads to add question activity
+    public void onClickGoToAddAnswer(View v){
+        Intent intent = new Intent(this, addAnswerActivity.class);
+        intent.putExtra("questionKey",getIntent().getStringExtra("questionKey"));
+        startActivity(intent);
     }
 }
