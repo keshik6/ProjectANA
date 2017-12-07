@@ -44,7 +44,7 @@ public class Question {
 
         //add 1 to number of questions asked by student for this subject
         String courseCode = this.getKey().split(" ")[0];
-        this.asker.questionMap.put(courseCode,this.asker.questionMap.get(courseCode)+1);
+        this.asker.questionsMap.put(courseCode,this.asker.questionsMap.get(courseCode)+1);
     }
 
     public void upVote(Student student) {
@@ -71,7 +71,7 @@ public class Question {
         if (answer.answerer instanceof Student){
             Student student = (Student) answerer;
             String courseCode = this.getKey().split(" ")[0];
-            student.answerMap.put(courseCode,student.answerMap.get(courseCode)+1);
+            student.answersMap.put(courseCode,student.answersMap.get(courseCode)+1);
         }
     }
 

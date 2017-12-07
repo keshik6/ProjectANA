@@ -85,5 +85,4 @@ public class Subject {
         }
         else isLive=true;
     }
-
 }

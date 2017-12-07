@@ -25,6 +25,8 @@ public class ProfileActivity extends AppCompatActivity {
     TextView noOfRepliesTF;
     TextView questionsLabel;
     TextView repliesLabel;
+    TextView gradesLabel;
+    TextView gradesTF;
 
 
     @Override
@@ -39,6 +41,11 @@ public class ProfileActivity extends AppCompatActivity {
         //Get reference to labels
         questionsLabel = (TextView)findViewById(R.id.QuestionsLabel);
         repliesLabel = (TextView)findViewById(R.id.ReplyLabel);
+
+        //Get the reference to grades label and text box
+        gradesLabel = (TextView)findViewById(R.id.ReplyLabel);
+        gradesTF = (TextView)findViewById(R.id.GradesTF);
+
 
         //Get the user object
         User user = ((GlobalData) getApplication()).getUser();
@@ -61,19 +68,17 @@ public class ProfileActivity extends AppCompatActivity {
         //Get the no.Of Questions and replies
         if (user instanceof Student){
             Student student = (Student)user;
-            //noOfQuestionsTF.setText(String.valueOf(student.getQuestions_count()));
-            //noOfRepliesTF.setText(String.valueOf(student.getReplies_count()));
+            noOfQuestionsTF.setText(String.valueOf(student.getTotalQuestionsAsked()));
+            noOfRepliesTF.setText(String.valueOf(student.getTotalReplies()));
+            //gradesTF.setText(student.calculateScore());
         }
         else{
             noOfQuestionsTF.setVisibility(View.INVISIBLE);
             noOfRepliesTF.setVisibility(View.INVISIBLE);
             questionsLabel.setVisibility(View.INVISIBLE);
             repliesLabel.setVisibility(View.INVISIBLE);
+            gradesLabel.setVisibility(View.INVISIBLE);
+            gradesTF.setVisibility(View.INVISIBLE);
         }
-
-
-
-
-
     }
 }
