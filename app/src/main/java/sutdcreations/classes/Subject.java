@@ -17,6 +17,8 @@ public class Subject {
     ArrayList<Topic> topics = new ArrayList<>();
     static ArrayList<Topic> allTopics = new ArrayList<>();
     boolean isLive;
+    static Map<String,Integer> totalStudentsByCourse = new HashMap<>();
+    int totalStudents = 0;
 
     //Store the course key and the no.of students enrolled for the course
     static Map<String,Integer> totalStudentsByCourse = new HashMap<>();
@@ -50,7 +52,10 @@ public class Subject {
         if (totalStudentsByCourse.containsKey(key)){
             return totalStudentsByCourse.get(key);
         }
+<<<<<<< HEAD
         Log.e("Keshik","There is an error");
+=======
+>>>>>>> benghaun
         return -1;
 
     }

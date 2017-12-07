@@ -14,9 +14,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+<<<<<<< HEAD
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+=======
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+>>>>>>> benghaun
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -61,11 +69,21 @@ public class simpleQuestionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_simple_question);
         final String topicKey = getIntent().getStringExtra("topicTitle");
         database = FirebaseDatabase.getInstance();
+<<<<<<< HEAD
         user = ((GlobalData) getApplication()).getUser();
 
         //Set up RecyclerView
         r1 = (RecyclerView) findViewById(R.id.questionRecyclerView);
         adapter=new MyAdapter(this,questions);
+=======
+        System.out.println("start");
+        user = ((GlobalData) getApplication()).getUser();
+
+
+        //Set up RecyclerView
+        r1 = (RecyclerView) findViewById(R.id.questionRecyclerView);
+        adapter=new MyAdapter(this,questions,user);
+>>>>>>> benghaun
         r1.setAdapter(adapter);
         r1.setLayoutManager(new LinearLayoutManager(this));
 
@@ -93,6 +111,7 @@ public class simpleQuestionActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 //ArrayList<Question> questions = new ArrayList<>();
+<<<<<<< HEAD
 
                 //iterate through all questions
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()){
@@ -102,6 +121,20 @@ public class simpleQuestionActivity extends AppCompatActivity {
                     if (question.getKey().contains(topicKey)){
                         questions.add(question);
                     }
+=======
+                //iterate through all questions
+                try {
+                    for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                        Question question = postSnapshot.getValue(Question.class);
+
+                        //add question to ArrayList if it is of the topic that you are interested in
+                        if (question.getKey().contains(topicKey)) {
+                            questions.add(question);
+                        }
+                    }
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+>>>>>>> benghaun
                 }
                 //addQuestionsToLayout(questions);
                 addQuestionsToLayout();
@@ -243,6 +276,7 @@ public class simpleQuestionActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
             });*/
+<<<<<<< HEAD
             //layout.addView(button);
             adapter.notifyDataSetChanged();
         }
@@ -294,4 +328,108 @@ public class simpleQuestionActivity extends AppCompatActivity {
             }
         }
     }
+=======
+        //layout.addView(button);
+        adapter.notifyDataSetChanged();
+    }
+}
+
+class MyAdapter extends RecyclerView.Adapter<MyAdapter.myHolder>{
+
+    ArrayList<Question> questions;
+    Context context;
+    User user;
+
+    public MyAdapter(Context context,ArrayList<Question> questions, User user) {
+        this.context=context;
+        this.questions=questions;
+        this.user=user;
+    }
+
+    @Override
+    public MyAdapter.myHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        LayoutInflater myInflator = LayoutInflater.from(context);
+        View myView = myInflator.inflate(R.layout.single_question_layout,parent,false);
+        return new myHolder(myView);
+    }
+
+    @Override
+    public void onBindViewHolder(MyAdapter.myHolder holder, int position) {
+        final Question final_question=questions.get(position);
+        holder.questionTitle.setText(final_question.getTitle());
+        holder.questionTitle.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(context,simpleAnswerActivity.class);
+                        intent.putExtra("questionKey",final_question.getKey());
+                        context.startActivity(intent);
+                    }
+                }
+        );
+        final TextView voteCount=holder.voteCount;
+        voteCount.setText(""+final_question.getVotes());
+        holder.upVote.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (checkVoted(user,final_question)) {
+                            Toast toast=Toast.makeText(context,"You have already voted",Toast.LENGTH_SHORT);
+                            toast.show();
+                        } else {
+                            final_question.upVote((Student) user);
+                            //TODO: After running with this line it throws an error: Can't instantiate abstract class sutdcreations.classes.User
+                            DatabaseAddHelper.updateQuestion(FirebaseDatabase.getInstance(),final_question);
+                            voteCount.setText("" + final_question.getVotes());
+                        }
+                    }
+                }
+        );
+        holder.downVote.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (checkVoted(user,final_question)) {
+                            Toast toast=Toast.makeText(context,"You have already voted",Toast.LENGTH_SHORT);
+                            toast.show();
+                        } else {
+                            final_question.downVote((Student) user);
+                            DatabaseAddHelper.updateQuestion(FirebaseDatabase.getInstance(),final_question);
+                            voteCount.setText("" + final_question.getVotes());
+                        }
+                    }
+                }
+        );
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return questions.size();
+    }
+
+    public class myHolder extends RecyclerView.ViewHolder{
+        Button questionTitle;
+        ImageButton upVote;
+        ImageButton downVote;
+        TextView voteCount;
+        public myHolder(View itemView) {
+            super(itemView);
+            questionTitle=(Button)itemView.findViewById(R.id.questionTitle);
+            upVote=(ImageButton)itemView.findViewById(R.id.upVote);
+            downVote=(ImageButton)itemView.findViewById(R.id.downVote);
+            voteCount=(TextView)itemView.findViewById(R.id.voteCount);
+        }
+    }
+
+    private boolean checkVoted(User user, Question question) {
+        for (User voted:question.getVoted()) {
+            if (user.equals(voted)){
+                return true;
+            }
+        }
+        return false;
+    }
+}
+>>>>>>> benghaun
 

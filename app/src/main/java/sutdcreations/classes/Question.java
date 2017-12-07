@@ -17,7 +17,7 @@ public class Question {
     String body;
     String key;
     int votes;
-    ArrayList<User> voted = new ArrayList<>();
+    ArrayList<Student> voted = new ArrayList<>();
     ArrayList<Answer> answers = new ArrayList<>();
     ArrayList<String> tags = new ArrayList<>();
     HashMap<String,String> animalMap = new HashMap<>();
@@ -47,14 +47,14 @@ public class Question {
         this.asker.questionMap.put(courseCode,this.asker.questionMap.get(courseCode)+1);
     }
 
-    public void upVote(User user) {
+    public void upVote(Student student) {
         votes+=1;
-        voted.add(user);
+        voted.add(student);
     }
 
-    public void downVote(User user) {
+    public void downVote(Student student) {
         votes -= 1;
-        voted.add(user);
+        voted.add(student);
     }
 
     public void addAnswer(Answer answer) {
@@ -133,7 +133,7 @@ public class Question {
         return votes;
     }
 
-    public ArrayList<User> getVoted() {
+    public ArrayList<Student> getVoted() {
         return voted;
     }
 

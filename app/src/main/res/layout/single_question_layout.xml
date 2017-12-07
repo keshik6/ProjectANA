@@ -4,6 +4,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+<<<<<<< HEAD
     <ImageView
         android:id="@+id/upVote"
         android:layout_width="50dp"
@@ -27,6 +28,33 @@
         android:layout_below="@+id/vote"
         android:scaleType="fitXY"
         app:srcCompat="@drawable/downvote" />
+=======
+    <ImageButton
+        android:id="@+id/upVote"
+        android:layout_width="50dp"
+        android:layout_height="15dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:scaleType="fitXY"
+        android:background="@drawable/upvote" />
+
+    <TextView
+        android:id="@+id/voteCount"
+        android:layout_width="50dp"
+        android:layout_height="20dp"
+        android:layout_below="@id/upVote"
+        android:textAlignment="center"
+        android:textSize="15sp"
+        android:text="0" />
+    <ImageButton
+        android:id="@+id/downVote"
+        android:layout_width="50dp"
+        android:layout_height="15dp"
+        android:layout_alignStart="@+id/upVote"
+        android:layout_below="@+id/voteCount"
+        android:scaleType="fitXY"
+        android:background="@drawable/downvote" />
+>>>>>>> benghaun
 
     <Button
         android:id="@+id/questionTitle"
@@ -34,7 +62,13 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_toEndOf="@+id/upVote"
+<<<<<<< HEAD
         android:text="question title"
         android:textSize="24sp" />
+=======
+        android:layout_alignBottom="@id/downVote"
+        android:text="question title"
+        android:textSize="15sp" />
+>>>>>>> benghaun
 
 </RelativeLayout>
