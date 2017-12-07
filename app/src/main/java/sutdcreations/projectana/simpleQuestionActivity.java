@@ -298,9 +298,9 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.myHolder>{
                             Toast toast=Toast.makeText(context,"You have already voted",Toast.LENGTH_SHORT);
                             toast.show();
                         } else {
-                            final_question.upVote(user);
+                            final_question.upVote((Student) user);
                             //TODO: After running with this line it throws an error: Can't instantiate abstract class sutdcreations.classes.User
-                            //DatabaseAddHelper.updateQuestion(FirebaseDatabase.getInstance(),final_question);
+                            DatabaseAddHelper.updateQuestion(FirebaseDatabase.getInstance(),final_question);
                             voteCount.setText("" + final_question.getVotes());
                         }
                     }
@@ -314,8 +314,8 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.myHolder>{
                             Toast toast=Toast.makeText(context,"You have already voted",Toast.LENGTH_SHORT);
                             toast.show();
                         } else {
-                            final_question.downVote(user);
-                            //DatabaseAddHelper.updateQuestion(FirebaseDatabase.getInstance(),final_question);
+                            final_question.downVote((Student) user);
+                            DatabaseAddHelper.updateQuestion(FirebaseDatabase.getInstance(),final_question);
                             voteCount.setText("" + final_question.getVotes());
                         }
                     }
