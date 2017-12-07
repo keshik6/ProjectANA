@@ -51,7 +51,7 @@ public class Student extends User {
     //Calculate grades for the courses individually using mean and standard deviation
     //In fact we are getting the average of the z scores of questions and answers
 
-    public void calculatescore() {
+    public void calculateScore() {
         Map<String, Integer> qnsForCourses = new HashMap<>();
         for (Topic t : Subject.allTopics) {
             if (questionMap.containsKey(t.getKey())) {

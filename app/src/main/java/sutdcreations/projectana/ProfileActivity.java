@@ -61,8 +61,8 @@ public class ProfileActivity extends AppCompatActivity {
         //Get the no.Of Questions and replies
         if (user instanceof Student){
             Student student = (Student)user;
-            //noOfQuestionsTF.setText(String.valueOf(student.getQuestions_count()));
-            //noOfRepliesTF.setText(String.valueOf(student.getReplies_count()));
+            //noOfQuestionsTF.setText(String.valueOf());
+            //noOfRepliesTF.setText(String.valueOf());
         }
         else{
             noOfQuestionsTF.setVisibility(View.INVISIBLE);
