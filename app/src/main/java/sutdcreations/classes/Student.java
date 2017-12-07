@@ -71,8 +71,8 @@ public class Student extends User {
         }
 
         for (String courseCode : questionsMap.keySet()) {
-            double mean = (qnsForCourses.get(courseCode)) / (Subject.getTotalStudents(courseCode));
-            double val = questionsMap.get(courseCode) - mean;
+            //double mean = (qnsForCourses.get(courseCode)) / (Subject.getTotalStudents(courseCode));
+            double val = questionsMap.get(courseCode);
             scoresQn.put(courseCode, val);
         }
 
@@ -99,8 +99,8 @@ public class Student extends User {
 
         for (String courseCode: answersMap.keySet()){
             Log.i("keshik",String.valueOf(ansForCourses.get(courseCode)));
-            double mean = (ansForCourses.get(courseCode))/(Subject.getTotalStudents(courseCode));
-            double val = answersMap.get(courseCode) - mean;
+            //double mean = (ansForCourses.get(courseCode))/(Subject.getTotalStudents(courseCode));
+            double val = answersMap.get(courseCode);
             scoresAns.put(courseCode,val);
         }
 
@@ -115,7 +115,20 @@ public class Student extends User {
         //Update this to beng haun's code
         String grade = "";
         for (String courseCode: finalGrade.keySet()){
-            grade += courseCode + "\t" + finalGrade.get(courseCode);
+            grade += courseCode.substring(0,2) + "." + courseCode.substring(2,courseCode.length()) + ":\t";
+            if (finalGrade.get(courseCode) >= 15){
+                grade += "A";
+            }
+            else if (finalGrade.get(courseCode) >= 10){
+                grade += "B";
+            }
+            else if (finalGrade.get(courseCode) >= 5){
+                grade += "C";
+            }
+            else{
+                grade += "D";
+            }
+
             if (!courseCode.equals(finalGrade.keySet().equals(courseCode))){
                 grade += "\n";
             }
