@@ -8,6 +8,27 @@
     android:id="@+id/simpleAnswerLayout"
     tools:context="sutdcreations.projectana.simpleAnswerActivity">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/questionTopic"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:text="Loading..."/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/questionDetail"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:text="Loading..."/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/answerRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+
     <Button
         android:id="@+id/newAnswerBut"
         android:layout_width="match_parent"
@@ -15,4 +36,9 @@
         android:onClick="onClickGoToAddAnswer"
         android:text="Add answer" />
 
+    <Button
+        android:id="@+id/requestFeedback"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Request for feedback" />
 </LinearLayout>

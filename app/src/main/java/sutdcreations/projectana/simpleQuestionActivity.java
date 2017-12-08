@@ -108,7 +108,6 @@ public class simpleQuestionActivity extends AppCompatActivity {
         questionReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                //ArrayList<Question> questions = new ArrayList<>();
                 //iterate through all questions
                 try {
                     questions.clear();
