@@ -40,5 +40,15 @@
         android:id="@+id/requestFeedback"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Request for feedback" />
+        android:text="Request for feedback"
+        android:visibility="gone"/>
+    
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Delete question"
+        android:background="@android:color/holo_red_light"
+        android:id="@+id/deleteQuestion"
+        android:onClick="onClickDeleteQuestion"
+        android:visibility="gone"/>
 </LinearLayout>

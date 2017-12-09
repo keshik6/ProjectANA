@@ -73,6 +73,49 @@ public class DatabaseAddHelper {
         feedbackRef.setValue(feedback);
     }
 
+    //deletes a subject from Firebase
+    public static void deleteSubject(FirebaseDatabase database, Subject subject){
+        //get Firebase reference for all subjects in Firebase
+        DatabaseReference subjRef = database.getReference().child("Subjects");
+        //create new child under Subjects node in Firebase, and set the value to be the Subject object
+        subjRef.child(subject.getKey()).removeValue();
+    }
+
+    //adds a Topic to an existing Subject, updates both the Topic and Subject in Firebase
+    public static void deleteTopic(FirebaseDatabase database, Subject subject, Topic topic){
+        //get Firebase reference for particular subject that we are adding the Topic to
+        final DatabaseReference subjRef = database.getReference().child("Subjects").child(subject.getKey());
+
+        //add topic to the subject, update the Firebase for the subject
+        subject.removeTopic(topic);
+        subjRef.setValue(subject);
+
+        //create new child under Topics node in Firebase and set the value
+        DatabaseReference topicRef = database.getReference().child("Topics");
+        topicRef.child(topic.getKey()).removeValue();
+    }
+
+    //adds a question to an existing Topic, updates the Topic in Firebase and adds a new Question to Firebase
+    public static void deleteQuestion(FirebaseDatabase database, Question question, Topic topic){
+        //get Firebase reference for particular topic that we are adding question to
+        DatabaseReference topicRef = database.getReference().child("Topics").child(topic.getKey());
+
+        //add question to the topic, update the Firebase for the topic
+        topic.removeQuestion(question);
+        topicRef.setValue(topic);
+
+        //create new child under Questions node in Firebase and set the value
+        DatabaseReference questionRef = database.getReference().child("Questions").child(question.getKey());
+        questionRef.removeValue();
+    }
+
+    //adds an answer to a question
+    public static void deleteAnswer(FirebaseDatabase database, Answer answer, Question question){
+        DatabaseReference questionRef = database.getReference().child("Questions").child(question.getKey());
+        question.removeAnswer(answer);
+        questionRef.setValue(question);
+    }
+
     //update existing subject in Firebase
     public static void updateSubject(FirebaseDatabase database, Subject subject){
         addSubject(database,subject);

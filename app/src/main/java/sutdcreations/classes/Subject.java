@@ -34,6 +34,13 @@ public class Subject {
         allTopics.add(topic);
     }
 
+    public void removeTopic(Topic topic){
+        for (int i = 0; i < topics.size(); i++){
+            if (topics.get(i).getKey().matches(topic.getKey())){
+                topics.remove(i);
+            }
+        }
+    }
     public void addStudent(String key){
         if (totalStudentsByCourse.containsKey(key)){
             totalStudentsByCourse.put(key,totalStudentsByCourse.get(key) + 1);

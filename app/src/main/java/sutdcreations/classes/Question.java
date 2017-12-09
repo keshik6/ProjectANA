@@ -101,7 +101,11 @@ public class Question {
     }
 
     public void removeAnswer(Answer answer) {
-        answers.remove(answer);
+        for (Answer ans : answers){
+            if (ans.getBody().equals(answer.getBody())){
+                answers.remove(ans);
+            }
+        }
     }
 
     //public getters and setters for Firebase

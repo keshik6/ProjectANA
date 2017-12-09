@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.firebase.database.ChildEventListener;
@@ -33,7 +34,9 @@ import sutdcreations.classes.Answer;
 import sutdcreations.classes.Feedback;
 import sutdcreations.classes.Question;
 import sutdcreations.classes.Student;
+import sutdcreations.classes.Subject;
 import sutdcreations.classes.Teacher;
+import sutdcreations.classes.Topic;
 import sutdcreations.classes.User;
 
 public class simpleAnswerActivity extends AppCompatActivity {
@@ -50,6 +53,7 @@ public class simpleAnswerActivity extends AppCompatActivity {
     ArrayList<Answer> answers = new ArrayList<Answer>();
     RecyclerView r1;
     ValueEventListener listener; //keep track of if a listener is added to questionRef, make sure only one is added
+    DatabaseReference questionRef;
 
     @Override
     protected void onPause(){
@@ -79,74 +83,75 @@ public class simpleAnswerActivity extends AppCompatActivity {
             listener = new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    System.out.println("size of array is: "+answers.size());
+                    System.out.println("size of array is: " + answers.size());
                     answers.clear();
                     question = dataSnapshot.getValue(Question.class);
-                    if (questionTopic==null) {
+                    if (questionTopic == null) {
                         questionTopic = (TextView) findViewById(R.id.questionTopic);
                         questionTopic.setText(question.getTitle());
                         questionDetail = (TextView) findViewById(R.id.questionDetail);
                         questionDetail.setText(question.getBody());
                     }
-                    for (Answer answer : question.getAnswers()){
+                    for (Answer answer : question.getAnswers()) {
                         answers.add(answer);
                     }
-                    if (question.isLive() && user instanceof Student){
-                        Log.i("debugAlert","calling waitForFeedback in answer");
+                    if (question.isLive() && user instanceof Student) {
+                        Log.i("debugAlert", "calling waitForFeedback in answer");
                         waitForFeedback();
                     }
                     Collections.sort(answers, new AnswerComparator());
-                    if (adapter2==null) {
+                    if (adapter2 == null) {
                         //Set up RecyclerView
                         r1 = (RecyclerView) findViewById(R.id.answerRecyclerView);
-                        adapter2 = new MyAdapter2(getApplicationContext(), answers, question, user);
+                        adapter2 = new MyAdapter2(simpleAnswerActivity.this, answers, question, user);
                         r1.setAdapter(adapter2);
                         r1.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-                    }
-                    else {
+                    } else {
                         //Reset RecyclerView
-                        adapter2 = new MyAdapter2(getApplicationContext(), answers, question, user);
+                        adapter2 = new MyAdapter2(simpleAnswerActivity.this, answers, question, user);
                         r1.setAdapter(adapter2);
                         r1.invalidate();
                     }
                     // give feedback
                     User user = ((GlobalData) getApplication()).getUser();
 
-                    //Request feedback (teacher) or Give feedback (student)
-                    if (user instanceof Teacher){
-                        requestFeedback.setVisibility(View.VISIBLE);
-                        requestFeedback.setText("Request for feedback");
-                        requestFeedback.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                question.setFeedback(true);
-                                DatabaseAddHelper.updateQuestion(database,question);
-                                Feedback feedback = new Feedback(question);
-                                DatabaseAddHelper.addFeedback(database,feedback);
-                                Intent intent = new Intent(getApplicationContext(), FeedbackActivity.class);
-                                intent.putExtra("feedbackKey",question.getKey());
-                                startActivity(intent);
-                            }
-                        });
-                    }
 
-                    //add button to give feedback for students if teacher has asked for feedback
-                    if (user instanceof Student){
-                        Log.i("feedback status: ",""+question.isFeedback());
-                        if (question.isFeedback()){
+                    if (question.isLive()) { //feedback system only applicable to live questions
+                        //Request feedback (teacher) or Give feedback (student)
+                        if (user instanceof Teacher) {
                             requestFeedback.setVisibility(View.VISIBLE);
-                            requestFeedback.setText("Give feedback");
+                            requestFeedback.setText("Request for feedback");
                             requestFeedback.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-                                    Intent intent = new Intent(getApplicationContext(),FeedbackActivity.class);
-                                    intent.putExtra("feedbackKey",question.getKey());
+                                    question.setFeedback(true);
+                                    DatabaseAddHelper.updateQuestion(database, question);
+                                    Feedback feedback = new Feedback(question);
+                                    DatabaseAddHelper.addFeedback(database, feedback);
+                                    Intent intent = new Intent(getApplicationContext(), FeedbackActivity.class);
+                                    intent.putExtra("feedbackKey", question.getKey());
                                     startActivity(intent);
                                 }
                             });
                         }
-                        else {
-                            requestFeedback.setVisibility(View.GONE);
+
+                        //add button to give feedback for students if teacher has asked for feedback
+                        if (user instanceof Student) {
+                            Log.i("feedback status: ", "" + question.isFeedback());
+                            if (question.isFeedback()) {
+                                requestFeedback.setVisibility(View.VISIBLE);
+                                requestFeedback.setText("Give feedback");
+                                requestFeedback.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        Intent intent = new Intent(getApplicationContext(), FeedbackActivity.class);
+                                        intent.putExtra("feedbackKey", question.getKey());
+                                        startActivity(intent);
+                                    }
+                                });
+                            } else {
+                                requestFeedback.setVisibility(View.GONE);
+                            }
                         }
                     }
                 }
@@ -158,8 +163,13 @@ public class simpleAnswerActivity extends AppCompatActivity {
             };
             //get question object from Firebase
             Log.i("questionKey", getIntent().getStringExtra("questionKey"));
-            DatabaseReference questionRef = database.getReference().child("Questions").child(getIntent().getStringExtra("questionKey"));
+            questionRef = database.getReference().child("Questions").child(getIntent().getStringExtra("questionKey"));
             questionRef.addValueEventListener(listener);
+
+            Button deleteQuestionButton = findViewById(R.id.deleteQuestion);
+            if (user instanceof Teacher) { //button to delete questions should only be visible to teahcers
+                deleteQuestionButton.setVisibility(View.VISIBLE);
+            }
 
         }
     }
@@ -290,6 +300,52 @@ to the same student, due to them being retrieved from Firebase at different time
         startActivity(intent);
     }
 
+
+    //delete question, for teacher's use
+    public void onClickDeleteQuestion(View v){
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
+        alertBuilder.setTitle("Delete question");
+        alertBuilder.setMessage("Are you sure you want to delete this question?");
+        alertBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                //get parent topic of this question from firebase
+                DatabaseReference topicReference = FirebaseDatabase.getInstance().getReference().child("Topics").child(getIntent().getStringExtra("topicKey"));
+                //go back to list of topics
+                Intent intent = new Intent(getApplicationContext(),simpleQuestionActivity.class);
+                intent.putExtra("topicTitle",getIntent().getStringExtra("topicKey"));
+                startActivity(intent);
+                questionRef.removeEventListener(listener);
+                topicReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        Topic parentTopic = dataSnapshot.getValue(Topic.class);
+                        DatabaseAddHelper.deleteQuestion(FirebaseDatabase.getInstance(),question,parentTopic);
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+                finish();
+
+            }
+        });
+        alertBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+            }
+        });
+        AlertDialog alertDialog = alertBuilder.create();
+        alertDialog.show();
+    }
+
+    //delete answers, for teacher's use
+    public void onClickDeleteAnswer(View v){
+
+    }
+
     // Compare answers by vote counts
     class AnswerComparator implements Comparator<Answer> {
 
@@ -334,6 +390,7 @@ class MyAdapter2 extends RecyclerView.Adapter<MyAdapter2.myHolder2>{
         final Answer final_answer=answers.get(position);
         final ImageButton upVote=holder.upVote;
         final ImageButton downVote=holder.downVote;
+        final myHolder2 final_holder = holder;
         holder.postedBy.setText("Posted by: "+question.getAnimalMap().get(final_answer.getAnswerer().getUid()));
         holder.answer.setText(final_answer.getBody());
         if (checkUpVoted(user,final_answer)) {
@@ -403,6 +460,52 @@ class MyAdapter2 extends RecyclerView.Adapter<MyAdapter2.myHolder2>{
                 }
         );
 
+        //remove delete answer button from students
+        if (user instanceof Student){
+            holder.deleteButton.setVisibility(View.GONE);
+        }
+
+        holder.deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final String answerText = final_holder.answer.getText().toString();
+                AlertDialog.Builder alertBuilder = new AlertDialog.Builder(context);
+                alertBuilder.setTitle("Delete answer");
+                alertBuilder.setMessage("Are you sure you want to delete this answer?");
+                alertBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //get parent topic of this question from firebase
+                        DatabaseReference questionReference = FirebaseDatabase.getInstance().getReference().child("Questions").child(question.getKey());
+                        questionReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                Question parentQuestion = dataSnapshot.getValue(Question.class);
+                                for (Answer answer:question.getAnswers()) {
+                                    if (answer.getBody().equals(answerText)) {
+                                        DatabaseAddHelper.deleteAnswer(FirebaseDatabase.getInstance(),answer ,question);
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        });
+
+                    }
+                });
+                alertBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                    }
+                });
+                AlertDialog alertDialog = alertBuilder.create();
+                alertDialog.show();
+            }
+        });
+
     }
 
     @Override
@@ -416,6 +519,7 @@ class MyAdapter2 extends RecyclerView.Adapter<MyAdapter2.myHolder2>{
         ImageButton downVote;
         TextView voteCount;
         TextView postedBy;
+        Button deleteButton;
         public myHolder2(View itemView) {
             super(itemView);
             answer=(TextView) itemView.findViewById(R.id.answer);
@@ -423,6 +527,7 @@ class MyAdapter2 extends RecyclerView.Adapter<MyAdapter2.myHolder2>{
             downVote=(ImageButton)itemView.findViewById(R.id.downVote);
             voteCount=(TextView)itemView.findViewById(R.id.voteCount);
             postedBy = (TextView) itemView.findViewById(R.id.postedBy);
+            deleteButton = itemView.findViewById(R.id.deleteButton);
         }
     }
 
