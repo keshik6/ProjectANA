@@ -1,20 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="sutdcreations.projectana.addAnswerActivity"
     android:orientation="vertical">
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="50dp"
         android:id="@+id/answer"
-        android:hint="Enter answer here"/>
+        android:hint="Enter answer here"
+        android:textColorHint="#6F6C6C"
+        android:textAlignment="center"/>
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add answer"
-        android:onClick="onClickAddAnswer"/>
+        android:text="Post answer"
+        android:onClick="onClickAddAnswer"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="130dp"
+        android:backgroundTint="#A10000"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"/>
 
-</LinearLayout>
+</RelativeLayout>
