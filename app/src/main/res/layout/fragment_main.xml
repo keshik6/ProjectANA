@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="sutdcreations.projectana.MainActivity">
+
+
+    <LinearLayout
+        android:id="@+id/HoldMyButtons"
+        android:layout_width="match_parent"
+        android:layout_height="436dp"
+        android:layout_marginTop="60dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/testProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="My profile"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="99dp" />
+
+        <Button
+            android:id="@+id/testCourse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="See my courses"
+            android:visibility="invisible"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="43dp" />
+
+        <Button
+            android:id="@+id/testFeedback"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Test Feedback"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/testSnoop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="(Prof) Snoop on my students" />
+    </LinearLayout>
+
+</LinearLayout>

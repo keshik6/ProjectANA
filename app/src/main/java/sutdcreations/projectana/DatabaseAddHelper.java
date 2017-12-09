@@ -13,6 +13,7 @@ import com.google.firebase.database.ValueEventListener;
 import sutdcreations.classes.Answer;
 import sutdcreations.classes.Feedback;
 import sutdcreations.classes.Question;
+import sutdcreations.classes.Student;
 import sutdcreations.classes.Subject;
 import sutdcreations.classes.Topic;
 import sutdcreations.classes.User;
@@ -100,8 +101,15 @@ public class DatabaseAddHelper {
     }
 
     public static void updateUser(FirebaseDatabase database, User user){
+        Log.i("debugNotif","updating user");
         DatabaseReference userRef = database.getReference().child("UserInfo").child(user.getUid());
         userRef.setValue(user);
+    }
+
+    public static void updateStudent(FirebaseDatabase database, Student student){
+        Log.i("debugNotif","updating user");
+        DatabaseReference userRef = database.getReference().child("UserInfo").child(student.getUid());
+        userRef.setValue(student);
     }
 
 

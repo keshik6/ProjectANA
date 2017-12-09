@@ -286,6 +286,7 @@ to the same student, due to them being retrieved from Firebase at different time
     public void onClickGoToAddAnswer(View v){
         Intent intent = new Intent(this, addAnswerActivity.class);
         intent.putExtra("questionKey",getIntent().getStringExtra("questionKey"));
+        intent.putExtra("askerUid",question.getAsker().getUid());
         startActivity(intent);
     }
 

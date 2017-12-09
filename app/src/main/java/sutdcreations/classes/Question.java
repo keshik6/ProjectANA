@@ -1,10 +1,17 @@
 package sutdcreations.classes;
 
+import android.provider.ContactsContract;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
+
+import sutdcreations.projectana.DatabaseAddHelper;
 
 /**
  * Created by Beng Haun on 2/12/2017.
@@ -86,6 +93,7 @@ public class Question {
                 student.answersMap.put(courseCode, 1);
             }
         }
+
     }
 
     public void close() {
