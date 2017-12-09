@@ -7,12 +7,23 @@
     tools:context="sutdcreations.projectana.addAnswerActivity"
     android:orientation="vertical">
 
+    <ImageView
+        android:contentDescription="backgroundPhoto"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scaleY="1.2"
+        android:scaleX="1.2"
+        android:alpha="0.3"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:src="@drawable/background" />
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="190dp"
         android:id="@+id/answer"
         android:hint="Enter answer here"
         android:textColorHint="#6F6C6C"
@@ -22,7 +33,7 @@
         android:layout_height="wrap_content"
         android:text="Post answer"
         android:onClick="onClickAddAnswer"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="240dp"
         android:layout_marginLeft="130dp"
         android:backgroundTint="#A10000"
         android:textColor="#FFFFFF"

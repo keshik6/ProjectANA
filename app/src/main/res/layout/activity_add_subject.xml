@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,22 +7,45 @@
     android:orientation="vertical"
     tools:context="sutdcreations.projectana.AddSubjectActivity">
 
+    <ImageView
+        android:contentDescription="backgroundPhoto"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scaleY="1.2"
+        android:scaleX="1.2"
+        android:alpha="0.3"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:src="@drawable/background" />
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Enter subject code"
-        android:id="@+id/subjectCode" />
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:textColorHint="#6F6C6C"
+        android:id="@+id/subjectCode"
+        android:layout_marginTop="160dp"/>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Enter subject title"
-        android:id="@+id/subjectTitle"/>
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:textColorHint="#6F6C6C"
+        android:id="@+id/subjectTitle"
+        android:layout_marginTop="210dp"/>
 
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add subject"
-        android:onClick="onClickAddSubject"/>
+        android:layout_centerHorizontal="true"
+        android:onClick="onClickAddSubject"
+        android:layout_marginTop="270dp"
+        android:backgroundTint="#A10000"
+        android:textColor="#FFFFFF" />
 
-</LinearLayout>
+</RelativeLayout>

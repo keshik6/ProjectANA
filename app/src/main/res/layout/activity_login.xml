@@ -12,7 +12,7 @@
         android:layout_height="fill_parent"
         android:scaleY="1.2"
         android:scaleX="1.2"
-        android:alpha="0.4"
+        android:alpha="0.3"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         android:src="@drawable/background" />
