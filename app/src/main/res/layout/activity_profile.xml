@@ -12,20 +12,26 @@
     <TextView
         android:id="@+id/settingsTF"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="SETTINGS"
+        android:layout_gravity="center"
+        android:layout_height="50sp"
+        android:background="#000000"
+        android:text="PROFILE"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textAlignment="center"
         android:textStyle="bold"
-        android:layout_marginBottom="3dp"/>
+        android:textSize="30sp"
+        android:textColor="#FFFFFF" />
 
 
     <ImageView
+        android:contentDescription="studentPhoto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/profilepic"
-        android:layout_marginBottom="15dp"/>
+        android:layout_marginTop="60sp"
+        android:src="@drawable/student"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        android:layout_marginBottom="70sp"/>
 
     <LinearLayout
         android:id="@+id/Linlayout1"
@@ -38,11 +44,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
-            android:text="FULL NAME: "
+            android:textSize="15sp"
+            android:text="Full Name: "
             android:textAppearance="@style/TextAppearance.AppCompat" />
 
         <TextView
             android:id="@+id/NameTF"
+            android:textAllCaps="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
@@ -60,13 +68,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
-            android:text="COURSES: "
+            android:text="Courses: "
             android:textAppearance="@style/TextAppearance.AppCompat" />
 
         <TextView
             android:id="@+id/CoursesTF"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textAllCaps="true" />
     </LinearLayout>
 
 
@@ -82,13 +91,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
-            android:text="QUESTIONS: "
+            android:text="Questions: "
             android:textAppearance="@style/TextAppearance.AppCompat" />
 
         <TextView
             android:id="@+id/NoOfQuestionsTF"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textAllCaps="true" />
     </LinearLayout>
 
 
@@ -104,13 +114,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
-            android:text="REPLIES: "
+            android:text="Replies: "
             android:textAppearance="@style/TextAppearance.AppCompat" />
 
         <TextView
             android:id="@+id/NoOfRepliesTF"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textAllCaps="true" />
     </LinearLayout>
 
 
@@ -126,13 +137,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
-            android:text="PARTICIPATION\nGRADES: "
+            android:text="Participation Grade: "
             android:textAppearance="@style/TextAppearance.AppCompat" />
 
         <TextView
             android:id="@+id/GradesTF"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textAllCaps="true" />
     </LinearLayout>
 
 </LinearLayout>
