@@ -4,31 +4,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:alpha="1"
     tools:context="sutdcreations.projectana.LoginActivity">
+
+    <ImageView
+        android:contentDescription="backgroundPhoto"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scaleY="1.2"
+        android:scaleX="1.2"
+        android:alpha="0.4"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:src="@drawable/background" />
 
     <Button
         android:id="@+id/signInBt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/passwordTF"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="92dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#A10000"
         android:singleLine="false"
         android:text="Sign in"
-        tools:layout_editor_absoluteX="148dp"
-        tools:layout_editor_absoluteY="284dp" />
+        android:textStyle="bold"
+        android:textColor="#FFFFFF" />
 
     <EditText
         android:id="@+id/emailTF"
         android:layout_width="220dp"
         android:layout_height="44dp"
-        android:layout_alignBottom="@+id/passwordTF"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="48dp"
+        android:layout_centerVertical="true"
         android:ems="10"
         android:hint="Email"
         android:inputType="textPersonName"
+        android:textColorHint="#6F6C6C"
         tools:layout_editor_absoluteX="207dp"
         tools:layout_editor_absoluteY="35dp" />
 
@@ -36,39 +47,41 @@
         android:id="@+id/passwordTF"
         android:layout_width="220dp"
         android:layout_height="44dp"
-        android:layout_above="@+id/signInBt"
         android:layout_alignStart="@+id/emailTF"
-        android:layout_marginBottom="25dp"
+        android:layout_below="@+id/emailTF"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
+        android:textColorHint="#6F6C6C"
         tools:layout_editor_absoluteX="207dp"
         tools:layout_editor_absoluteY="106dp" />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="220dp"
-        android:layout_height="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_above="@+id/emailTF"
-        android:layout_alignStart="@+id/emailTF"
-        android:layout_marginBottom="37dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp"
         android:gravity="center"
         android:text="DYNAMIC EDUCATIONAL PLATFORM"
-        android:textSize="12sp"
         android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+        android:textColor="#000000"
+        android:textSize="15sp"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/textView1"
-        android:layout_width="150dp"
-        android:layout_height="60dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_above="@+id/textView2"
         android:layout_centerHorizontal="true"
         android:gravity="center_horizontal"
         android:text="A.N.A"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textSize="45sp"
+        android:textSize="80sp"
         android:textStyle="bold"
+        android:textColor="#000000"
         android:typeface="normal" />
 
 </RelativeLayout>
