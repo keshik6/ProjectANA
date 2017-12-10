@@ -38,7 +38,11 @@
         android:layout_toEndOf="@+id/upVote"
         android:layout_alignBottom="@id/downVote"
         android:text="question title"
-        android:textSize="15sp" />
+        android:textSize="12sp"
+        android:maxLines="1"
+        android:maxLength="35"
+        android:ellipsize="end"
+        android:background="@drawable/mybutton"/>
 
     <TextView
         android:id="@+id/postedBy"

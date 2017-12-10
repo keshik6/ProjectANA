@@ -60,10 +60,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         //Make sure user cannot proceed on without entering email and password
         if(TextUtils.isEmpty(email)){ //email is empty
             Toast.makeText(this,"Please enter email", Toast.LENGTH_SHORT).show();
+            signInButton.setText("Sign in");
             return; //stop function from further execution
         }
         if(TextUtils.isEmpty(password)){ //password is empty
             Toast.makeText(this,"Please enter password", Toast.LENGTH_SHORT).show();
+            signInButton.setText("Sign in");
             return; //stop function from further execution
         }
 
@@ -86,7 +88,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
+
                 }
+
                 }
             });
     }

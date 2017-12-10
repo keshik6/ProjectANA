@@ -27,13 +27,16 @@
         android:text="Ask a question"
         android:onClick="onClickAskQuestion"
         android:id="@+id/askQuestion"
+        android:background="@drawable/mybutton"
+        android:layout_marginBottom="10dp"
         />
 
     <Button
         android:id="@+id/deleteTopic"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/holo_red_light"
-        android:text="Delete this topic"
-        android:onClick="onClickDeleteTopic"/>
+        android:background="@drawable/redcircularbutton"
+        android:onClick="onClickDeleteTopic"
+
+        android:text="Delete this topic" />
 </LinearLayout>
