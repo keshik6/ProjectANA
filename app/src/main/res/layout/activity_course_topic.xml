@@ -9,5 +9,16 @@
     tools:context="sutdcreations.projectana.CourseTopicActivity"
     tools:orientation="vertical">
 
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:alpha="0.3"
+        android:contentDescription="backgroundPhoto"
+        android:scaleX="1.2"
+        android:scaleY="1.2"
+        android:src="@drawable/background" />
+
 
 </RelativeLayout>

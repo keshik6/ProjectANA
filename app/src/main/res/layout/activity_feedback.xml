@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/feedbackLayout"
@@ -8,33 +8,69 @@
     android:orientation="vertical"
     tools:context="sutdcreations.projectana.FeedbackActivity">
 
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:alpha="0.3"
+        android:contentDescription="backgroundPhoto"
+        android:scaleX="1.2"
+        android:scaleY="1.2"
+        android:src="@drawable/background" />
+
     <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/understandTitle"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Understand:" />
+        android:text="Understand:"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@id/understand"
+        android:textColor="#000000"
+        android:textSize="30sp"
+        android:fontFamily="@font/opensans_bold"/>
 
     <TextView
         android:id="@+id/understand"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="0\n" />
+        android:text="0"
+        android:layout_centerHorizontal="true"
+        android:textColor="#6F6FEE"
+        android:textSize="30sp"
+        android:fontFamily="@font/opensans_bold"
+        android:layout_above="@id/dontUnderstandTitle"/>
 
     <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/dontUnderstandTitle"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Don't understand:" />
+        android:text="Don't Understand:"
+        android:layout_centerHorizontal="true"
+        android:textColor="#000000"
+        android:textSize="30sp"
+        android:fontFamily="@font/opensans_bold"
+        android:layout_above="@id/dontUnderstand"/>
 
     <TextView
         android:id="@+id/dontUnderstand"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="0\n" />
+        android:text="0"
+        android:layout_centerInParent="true"
+        android:textColor="#AB0606"
+        android:textSize="30sp"
+        android:fontFamily="@font/opensans_bold"
+        android:layout_centerHorizontal="true"/>
 
     <LinearLayout
         android:id="@+id/secondaryFeedbackLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"></LinearLayout>
+        android:orientation="vertical"
+        android:layout_below="@id/dontUnderstand">
+
+    </LinearLayout>
 
 
-</LinearLayout>
+</RelativeLayout>

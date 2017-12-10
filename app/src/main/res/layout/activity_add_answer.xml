@@ -19,24 +19,27 @@
         android:src="@drawable/background" />
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:layout_marginTop="190dp"
         android:id="@+id/answer"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:hint="Enter answer here"
-        android:textColorHint="#6F6C6C"
-        android:textAlignment="center"/>
+        android:fontFamily="@font/opensans_regular"
+        android:layout_centerVertical="true"
+        android:textAlignment="center"
+        android:textColorHint="#6F6C6C" />
+
     <Button
+        android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Post answer"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/answer"
+        android:backgroundTint="#AB0606"
         android:onClick="onClickAddAnswer"
-        android:layout_marginTop="240dp"
-        android:layout_marginLeft="130dp"
-        android:backgroundTint="#A10000"
+        android:text="Post answer"
+        android:fontFamily="@font/moon_bold"
         android:textColor="#FFFFFF"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
 </RelativeLayout>

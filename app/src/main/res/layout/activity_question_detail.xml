@@ -7,6 +7,17 @@
     tools:context="sutdcreations.projectana.QuestionDetailActivity"
     tools:ignore="MergeRootFrame">
 
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:alpha="0.3"
+        android:contentDescription="backgroundPhoto"
+        android:scaleX="1.2"
+        android:scaleY="1.2"
+        android:src="@drawable/background" />
+
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
@@ -48,6 +59,7 @@
         android:layout_margin="@dimen/fab_margin"
         app:layout_anchor="@+id/question_detail_container"
         app:layout_anchorGravity="top|end"
+        android:backgroundTint="#AB0606"
         app:srcCompat="@android:drawable/stat_notify_chat" />
 
 </android.support.design.widget.CoordinatorLayout>

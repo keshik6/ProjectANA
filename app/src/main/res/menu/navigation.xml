@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    android:theme="@style/Base.DialogWindowTitle.AppCompat">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:theme="@style/Widget.AppCompat.Light.ActivityChooserView">
 
     <item
         android:id="@+id/navigation_home"
@@ -10,7 +11,7 @@
     <item
         android:id="@+id/navigation_dashboard"
         android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="@string/title_dashboard" />
+        android:title="Dashboard" />
 
     <item
         android:id="@+id/navigation_notifications"

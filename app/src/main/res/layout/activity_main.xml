@@ -1,58 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="sutdcreations.projectana.MainActivity">
+    tools:context="sutdcreations.projectana.MainActivity"
+    tools:layout_editor_absoluteY="81dp">
 
     <TextView
         android:id="@+id/message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="32dp"
+        android:fontFamily="@font/opensans_regular"
         android:text="Press a button to choose your activity"
         android:textColor="#000000"
         android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="45dp"/>
 
     <ImageView
-        android:contentDescription="backgroundPhoto"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:scaleY="1.2"
-        android:scaleX="1.2"
-        android:alpha="0.3"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
+        android:alpha="0.3"
+        android:contentDescription="backgroundPhoto"
+        android:scaleX="1.2"
+        android:scaleY="1.2"
         android:src="@drawable/background" />
 
-    <android.support.design.widget.BottomNavigationView
-        android:theme="@style/Base.ThemeOverlay.AppCompat.Light"
-        android:id="@+id/navigation"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="0dp"
-        android:layout_marginStart="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:menu="@menu/navigation"
-        app:itemIconTint="#FFFFFF"
-        app:itemTextColor="#FFFFFF"
-        android:background="#640505"/>
 
     <RelativeLayout
         android:id="@+id/HoldMyButtons"
         android:layout_width="match_parent"
         android:layout_height="379dp"
-        android:layout_marginTop="60dp"
         android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="parent">
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="76dp"
+        android:layout_centerVertical="true">
 
         <Button
             android:id="@+id/testProfile"
@@ -61,9 +47,10 @@
             android:layout_alignParentTop="true"
             android:layout_alignStart="@+id/testCourse"
             android:layout_marginTop="13dp"
-            android:backgroundTint="#FF5733"
+            android:backgroundTint="#60C3CE"
+            android:fontFamily="@font/moon_bold"
             android:text="My profile"
-            android:textColor="#FFFFFF"
+            android:textColor="#000000"
             android:textSize="20sp"
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="99dp" />
@@ -74,10 +61,11 @@
             android:layout_height="80dp"
             android:layout_alignStart="@+id/testFeedback"
             android:layout_below="@+id/testProfile"
-            android:layout_marginTop="11dp"
-            android:backgroundTint="#C70039"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="#6F6FEE"
+            android:fontFamily="@font/moon_bold"
             android:text="See my courses"
-            android:textColor="#FFFFFF"
+            android:textColor="#000000"
             android:textSize="20sp"
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="43dp" />
@@ -89,9 +77,10 @@
             android:layout_alignStart="@+id/testSnoop"
             android:layout_below="@+id/testCourse"
             android:layout_marginTop="13dp"
-            android:backgroundTint="#900C3F"
+            android:backgroundTint="#AB80E9"
+            android:fontFamily="@font/moon_bold"
             android:text="Test Feedback"
-            android:textColor="#FFFFFF"
+            android:textColor="#000000"
             android:textSize="20sp" />
 
         <Button
@@ -101,9 +90,22 @@
             android:layout_below="@+id/testFeedback"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="11dp"
-            android:backgroundTint="#581845"
+            android:backgroundTint="#CA6C94"
+            android:fontFamily="@font/moon_bold"
             android:text="(Prof) Snoop on my students"
-            android:textColor="#FFFFFF" />
+            android:textColor="#000000" />
+
     </RelativeLayout>
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/navigation"
+        android:layout_width="392dp"
+        android:layout_height="71dp"
+        app:itemIconTint="#000000"
+        app:itemTextColor="#000000"
+        app:menu="@menu/navigation"
+        tools:ignore="MissingConstraints"
+        android:layout_alignParentBottom="true" />
+
+
+</RelativeLayout>

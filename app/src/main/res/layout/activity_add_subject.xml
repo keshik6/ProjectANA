@@ -19,33 +19,39 @@
         android:src="@drawable/background" />
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter subject code"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:textColorHint="#6F6C6C"
         android:id="@+id/subjectCode"
-        android:layout_marginTop="160dp"/>
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button3"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="45dp"
+        android:hint="Enter subject code"
+        android:textAlignment="center"
+        android:fontFamily="@font/opensans_regular"
+        android:textColorHint="#6F6C6C" />
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter subject title"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:textColorHint="#6F6C6C"
         android:id="@+id/subjectTitle"
-        android:layout_marginTop="210dp"/>
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/subjectCode"
+        android:layout_marginTop="243dp"
+        android:hint="Enter subject title"
+        android:fontFamily="@font/opensans_regular"
+        android:textAlignment="center"
+        android:textColorHint="#6F6C6C" />
 
     <Button
+        android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add subject"
+        android:layout_below="@+id/subjectTitle"
         android:layout_centerHorizontal="true"
+        android:backgroundTint="#AB0606"
         android:onClick="onClickAddSubject"
-        android:layout_marginTop="270dp"
-        android:backgroundTint="#A10000"
+        android:text="Add subject"
+        android:fontFamily="@font/moon_bold"
         android:textColor="#FFFFFF" />
 
 </RelativeLayout>

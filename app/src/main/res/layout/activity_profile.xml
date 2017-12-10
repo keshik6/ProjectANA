@@ -24,24 +24,24 @@
     <TextView
         android:id="@+id/settingsTF"
         android:layout_width="match_parent"
-        android:layout_gravity="center"
         android:layout_height="50sp"
         android:layout_marginTop="20dp"
+        android:layout_gravity="center"
         android:text="PROFILE"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textAlignment="center"
-        android:textStyle="bold"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#000000"
         android:textSize="30sp"
-        android:textColor="#000000" />
+        android:fontFamily="@font/moon_bold" />
 
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/NameLabel"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/settingsTF"
-        android:layout_marginTop="47dp"
+        android:layout_marginBottom="68dp"
         android:contentDescription="studentPhoto"
         android:scaleX="1.5"
         android:scaleY="1.5"
@@ -59,7 +59,8 @@
             android:id="@+id/NameTF"
             android:textAllCaps="true"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            />
     </LinearLayout>
 
 
@@ -76,7 +77,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
             android:text="Courses: "
-            android:textStyle="bold"
+            android:fontFamily="@font/opensans_semibold"
             android:textAppearance="@style/TextAppearance.AppCompat" />
 
         <TextView
@@ -100,7 +101,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
             android:text="Questions: "
-            android:textStyle="bold"
+            android:fontFamily="@font/opensans_semibold"
             android:textAppearance="@style/TextAppearance.AppCompat" />
 
         <TextView
@@ -124,7 +125,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
             android:text="Replies: "
-            android:textStyle="bold"
+            android:fontFamily="@font/opensans_semibold"
             android:textAppearance="@style/TextAppearance.AppCompat" />
 
         <TextView
@@ -148,7 +149,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
             android:text="Participation Grade: "
-            android:textStyle="bold"
+            android:fontFamily="@font/opensans_semibold"
             android:textAppearance="@style/TextAppearance.AppCompat" />
 
         <TextView
@@ -164,10 +165,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:background="#640505"
         android:theme="@style/Base.ThemeOverlay.AppCompat.Light"
-        app:itemIconTint="#FFFFFF"
-        app:itemTextColor="#FFFFFF"
+        app:itemIconTint="#000000"
+        app:itemTextColor="#000000"
         app:menu="@menu/navigation" />
 
     <TextView
@@ -180,6 +180,6 @@
         android:text="Full Name: "
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textSize="15sp"
-        android:textStyle="bold" />
+        android:fontFamily="@font/opensans_semibold" />
 
 </RelativeLayout>
