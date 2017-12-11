@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,18 +7,6 @@
     android:fitsSystemWindows="true"
     tools:context="sutdcreations.projectana.ProfileActivity"
     android:orientation="vertical">
-
-
-    <ImageView
-        android:contentDescription="backgroundPhoto"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:scaleY="1.2"
-        android:scaleX="1.2"
-        android:alpha="0.3"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:src="@drawable/background" />
 
 
     <TextView
@@ -37,30 +25,39 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/NameLabel"
+        android:layout_gravity="center"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="68dp"
+        android:layout_below="@+id/settingsTF"
+        android:layout_marginTop="20dp"
         android:contentDescription="studentPhoto"
-        android:scaleX="1.5"
-        android:scaleY="1.5"
-        android:src="@drawable/student"
-        android:tint="#000000" />
+        android:src="@drawable/sadface"
+         />
 
     <LinearLayout
         android:id="@+id/Linlayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="300dp">
+        android:layout_marginTop="40dp">
+
+        <TextView
+            android:id="@+id/NameLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:text="Full Name: "
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textSize="15sp"
+            android:fontFamily="@font/opensans_semibold" />
 
         <TextView
             android:id="@+id/NameTF"
             android:textAllCaps="true"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
+            android:layout_height="wrap_content" />
+
     </LinearLayout>
 
 
@@ -68,8 +65,8 @@
         android:id="@+id/Linlayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="330dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
 
         <TextView
             android:id="@+id/CourseLabel"
@@ -92,8 +89,8 @@
         android:id="@+id/Linlayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="360dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="30dp">
 
         <TextView
             android:id="@+id/QuestionsLabel"
@@ -116,8 +113,8 @@
         android:id="@+id/Linlayout4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="390dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
 
         <TextView
             android:id="@+id/ReplyLabel"
@@ -140,8 +137,8 @@
         android:id="@+id/Linlayout5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="420dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
 
         <TextView
             android:id="@+id/GradesLabel"
@@ -161,25 +158,12 @@
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
         android:theme="@style/Base.ThemeOverlay.AppCompat.Light"
+        android:layout_marginTop="101dp"
         app:itemIconTint="#000000"
         app:itemTextColor="#000000"
         app:menu="@menu/navigation" />
 
-    <TextView
-        android:id="@+id/NameLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignTop="@+id/Linlayout1"
-        android:layout_marginStart="51dp"
-        android:text="Full Name: "
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textSize="15sp"
-        android:fontFamily="@font/opensans_semibold" />
-
-</RelativeLayout>
+</LinearLayout>
