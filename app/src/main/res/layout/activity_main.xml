@@ -1,101 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="sutdcreations.projectana.MainActivity"
-    tools:layout_editor_absoluteY="81dp">
-
-    <TextView
-        android:id="@+id/message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/opensans_regular"
-        android:text="Press a button to choose your activity"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="45dp"/>
-
-    <ImageView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:alpha="0.3"
-        android:contentDescription="backgroundPhoto"
-        android:scaleX="1.2"
-        android:scaleY="1.2"
-        android:src="@drawable/background" />
+    android:background="@drawable/background">
 
 
-    <RelativeLayout
-        android:id="@+id/HoldMyButtons"
+    <LinearLayout
+        android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="379dp"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="76dp"
-        android:layout_centerVertical="true">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
 
-        <Button
-            android:id="@+id/testProfile"
-            android:layout_width="250dp"
-            android:layout_height="80dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignStart="@+id/testCourse"
-            android:layout_marginTop="13dp"
-            android:backgroundTint="#60C3CE"
-            android:fontFamily="@font/moon_bold"
-            android:text="My profile"
-            android:textColor="#000000"
-            android:textSize="20sp"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="99dp" />
-
-        <Button
-            android:id="@+id/testCourse"
-            android:layout_width="250dp"
-            android:layout_height="80dp"
-            android:layout_alignStart="@+id/testFeedback"
-            android:layout_below="@+id/testProfile"
-            android:layout_marginTop="12dp"
-            android:backgroundTint="#6F6FEE"
-            android:fontFamily="@font/moon_bold"
-            android:text="See my courses"
-            android:textColor="#000000"
-            android:textSize="20sp"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="43dp" />
-
-        <Button
-            android:id="@+id/testFeedback"
-            android:layout_width="250dp"
-            android:layout_height="80dp"
-            android:layout_alignStart="@+id/testSnoop"
-            android:layout_below="@+id/testCourse"
-            android:layout_marginTop="13dp"
-            android:backgroundTint="#AB80E9"
-            android:fontFamily="@font/moon_bold"
-            android:text="Test Feedback"
-            android:textColor="#000000"
-            android:textSize="20sp" />
-
-        <Button
-            android:id="@+id/testSnoop"
-            android:layout_width="250dp"
-            android:layout_height="80dp"
-            android:layout_below="@+id/testFeedback"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="11dp"
-            android:backgroundTint="#CA6C94"
-            android:fontFamily="@font/moon_bold"
-            android:text="(Prof) Snoop on my students"
-            android:textColor="#000000" />
-
-    </RelativeLayout>
+    </LinearLayout>
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
@@ -108,4 +29,4 @@
         android:layout_alignParentBottom="true" />
 
 
-</RelativeLayout>
+</LinearLayout>

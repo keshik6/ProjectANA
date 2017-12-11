@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
@@ -57,29 +58,6 @@ public class CourseTopicActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         user = ((GlobalData) getApplication()).getUser();
 
-        //get topic data from Firebase
-        DatabaseReference topicRef = database.getReference().child("Topics");
-        topicRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                ArrayList<Topic> topics = new ArrayList<>();
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    if (snapshot.getKey().contains(subjCode)){
-                        Topic topic = snapshot.getValue(Topic.class);
-                        topics.add(topic);
-                    }
-                }
-                //add topics to layout
-                addTopicsToLayout(topics);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-
         //get subject data from Firebase
         DatabaseReference subjRef = database.getReference().child("Subjects").child(subjCode);
         subjRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -92,6 +70,28 @@ public class CourseTopicActivity extends AppCompatActivity {
                     Log.i("debugAlert","calling waitForFeedback in topic list");
                     waitForFeedback();
                 }
+
+                //get topic data from Firebase
+                DatabaseReference topicRef = database.getReference().child("Topics");
+                topicRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        ArrayList<Topic> topics = new ArrayList<>();
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                            if (snapshot.getKey().contains(subjCode)){
+                                Topic topic = snapshot.getValue(Topic.class);
+                                topics.add(topic);
+                            }
+                        }
+                        //add topics to layout
+                        addTopicsToLayout(topics);
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
             }
 
             @Override
@@ -99,6 +99,9 @@ public class CourseTopicActivity extends AppCompatActivity {
 
             }
         });
+
+
+
     }
 
     /*
@@ -181,6 +184,11 @@ public class CourseTopicActivity extends AppCompatActivity {
 
     private void addTopicsToLayout(ArrayList<Topic> topics){
         LinearLayout layout = findViewById(R.id.courseTopicLayout);
+        TextView subjectTitle = new TextView(this);
+        subjectTitle.setText(subject.getSubjectCode() + " " + subject.getSubjectTitle());
+        subjectTitle.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        subjectTitle.setTextSize(30);
+        layout.addView(subjectTitle);
         for (Topic topic : topics){
             Button button = new Button(this);
             final Topic final_topic = topic;

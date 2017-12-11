@@ -34,6 +34,7 @@ import java.util.Comparator;
 import sutdcreations.classes.Feedback;
 import sutdcreations.classes.Question;
 import sutdcreations.classes.Student;
+import sutdcreations.classes.Subject;
 import sutdcreations.classes.Teacher;
 import sutdcreations.classes.Topic;
 import sutdcreations.classes.User;
@@ -46,6 +47,7 @@ public class simpleQuestionActivity extends AppCompatActivity {
     RecyclerView r1;
     ArrayList<Question> questions = new ArrayList<Question>();
     boolean inForeground = true;
+    String topicKey;
 
     @Override
     protected void onPause(){
@@ -64,7 +66,7 @@ public class simpleQuestionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_simple_question);
-        final String topicKey = getIntent().getStringExtra("topicTitle");
+        topicKey  = getIntent().getStringExtra("topicTitle");
         database = FirebaseDatabase.getInstance();
         System.out.println("start");
         user = ((GlobalData) getApplication()).getUser();
@@ -72,14 +74,19 @@ public class simpleQuestionActivity extends AppCompatActivity {
 
         //Set up RecyclerView
         r1 = (RecyclerView) findViewById(R.id.questionRecyclerView);
-        adapter=new MyAdapter(this,questions,user);
+        adapter=new MyAdapter(this,questions,user,topicKey);
         r1.setAdapter(adapter);
         r1.setLayoutManager(new LinearLayoutManager(this));
 
         //make ask question button invisible for teachers as they are not supposed to be asking questions
         Button askQuestion = findViewById(R.id.askQuestion);
         if (user instanceof Teacher){
-            askQuestion.setVisibility(View.INVISIBLE);
+            askQuestion.setVisibility(View.GONE);
+        }
+        else {
+            //similarly, make delete topic button invisible for students
+            Button deleteTopic = findViewById(R.id.deleteTopic);
+            deleteTopic.setVisibility(View.GONE);
         }
 
         //get Topic object from Firebase
@@ -88,7 +95,8 @@ public class simpleQuestionActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 topic = dataSnapshot.getValue(Topic.class);
-
+                TextView topicTitle = findViewById(R.id.topicTitleQuestionList);
+                topicTitle.setText(topic.getTitle());
                 //listen for new feedback request if topic is live, and if user is a student
                 if (topic.isLive() && user instanceof Student){
                     Log.i("debugAlert","calling waitForFeedback in question list");
@@ -101,11 +109,12 @@ public class simpleQuestionActivity extends AppCompatActivity {
 
             }
         });
+
+        //get list of questions from Firebase
         DatabaseReference questionReference = database.getReference().child("Questions");
         questionReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                //ArrayList<Question> questions = new ArrayList<>();
                 //iterate through all questions
                 try {
                     questions.clear();
@@ -256,6 +265,44 @@ public class simpleQuestionActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    //onClick method for button for teachers to delete this topic
+    public void onClickDeleteTopic(View v){
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
+        alertBuilder.setTitle("Delete topic");
+        alertBuilder.setMessage("Are you sure you want to delete this topic?");
+        alertBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                //get parent subject of this topic from firebase
+                DatabaseReference subjReference = FirebaseDatabase.getInstance().getReference().child("Subjects").child(topic.getKey().split(" ")[0]);
+                subjReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        Subject parentSubj = dataSnapshot.getValue(Subject.class);
+                        DatabaseAddHelper.deleteTopic(FirebaseDatabase.getInstance(),parentSubj,topic);
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+                //go back to list of topics
+                Intent intent = new Intent(getApplicationContext(),CourseTopicActivity.class);
+                intent.putExtra("subjectCode",topic.getKey().split(" ")[0]);
+                startActivity(intent);
+
+            }
+        });
+        alertBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+            }
+        });
+        AlertDialog alertDialog = alertBuilder.create();
+        alertDialog.show();
+    }
+
     // Compare questions by vote counts
     class QuestionComparator implements Comparator<Question> {
 
@@ -279,11 +326,13 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.myHolder>{
     ArrayList<Question> questions;
     Context context;
     User user;
+    String topicKey;
 
-    public MyAdapter(Context context,ArrayList<Question> questions, User user) {
+    public MyAdapter(Context context,ArrayList<Question> questions, User user, String topicKey) {
         this.context=context;
         this.questions=questions;
         this.user=user;
+        this.topicKey = topicKey;
     }
 
     @Override
@@ -298,6 +347,7 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.myHolder>{
         final Question final_question=questions.get(position);
         final ImageButton upVote=holder.upVote;
         final ImageButton downVote=holder.downVote;
+        holder.postedBy.setText("Posted by: "+final_question.getAnimalMap().get(final_question.getAsker().getUid()));
         if (final_question.isLive()) holder.questionTitle.setText(final_question.getTitle()+ " (Live)");
         else holder.questionTitle.setText(final_question.getTitle());
         if (checkUpVoted(user,final_question)) {
@@ -316,6 +366,7 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.myHolder>{
                     public void onClick(View view) {
                         Intent intent = new Intent(context,simpleAnswerActivity.class);
                         intent.putExtra("questionKey",final_question.getKey());
+                        intent.putExtra("topicKey", topicKey);
                         context.startActivity(intent);
                     }
                 }
@@ -389,12 +440,14 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.myHolder>{
         ImageButton upVote;
         ImageButton downVote;
         TextView voteCount;
+        TextView postedBy;
         public myHolder(View itemView) {
             super(itemView);
             questionTitle=(Button)itemView.findViewById(R.id.questionTitle);
             upVote=(ImageButton)itemView.findViewById(R.id.upVote);
             downVote=(ImageButton)itemView.findViewById(R.id.downVote);
             voteCount=(TextView)itemView.findViewById(R.id.voteCount);
+            postedBy = (TextView) itemView.findViewById(R.id.postedBy);
         }
     }
 

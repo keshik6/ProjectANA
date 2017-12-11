@@ -5,9 +5,13 @@ package sutdcreations.classes;
  */
 import android.util.Log;
 
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import sutdcreations.projectana.DatabaseAddHelper;
 
 public class Student extends User {
     double participation;
@@ -18,6 +22,7 @@ public class Student extends User {
     Map<String,Double> scoresQn  = new HashMap<>();
     Map<String,Double> scoresAns  = new HashMap<>();
     Map<String,Double> finalGrade = new HashMap<>();
+    ArrayList<String> notifications = new ArrayList<>(); //list of notifications for student
 
     public Student(){
         super();
@@ -33,6 +38,17 @@ public class Student extends User {
         questionsMap.put(subject.getKey(),0);
         answersMap.put(subject.getKey(),0);
         subject.addStudent(subject.getKey());
+    }
+
+
+
+    public void addNotification(String notification){
+        Log.i("notifDebug", "Notification added");
+        notifications.add(notification);
+    }
+
+    public void removeNotification(String notification){
+        notifications.remove(notification);
     }
 
     //Getter and setter for questions_count
@@ -178,6 +194,46 @@ public class Student extends User {
         this.finalGrade = finalGrade;
     }
 
-    
+    public Map<String, Integer> getQuestionsMap() {
+        return questionsMap;
+    }
+
+    public void setQuestionsMap(Map<String, Integer> questionsMap) {
+        this.questionsMap = questionsMap;
+    }
+
+    public Map<String, Integer> getAnswersMap() {
+        return answersMap;
+    }
+
+    public void setAnswersMap(Map<String, Integer> answersMap) {
+        this.answersMap = answersMap;
+    }
+
+    public int getReplies_count() {
+
+        return replies_count;
+    }
+
+    public void setReplies_count(int replies_count) {
+        this.replies_count = replies_count;
+    }
+
+    public int getQuestions_count() {
+        return questions_count;
+    }
+
+    public void setQuestions_count(int questions_count) {
+        this.questions_count = questions_count;
+    }
+
+    public ArrayList<String> getNotifications() {
+
+        return notifications;
+    }
+
+    public void setNotifications(ArrayList<String> notifications) {
+        this.notifications = notifications;
+    }
 
 }

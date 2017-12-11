@@ -30,23 +30,34 @@
         android:scaleType="fitXY"
         android:background="@drawable/downvote" />
 
-    <Button
-        android:id="@+id/questionTitle"
+    <TextView
+        android:id="@+id/answer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_toEndOf="@+id/upVote"
-        android:layout_alignBottom="@id/downVote"
-        android:text="question title"
+        android:layout_marginStart="15dp"
+        android:text="Answer aaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaa"
         android:textSize="15sp" />
-
     <TextView
         android:id="@+id/postedBy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/questionTitle"
+        android:layout_below="@+id/answer"
         android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
         android:layout_toEndOf="@+id/downVote"
         android:text="Posted by:" />
+
+    <Button
+        android:id="@+id/deleteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/postedBy"
+        android:layout_marginEnd="22dp"
+        android:background="@android:color/holo_red_light"
+        android:text="Delete"
+        android:onClick="onClickDeleteAnswer"/>
 
 </RelativeLayout>

@@ -51,7 +51,11 @@ public class Topic {
 
 
     public void removeQuestion(Question question) {
-        questions.remove(question);
+        for (int i =0; i<questions.size();i++){
+            if (questions.get(i).getKey().equals(question.getKey())){
+                questions.remove(i);
+            }
+        }
     }
 
     //public getters for Firebase

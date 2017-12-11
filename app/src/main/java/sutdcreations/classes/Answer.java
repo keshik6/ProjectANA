@@ -10,8 +10,9 @@ public class Answer {
     Student answerer_stu;
     Teacher answerer_tch;
     String body;
+    ArrayList<String> upVoted = new ArrayList<>();
+    ArrayList<String> downVoted = new ArrayList<>();
     int votes;
-    ArrayList<User> voted = new ArrayList<>();
 
     public Answer(){
         //default constructor for Firebase
@@ -31,12 +32,30 @@ public class Answer {
 
     public void upVote(User user) {
         votes+=1;
-        voted.add(user);
+        upVoted.add(user.getUid());
     }
 
     public void downVote(User user) {
+        votes -= 1;
+        downVoted.add(user.getUid());
+    }
+
+    public void removeUpVote(User user) {
         votes-=1;
-        voted.add(user);
+        upVoted.remove(user.getUid());
+    }
+
+    public void removeDownVote(User user) {
+        votes+=1;
+        downVoted.remove(user.getUid());
+    }
+
+    public ArrayList<String> getUpVoted() {
+        return upVoted;
+    }
+
+    public ArrayList<String> getDownVoted() {
+        return downVoted;
     }
 
     public void setAnswerer_stu(Student answerer_stu) {
@@ -64,10 +83,6 @@ public class Answer {
         this.votes = votes;
     }
 
-    public void setVoted(ArrayList<User> voted) {
-        this.voted = voted;
-    }
-
     public void edit(String string) {
         this.body = string;
     }
@@ -83,9 +98,5 @@ public class Answer {
 
     public int getVotes() {
         return votes;
-    }
-
-    public ArrayList<User> getVoted() {
-        return voted;
     }
 }

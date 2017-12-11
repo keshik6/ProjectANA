@@ -16,6 +16,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import sutdcreations.classes.Answer;
 import sutdcreations.classes.Question;
+import sutdcreations.classes.Student;
+import sutdcreations.classes.User;
 
 public class addAnswerActivity extends AppCompatActivity {
     private EditText answer;
@@ -28,7 +30,7 @@ public class addAnswerActivity extends AppCompatActivity {
 
     public void onClickAddAnswer(View v){
         String answerString = answer.getText().toString();
-        String questionKey = getIntent().getStringExtra("questionKey");
+        final String questionKey = getIntent().getStringExtra("questionKey");
         //display toast if text box is empty
         if (answerString.equals("")){
             Toast.makeText(this,"Please enter your answer",Toast.LENGTH_SHORT).show();
@@ -44,6 +46,23 @@ public class addAnswerActivity extends AppCompatActivity {
                 Question question = dataSnapshot.getValue(Question.class);
 
                 DatabaseAddHelper.addAnswer(FirebaseDatabase.getInstance(),answer,question);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        //create notification for asker, add to Firebase
+        String askerUid = getIntent().getStringExtra("askerUid");
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("UserInfo").child(askerUid);
+        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Student asker = dataSnapshot.getValue(Student.class);
+                asker.addNotification(questionKey);
+                DatabaseAddHelper.updateStudent(FirebaseDatabase.getInstance(),asker);
             }
 
             @Override

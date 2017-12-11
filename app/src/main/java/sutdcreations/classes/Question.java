@@ -1,10 +1,17 @@
 package sutdcreations.classes;
 
+import android.provider.ContactsContract;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
+
+import sutdcreations.projectana.DatabaseAddHelper;
 
 /**
  * Created by Beng Haun on 2/12/2017.
@@ -79,8 +86,14 @@ public class Question {
         if (answer.getAnswerer() instanceof Student){
             Student student = (Student) answerer;
             String courseCode = this.getKey().split(" ")[0];
-            student.answersMap.put(courseCode,student.answersMap.get(courseCode)+1);
+            if (student.answersMap.containsKey(courseCode)) {
+                student.answersMap.put(courseCode, student.answersMap.get(courseCode) + 1);
+            }
+            else{
+                student.answersMap.put(courseCode, 1);
+            }
         }
+
     }
 
     public void close() {
@@ -88,7 +101,11 @@ public class Question {
     }
 
     public void removeAnswer(Answer answer) {
-        answers.remove(answer);
+        for (Answer ans : answers){
+            if (ans.getBody().equals(answer.getBody())){
+                answers.remove(ans);
+            }
+        }
     }
 
     //public getters and setters for Firebase
