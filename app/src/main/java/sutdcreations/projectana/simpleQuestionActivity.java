@@ -351,14 +351,14 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.myHolder>{
         if (final_question.isLive()) holder.questionTitle.setText(final_question.getTitle()+ " (Live)");
         else holder.questionTitle.setText(final_question.getTitle());
         if (checkUpVoted(user,final_question)) {
-            upVote.setBackgroundResource(R.drawable.upvote);
+            upVote.setBackgroundResource(R.drawable.up_arrow);
         } else {
-            upVote.setBackgroundResource(R.drawable.upvote_red);
+            upVote.setBackgroundResource(R.drawable.green_arrow);
         }
         if (checkDownVoted(user,final_question)) {
-            downVote.setBackgroundResource(R.drawable.downvote);
+            downVote.setBackgroundResource(R.drawable.down_arrow);
         } else {
-            downVote.setBackgroundResource(R.drawable.downvote_blue);
+            downVote.setBackgroundResource(R.drawable.red_arrow);
         }
         holder.questionTitle.setOnClickListener(
                 new View.OnClickListener() {
@@ -381,21 +381,21 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.myHolder>{
                             final_question.removeDownVote(user);
                             final_question.upVote(user);
                             DatabaseAddHelper.updateQuestion(FirebaseDatabase.getInstance(),final_question);
-                            upVote.setBackgroundResource(R.drawable.upvote);
-                            downVote.setBackgroundResource(R.drawable.downvote_blue);
+                            upVote.setBackgroundResource(R.drawable.up_arrow);
+                            downVote.setBackgroundResource(R.drawable.red_arrow);
                             voteCount.setText("" + final_question.getVotes());
                         }
                         else if (checkUpVoted(user,final_question)) {
                             final_question.removeUpVote(user);
                             DatabaseAddHelper.updateQuestion(FirebaseDatabase.getInstance(),final_question);
-                            upVote.setBackgroundResource(R.drawable.upvote_red);
+                            upVote.setBackgroundResource(R.drawable.green_arrow);
                             voteCount.setText("" + final_question.getVotes());
                         }
                         else {
                             final_question.upVote((User) user);
                             //TODO: After running with this line it throws an error: Can't instantiate abstract class sutdcreations.classes.User
                             DatabaseAddHelper.updateQuestion(FirebaseDatabase.getInstance(),final_question);
-                            upVote.setBackgroundResource(R.drawable.upvote);
+                            upVote.setBackgroundResource(R.drawable.up_arrow);
                             voteCount.setText("" + final_question.getVotes());
                         }
                     }
@@ -409,18 +409,18 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.myHolder>{
                             final_question.removeUpVote(user);
                             final_question.downVote(user);
                             DatabaseAddHelper.updateQuestion(FirebaseDatabase.getInstance(),final_question);
-                            upVote.setBackgroundResource(R.drawable.upvote_red);
-                            downVote.setBackgroundResource(R.drawable.downvote);
+                            upVote.setBackgroundResource(R.drawable.green_arrow);
+                            downVote.setBackgroundResource(R.drawable.down_arrow);
                             voteCount.setText("" + final_question.getVotes());
                         }
                         else if (checkDownVoted(user,final_question)) {
                             final_question.removeDownVote(user);
                             DatabaseAddHelper.updateQuestion(FirebaseDatabase.getInstance(),final_question);
-                            downVote.setBackgroundResource(R.drawable.downvote_blue);
+                            downVote.setBackgroundResource(R.drawable.red_arrow);
                             voteCount.setText("" + final_question.getVotes());
                         } else {
                             final_question.downVote(user);
-                            downVote.setBackgroundResource(R.drawable.downvote);
+                            downVote.setBackgroundResource(R.drawable.down_arrow);
                             DatabaseAddHelper.updateQuestion(FirebaseDatabase.getInstance(),final_question);
                             voteCount.setText("" + final_question.getVotes());
                         }

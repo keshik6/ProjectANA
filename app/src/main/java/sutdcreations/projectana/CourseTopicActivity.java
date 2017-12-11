@@ -2,12 +2,15 @@ package sutdcreations.projectana;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.provider.ContactsContract;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -34,6 +37,8 @@ public class CourseTopicActivity extends AppCompatActivity {
     private Subject subject;
     private User user;
     boolean inForeground = true;
+    int purple = Color.parseColor("#CA6C94");
+    int black = Color.parseColor("#000000");
 
 
     @Override
@@ -184,16 +189,28 @@ public class CourseTopicActivity extends AppCompatActivity {
 
     private void addTopicsToLayout(ArrayList<Topic> topics){
         LinearLayout layout = findViewById(R.id.courseTopicLayout);
+
         TextView subjectTitle = new TextView(this);
+        subjectTitle.setTextColor(black);
         subjectTitle.setText(subject.getSubjectCode() + " " + subject.getSubjectTitle());
         subjectTitle.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-        subjectTitle.setTextSize(30);
+        subjectTitle.setTextSize(25);
         layout.addView(subjectTitle);
         for (Topic topic : topics){
             Button button = new Button(this);
+
+            // BUTTON APPEARANCE
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            params.setMargins(0,20,0,0);
+            button.setLayoutParams(params);
+            button.setTextColor(black);
+            button.setBackgroundColor(purple);
+            button.setGravity(Gravity.CENTER_HORIZONTAL);
+            button.setGravity(View.TEXT_ALIGNMENT_GRAVITY);
+
             final Topic final_topic = topic;
             final String topicTitle = topic.getTitle();
-            if (topic.isLive()) button.setText(topicTitle + " " + "(Live)");
+            if (topic.isLive()) button.setText(topicTitle + " " + "(LIVE)");
             else button.setText(topicTitle);
             button.setOnClickListener(new View.OnClickListener() {
                 @Override

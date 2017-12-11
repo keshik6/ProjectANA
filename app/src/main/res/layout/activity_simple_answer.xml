@@ -31,10 +31,14 @@
 
     <Button
         android:id="@+id/newAnswerBut"
-        android:layout_width="match_parent"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:onClick="onClickGoToAddAnswer"
-        android:text="Add answer" />
+        android:textColor="#FFFFFF"
+        android:fontFamily="@font/moon_bold"
+        android:text="Add answer"
+        android:layout_gravity="center"
+        android:background="@drawable/redbuttonshape"/>
 
     <Button
         android:id="@+id/requestFeedback"
@@ -47,7 +51,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Delete question"
-        android:background="@android:color/holo_red_light"
+        android:background="@drawable/redbuttonshape"
         android:id="@+id/deleteQuestion"
         android:onClick="onClickDeleteQuestion"
         android:visibility="gone"/>

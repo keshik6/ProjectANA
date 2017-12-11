@@ -28,7 +28,7 @@
             android:layout_marginTop="80dp"
             android:fontFamily="@font/moon_bold"
             android:textColor="#000000"
-            android:backgroundTint="#6F6FEE"/>
+            android:background="@drawable/bluebuttonshape"/>
 
         <Button
             android:id="@+id/testCourse"
@@ -56,7 +56,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="#CA6C94"
+            android:background="@drawable/pinkbuttonshape"
             android:text="(Prof) Snoop on my students" />
     </LinearLayout>
 

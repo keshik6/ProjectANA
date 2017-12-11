@@ -6,8 +6,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.DrawableContainer;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
@@ -55,6 +58,7 @@ public class MainFragment extends Fragment {
     int turquoise = Color.parseColor("#60C3CE");
     int black = Color.parseColor("#000000");
 
+//    Drawable pinkButtonShape = Drawable.createFromXml(getResources(R.drawable.pinkbuttonshape));
 //    Typeface opensans_regular = Typeface.createFromAsset(getActivity().getAssets(),"fonts/opensans_regular.ttf");
 
     public MainFragment() {
@@ -205,8 +209,8 @@ public class MainFragment extends Fragment {
 
             // BUTTON APPEARANCE
 //            button.setGravity(Gravity.CENTER_HORIZONTAL);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            params.setMargins(0,10,0,0);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            params.setMargins(0,20,0,0);
             button.setLayoutParams(params);
             button.setTextColor(black);
             button.setBackgroundColor(turquoise);

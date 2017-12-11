@@ -69,10 +69,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_gravity="center_horizontal"
-        android:backgroundTint="#AB0606"
         android:singleLine="false"
         android:text="Sign in"
         android:textColor="#FFFFFF"
+        android:background="@drawable/redbuttonshape"
         android:fontFamily="@font/moon_bold"/>
 
 
