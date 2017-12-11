@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/backgroundphoto"
+    android:alpha="1"
     tools:context="sutdcreations.projectana.LoginActivity">
 
     <Button
@@ -14,7 +16,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="92dp"
         android:singleLine="false"
-        android:text="Sign In"
+        android:text="Log in"
+        android:fontFamily="@font/Moon Bold"
         tools:layout_editor_absoluteX="148dp"
         tools:layout_editor_absoluteY="284dp" />
 
@@ -28,6 +31,7 @@
         android:ems="10"
         android:hint="Email"
         android:inputType="textPersonName"
+        android:fontFamily="@font/OpenSans-Bold"
         tools:layout_editor_absoluteX="207dp"
         tools:layout_editor_absoluteY="35dp" />
 
@@ -35,37 +39,42 @@
         android:id="@+id/passwordTF"
         android:layout_width="220dp"
         android:layout_height="44dp"
-        android:layout_alignBottom="@+id/signInBt"
-        android:layout_alignEnd="@+id/emailTF"
-        android:layout_marginBottom="68dp"
+        android:layout_above="@+id/signInBt"
+        android:layout_alignStart="@+id/emailTF"
+        android:layout_marginBottom="25dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
+        android:fontFamily="@font/OpenSans-Bold"
         tools:layout_editor_absoluteX="207dp"
         tools:layout_editor_absoluteY="106dp" />
 
     <TextView
         android:id="@+id/textView2"
-        android:textStyle="bold"
         android:layout_width="220dp"
-        android:layout_height="50dp"
+        android:layout_height="30dp"
         android:layout_above="@+id/emailTF"
-        android:layout_alignEnd="@+id/emailTF"
-        android:layout_marginBottom="18dp"
+        android:layout_alignStart="@+id/emailTF"
+        android:layout_marginBottom="37dp"
+        android:fontFamily="@font/Moon Bold"
         android:gravity="center"
         android:text="DYNAMIC EDUCATIONAL PLATFORM"
-        android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
+        android:textSize="12sp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/textView1"
-        android:textStyle="bold"
         android:layout_width="150dp"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:layout_above="@+id/textView2"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="13dp"
+        android:fontFamily="@font/Moon Bold"
         android:gravity="center_horizontal"
         android:text="A. N. A"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textSize="45sp"
+        android:textStyle="bold"
+        android:typeface="normal" />
 
 </RelativeLayout>
