@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    android:background="@drawable/background"
     android:theme="@style/AppTheme.NoActionBar"
     tools:context="sutdcreations.projectana.MainActivity">
 

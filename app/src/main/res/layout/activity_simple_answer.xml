@@ -91,6 +91,7 @@
             android:layout_height="wrap_content"
             android:onClick="onClickGoToAddAnswer"
             android:textColor="#FFFFFF"
+            android:textSize="10dp"
             android:fontFamily="@font/moon_bold"
             android:text="Add answer"
             android:backgroundTint="#AB0606"/>
