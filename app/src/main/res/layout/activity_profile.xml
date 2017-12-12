@@ -10,6 +10,11 @@
     android:background="@drawable/background"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
     <TextView
         android:id="@+id/settingsTF"
         android:layout_width="match_parent"
@@ -171,11 +176,11 @@
             android:textAllCaps="true" />
     </LinearLayout>
 
+</LinearLayout>
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="78dp"
         app:itemIconTint="#000000"
         app:itemTextColor="#000000"
         app:menu="@menu/navigation" />

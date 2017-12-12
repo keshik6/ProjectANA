@@ -22,8 +22,6 @@
         android:id="@+id/navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/Base.ThemeOverlay.AppCompat.Light"
-        android:layout_alignParentBottom="true"
         app:itemIconTint="#000000"
         app:itemTextColor="#000000"
         app:menu="@menu/navigation" />

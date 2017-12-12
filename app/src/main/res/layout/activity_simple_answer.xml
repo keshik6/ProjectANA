@@ -60,7 +60,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp">
+        android:layout_height="0dp"
+        android:layout_weight="1">
         <android.support.v7.widget.RecyclerView
             android:id="@+id/answerRecyclerView"
             android:layout_width="match_parent"
@@ -72,8 +73,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginTop="20dp">
+        android:gravity="center|bottom"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp">
 
         <Button
             android:id="@+id/requestFeedback"
