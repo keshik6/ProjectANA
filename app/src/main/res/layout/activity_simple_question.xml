@@ -40,9 +40,9 @@
         android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/moon_bold"
-        android:text="make topic live"
+        android:text="loading..."
         android:layout_gravity="center_horizontal"
-        android:onClick="onClickAskQuestion"
+        android:onClick="onClickToggleLive"
         android:id="@+id/topicLive"
         android:background="@drawable/redbuttonshape"
         android:layout_marginBottom="10dp"/>

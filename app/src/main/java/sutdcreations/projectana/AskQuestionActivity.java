@@ -78,6 +78,12 @@ public class AskQuestionActivity extends AppCompatActivity {
         //create question object and post it to Firebase
         final Question question = new Question(questionTitle.getText().toString(),questionBody.getText().toString(),tags,asker);
 
+        //set question to live if the topic is live
+        boolean isLive = getIntent().getBooleanExtra("isLive",false);
+        if (isLive){
+            question.setIsLive(true);
+        }
+
         DatabaseReference topicRef = FirebaseDatabase.getInstance().getReference().child("Topics").child(topicKey);
         topicRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

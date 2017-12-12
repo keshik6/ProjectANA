@@ -48,6 +48,7 @@ public class simpleQuestionActivity extends AppCompatActivity {
     ArrayList<Question> questions = new ArrayList<Question>();
     boolean inForeground = true;
     String topicKey;
+    Button topicLive;
 
     @Override
     protected void onPause(){
@@ -70,6 +71,13 @@ public class simpleQuestionActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         System.out.println("start");
         user = ((GlobalData) getApplication()).getUser();
+        topicLive = findViewById(R.id.topicLive);
+
+        //make toggling of live status impossible for students
+        if (user instanceof Student){
+            topicLive.setVisibility(View.GONE);
+        }
+
 
 
         //Set up RecyclerView
@@ -100,6 +108,16 @@ public class simpleQuestionActivity extends AppCompatActivity {
                 topic = dataSnapshot.getValue(Topic.class);
                 TextView topicTitle = findViewById(R.id.topicTitleQuestionList);
                 topicTitle.setText(topic.getTitle());
+
+                //set text of topic live toggling button accordingly
+                if (topic.isLive()){
+                    topicLive.setText("Remove live status");
+                }
+
+                else{
+                    topicLive.setText("Make topic live");
+                }
+
                 //listen for new feedback request if topic is live, and if user is a student
                 if (topic.isLive() && user instanceof Student){
                     Log.i("debugAlert","calling waitForFeedback in question list");
@@ -265,6 +283,7 @@ public class simpleQuestionActivity extends AppCompatActivity {
     public void onClickAskQuestion(View v){
         Intent intent = new Intent(this, AskQuestionActivity.class);
         intent.putExtra("topicKey",topic.getKey());
+        intent.putExtra("isLive",topic.isLive());
         startActivity(intent);
     }
 
@@ -306,11 +325,62 @@ public class simpleQuestionActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
-    // Compare questions by vote counts
+    //onClick method for teachers to toggle if a topic is live or not
+    public void onClickToggleLive(View v){
+        //toggle the live status of the topic and update the topic object in database
+        topic.toggleLive();
+        DatabaseAddHelper.updateTopic(FirebaseDatabase.getInstance(),topic);
+
+        //set text of button accordingly, and if status is changed from live to not live, make all questions of the topic not live
+        if (topic.isLive()){
+            topicLive.setText("Remove live status");
+        }
+        else{
+            topicLive.setText("Make topic live");
+            setQuestionsToNotLive(topic.getQuestions());
+        }
+    }
+
+    //functions that sets a list of questions to not live
+    public void setQuestionsToNotLive(ArrayList<Question> questions){
+        //generate a list of keys of the question to be set
+        final ArrayList<String> keys = new ArrayList<>();
+        for (Question question : questions){
+            keys.add(question.getKey());
+        }
+
+        //iterate through all the questions in Firebase, if the question is in the list of keys, change its status to not live
+        DatabaseReference questionRef = database.getReference().child("Questions");
+        questionRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot childSnapshot : dataSnapshot.getChildren()){
+                    Question question = childSnapshot.getValue(Question.class);
+                    if (keys.contains(question.getKey())){
+                        question.setIsLive(false);
+                        DatabaseAddHelper.updateQuestion(database,question);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    // Compare questions by vote counts, also puts live questions first
     class QuestionComparator implements Comparator<Question> {
 
         @Override
         public int compare(Question q1, Question q2) {
+            if (q1.isLive() && !q2.isLive()){
+                return -1;
+            }
+            if (q2.isLive() && !q1.isLive()){
+                return 1;
+            }
             if (q1.getVotes()>q2.getVotes()) {
                 return -1;
             }
