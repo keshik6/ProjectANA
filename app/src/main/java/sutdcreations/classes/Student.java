@@ -73,8 +73,8 @@ public class Student extends User {
 
     //Calculate grades for the courses individually using mean and standard deviation
     //In fact we are getting the average of the z scores of questions and answers
-    String gradeTeacher = "";
-    public String calculateScore(ArrayList<Topic> allTopics,String type) {
+
+    public String[] calculateScore(ArrayList<Topic> allTopics,String type) {
         Map<String, Integer> qnsForCourses = new HashMap<>();
         for (Topic t : allTopics) {
             String key = t.getKey().split(" ")[0];
@@ -93,12 +93,6 @@ public class Student extends User {
             //double mean = (qnsForCourses.get(courseCode)) / (Subject.getTotalStudents(courseCode));
             double val = questionsMap.get(courseCode);
             scoresQn.put(courseCode, val);
-            gradeTeacher += courseCode.substring(0,2) + "." + courseCode.substring(2,courseCode.length()) + ":\t";
-            gradeTeacher += questionsMap.get(courseCode);
-
-            if (!courseCode.equals(questionsMap.keySet().equals(courseCode))){
-                gradeTeacher += "\n";
-            }
         }
 
 
@@ -122,17 +116,11 @@ public class Student extends User {
             }
         }
 
-        gradeTeacher += "|";
         for (String courseCode: answersMap.keySet()){
-            Log.i("keshik",String.valueOf(ansForCourses.get(courseCode)));
+            //Log.i("keshik",String.valueOf(ansForCourses.get(courseCode)));
             //double mean = (ansForCourses.get(courseCode))/(Subject.getTotalStudents(courseCode));
             double val = answersMap.get(courseCode);
             scoresAns.put(courseCode,val);
-            gradeTeacher += courseCode.substring(0,2) + "." + courseCode.substring(2,courseCode.length()) + ":\t";
-            gradeTeacher += answersMap.get(courseCode);
-            if (!courseCode.equals(answersMap.keySet().equals(courseCode))){
-                gradeTeacher += "\n";
-            }
         }
 
 
@@ -145,9 +133,13 @@ public class Student extends User {
 
         //Update this to beng haun's code
         String gradeStd = "";
-
+        String gradeTeacherQn = "";
+        String gradeTeacherAns = "";
         for (String courseCode: finalGrade.keySet()){
-            gradeStd += courseCode.substring(0,2) + "." + courseCode.substring(2,courseCode.length()) + ":\t";
+            String courseName = courseCode.substring(0,2) + "." + courseCode.substring(2,courseCode.length()) + ":\t";
+            gradeStd += courseName;
+            gradeTeacherQn += courseName + questionsMap.get(courseCode);
+            gradeTeacherAns += courseName + answersMap.get(courseCode);
             if (finalGrade.get(courseCode) >= 15){
                 gradeStd += "A";
             }
@@ -163,13 +155,27 @@ public class Student extends User {
 
             if (!courseCode.equals(finalGrade.keySet().equals(courseCode))){
                 gradeStd += "\n";
+                gradeTeacherAns += "\n";
+                gradeTeacherQn += "\n";
             }
         }
 
+        String[] solution = new String[2];
         if (type.equals("Teacher")){
-            return gradeTeacher;
+            solution[0] = gradeTeacherQn;
+            solution[1] = gradeTeacherAns;
+            if (gradeTeacherQn.equals("")){
+                solution[0] = "0";
+            }
+            if (gradeTeacherAns.equals("")){
+                solution[1] = "0";
+            }
         }
-        return gradeStd;
+        else{
+            solution[0] = gradeStd;
+            solution[1] = null;
+        }
+        return solution;
     }
 
     //public getters and setters for Firebase
@@ -263,7 +269,5 @@ public class Student extends User {
     public void setStudent_id(int student_id){
         this.student_id = student_id;
     }
-
-
 
 }

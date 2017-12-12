@@ -100,7 +100,7 @@ public class ProfileActivity extends AppCompatActivity {
             Student student = (Student)user;
             noOfQuestionsTF.setText(String.valueOf(student.getTotalQuestionsAsked()));
             noOfRepliesTF.setText(String.valueOf(student.getTotalReplies()));
-            gradesTF.setText(student.calculateScore(topics,"Student"));
+            gradesTF.setText(student.calculateScore(topics,"Student")[0]);
         }
         else{
             noOfQuestionsTF.setVisibility(View.INVISIBLE);
