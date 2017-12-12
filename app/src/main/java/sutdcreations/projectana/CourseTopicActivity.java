@@ -238,6 +238,14 @@ public class CourseTopicActivity extends AppCompatActivity {
         if (user instanceof Teacher){
             Button newTopicButton = new Button(this);
             newTopicButton.setText("Create new topic");
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            params.setMargins(0,20,0,0);
+            newTopicButton.setLayoutParams(params);
+            newTopicButton.setTextColor(black);
+            newTopicButton.setBackgroundColor(white);
+            newTopicButton.setGravity(View.TEXT_ALIGNMENT_GRAVITY);
+            Typeface moonbold = Typeface.createFromAsset(newTopicButton.getContext().getAssets(),"fonts/moon_bold.otf");
+            newTopicButton.setTypeface(moonbold);
             newTopicButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

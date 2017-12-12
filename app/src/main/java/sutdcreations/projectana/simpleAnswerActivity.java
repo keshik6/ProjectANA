@@ -86,70 +86,74 @@ public class simpleAnswerActivity extends AppCompatActivity {
                     System.out.println("size of array is: " + answers.size());
                     answers.clear();
                     question = dataSnapshot.getValue(Question.class);
-                    if (questionTopic == null) {
-                        questionTopic = (TextView) findViewById(R.id.questionTopic);
-                        questionTopic.setText(question.getTitle());
-                        questionDetail = (TextView) findViewById(R.id.questionDetail);
-                        questionDetail.setText(question.getBody());
-                    }
-                    for (Answer answer : question.getAnswers()) {
-                        answers.add(answer);
-                    }
-                    if (question.isLive() && user instanceof Student) {
-                        Log.i("debugAlert", "calling waitForFeedback in answer");
-                        waitForFeedback();
-                    }
-                    Collections.sort(answers, new AnswerComparator());
-                    if (adapter2 == null) {
-                        //Set up RecyclerView
-                        r1 = (RecyclerView) findViewById(R.id.answerRecyclerView);
-                        adapter2 = new MyAdapter2(simpleAnswerActivity.this, answers, question, user);
-                        r1.setAdapter(adapter2);
-                        r1.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-                    } else {
-                        //Reset RecyclerView
-                        adapter2 = new MyAdapter2(simpleAnswerActivity.this, answers, question, user);
-                        r1.setAdapter(adapter2);
-                        r1.invalidate();
-                    }
-                    // give feedback
-                    User user = ((GlobalData) getApplication()).getUser();
-
-                    if (question.isLive()) { //feedback system only applicable to live questions
-                        //Request feedback (teacher) or Give feedback (student)
-                        if (user instanceof Teacher) {
-                            requestFeedback.setVisibility(View.VISIBLE);
-                            requestFeedback.setText("Request for feedback");
-                            requestFeedback.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    question.setFeedback(true);
-                                    DatabaseAddHelper.updateQuestion(database, question);
-                                    Feedback feedback = new Feedback(question);
-                                    DatabaseAddHelper.addFeedback(database, feedback);
-                                    Intent intent = new Intent(getApplicationContext(), FeedbackActivity.class);
-                                    intent.putExtra("feedbackKey", question.getKey());
-                                    startActivity(intent);
-                                }
-                            });
+                    if (question != null) {
+                        if (questionTopic == null) {
+                            questionTopic = (TextView) findViewById(R.id.questionTopic);
+                            questionTopic.setText(question.getTitle());
+                            questionDetail = (TextView) findViewById(R.id.questionDetail);
+                            questionDetail.setText(question.getBody());
                         }
+                        for (Answer answer : question.getAnswers()) {
+                            answers.add(answer);
+                        }
+                        if (question.isLive() && user instanceof Student) {
+                            Log.i("debugAlert", "calling waitForFeedback in answer");
+                            waitForFeedback();
+                        }
+                        Collections.sort(answers, new AnswerComparator());
+                        if (adapter2 == null) {
+                            //Set up RecyclerView
+                            r1 = (RecyclerView) findViewById(R.id.answerRecyclerView);
+                            adapter2 = new MyAdapter2(simpleAnswerActivity.this, answers, question, user);
+                            r1.setAdapter(adapter2);
+                            r1.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                        } else {
+                            //Reset RecyclerView
+                            adapter2 = new MyAdapter2(simpleAnswerActivity.this, answers, question, user);
+                            r1.setAdapter(adapter2);
+                            r1.invalidate();
+                        }
+                        // give feedback
+                        User user = ((GlobalData) getApplication()).getUser();
 
-                        //add button to give feedback for students if teacher has asked for feedback
-                        if (user instanceof Student) {
-                            Log.i("feedback status: ", "" + question.isFeedback());
-                            if (question.isFeedback()) {
+                        if (question.isLive()) { //feedback system only applicable to live questions
+                            //Request feedback (teacher) or Give feedback (student)
+                            if (user instanceof Teacher) {
                                 requestFeedback.setVisibility(View.VISIBLE);
-                                requestFeedback.setText("Give feedback");
+                                requestFeedback.setText("Request for feedback");
                                 requestFeedback.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
+                                        question.setFeedback(true);
+                                        DatabaseAddHelper.updateQuestion(database, question);
+                                        Feedback feedback = new Feedback(question);
+                                        DatabaseAddHelper.addFeedback(database, feedback);
                                         Intent intent = new Intent(getApplicationContext(), FeedbackActivity.class);
                                         intent.putExtra("feedbackKey", question.getKey());
+                                        intent.putExtra("topicKey", getIntent().getStringExtra("topicKey"));
                                         startActivity(intent);
                                     }
                                 });
-                            } else {
-                                requestFeedback.setVisibility(View.GONE);
+                            }
+
+                            //add button to give feedback for students if teacher has asked for feedback
+                            if (user instanceof Student) {
+                                Log.i("feedback status: ", "" + question.isFeedback());
+                                if (question.isFeedback()) {
+                                    requestFeedback.setVisibility(View.VISIBLE);
+                                    requestFeedback.setText("Give feedback");
+                                    requestFeedback.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            Intent intent = new Intent(getApplicationContext(), FeedbackActivity.class);
+                                            intent.putExtra("feedbackKey", question.getKey());
+                                            getIntent().getStringExtra("topicKey");
+                                            startActivity(intent);
+                                        }
+                                    });
+                                } else {
+                                    requestFeedback.setVisibility(View.GONE);
+                                }
                             }
                         }
                     }
@@ -174,11 +178,19 @@ public class simpleAnswerActivity extends AppCompatActivity {
     }
 
     //ensure to always go back to simpleQuestionActivity when back button pressed
+    //goes back to MainActivity if coming from notification
     @Override
     public void onBackPressed(){
-        Intent intent = new Intent(this, simpleQuestionActivity.class);
-        intent.putExtra("topicTitle", getIntent().getStringExtra("topicKey"));
-        startActivity(intent);
+        boolean fromNotif = getIntent().getBooleanExtra("fromNotif",false);
+        if (fromNotif){
+            Intent intent = new Intent(this,MainActivity.class);
+            startActivity(intent);
+        }
+        else {
+            Intent intent = new Intent(this, simpleQuestionActivity.class);
+            intent.putExtra("topicTitle", getIntent().getStringExtra("topicKey"));
+            startActivity(intent);
+        }
     }
 
     /*
@@ -489,7 +501,7 @@ class MyAdapter2 extends RecyclerView.Adapter<MyAdapter2.myHolder2>{
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 Question parentQuestion = dataSnapshot.getValue(Question.class);
-                                for (Answer answer:question.getAnswers()) {
+                                for (Answer answer:(ArrayList<Answer>) question.getAnswers().clone()) {
                                     if (answer.getBody().equals(answerText)) {
                                         DatabaseAddHelper.deleteAnswer(FirebaseDatabase.getInstance(),answer ,question);
                                     }

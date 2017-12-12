@@ -53,6 +53,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
+    //back button should do nothing on login page
+    @Override
+    public void onBackPressed(){
+
+    }
+
     private void signIn(){
         email = getEmail.getText().toString().trim();
         password = getPassword.getText().toString().trim();

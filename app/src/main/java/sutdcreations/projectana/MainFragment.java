@@ -247,6 +247,15 @@ public class MainFragment extends Fragment {
         if (user instanceof Teacher){
             Button newSubjectButton = new Button(parentActivity.getApplicationContext());
             newSubjectButton.setText("Create new subject");
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            params.setMargins(0,20,0,0);
+            newSubjectButton.setLayoutParams(params);
+            newSubjectButton.setTextColor(black);
+            newSubjectButton.setBackgroundColor(white);
+            newSubjectButton.setGravity(Gravity.CENTER_HORIZONTAL);
+            newSubjectButton.setGravity(View.TEXT_ALIGNMENT_GRAVITY);
+            Typeface moonbold = Typeface.createFromAsset(newSubjectButton.getContext().getAssets(),"fonts/moon_bold.otf");
+            newSubjectButton.setTypeface(moonbold);
             newSubjectButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

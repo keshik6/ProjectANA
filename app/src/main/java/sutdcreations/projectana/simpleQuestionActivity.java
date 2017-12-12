@@ -342,6 +342,21 @@ public class simpleQuestionActivity extends AppCompatActivity {
         //set text of button accordingly, and if status is changed from live to not live, make all questions of the topic not live
         if (topic.isLive()){
             topicLive.setText("Remove live status");
+            //set parent subject to live
+            DatabaseReference subjRef = database.getReference().child("Subjects").child(topicKey.split(" ")[0]);
+            subjRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    Subject subject = dataSnapshot.getValue(Subject.class);
+                    subject.setIsLive(true);
+                    DatabaseAddHelper.updateSubject(database,subject);
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
         }
         else{
             topicLive.setText("Make topic live");

@@ -94,6 +94,7 @@ public class Question {
         for (Answer ans : answers){
             if (ans.getBody().equals(answer.getBody())){
                 answers.remove(ans);
+                break;
             }
         }
     }

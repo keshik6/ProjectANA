@@ -95,6 +95,7 @@ public class NotificationFragment extends Fragment {
                 public void onClick(View view) {
                     Intent intent = new Intent(getActivity().getApplicationContext(),simpleAnswerActivity.class);
                     intent.putExtra("questionKey",questionKey);
+                    intent.putExtra("fromNotif",true);
                     startActivity(intent);
                     userFromFirebase.removeNotification(questionKey);
                     DatabaseAddHelper.updateStudent(FirebaseDatabase.getInstance(),userFromFirebase);

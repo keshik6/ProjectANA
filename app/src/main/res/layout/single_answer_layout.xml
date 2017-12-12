@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -42,48 +43,42 @@
                 android:background="@drawable/down_arrow" />
         </LinearLayout>
 
-            <TextView
-                android:id="@+id/answer"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginStart="20dp"
-                android:text="Answer aaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaa"
-                android:gravity="center_vertical"
-                android:fontFamily="@font/opensans_regular"
-                android:backgroundTint="#FFFFFF"
-                android:textSize="15sp" />
 
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:orientation="horizontal">
-            <TextView
-                android:id="@+id/postedBy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"
-                android:text="Posted by:" />
+        <TextView
+            android:id="@+id/answer"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginStart="20dp"
+            android:backgroundTint="#FFFFFF"
+            android:fontFamily="@font/opensans_regular"
+            android:gravity="center_vertical"
+            android:text="Answer aaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaa"
+            android:textSize="15sp" />
+    </LinearLayout>
+        <TextView
+            android:id="@+id/postedBy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:text="Posted by:" />
+
+    <Button
+        android:id="@+id/deleteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="#AB0606"
+        android:fontFamily="@font/moon_bold"
+        android:onClick="onClickDeleteAnswer"
+        android:text="Delete this answer"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="10dp" />
 
 
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/deleteButton"
-            android:layout_width="50dp"
-            android:layout_height="20dp"
-            android:layout_marginTop="5dp"
-            android:gravity="center"
-            android:backgroundTint="#AB0606"
-            android:onClick="onClickDeleteAnswer"
-            android:text="Delete"
-            android:textSize="10dp"
-            android:fontFamily="@font/moon_bold"
-            android:layout_gravity="center"
-            android:textColor="#FFFFFF" />
 
     </LinearLayout>
 
 
-</LinearLayout>

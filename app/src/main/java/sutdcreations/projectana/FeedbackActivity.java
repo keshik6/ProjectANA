@@ -31,6 +31,7 @@ import sutdcreations.projectana.R;
 public class FeedbackActivity extends AppCompatActivity {
     String feedbackKey;
     User user;
+    String topicKey;
     Feedback feedback;
     boolean inForeground = true;
 
@@ -51,6 +52,7 @@ public class FeedbackActivity extends AppCompatActivity {
         setContentView(R.layout.activity_feedback);
         user = ((GlobalData) getApplication()).getUser();
         feedbackKey = getIntent().getStringExtra("feedbackKey");
+        topicKey = getIntent().getStringExtra("topicKey");
 
         //get feedback object from Firebase, update layout with necessary elements
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Feedback").child(feedbackKey);
@@ -64,6 +66,7 @@ public class FeedbackActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Feedback session has ended", Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(getApplicationContext(), simpleAnswerActivity.class);
                         intent.putExtra("questionKey", feedbackKey);
+                        intent.putExtra("topicKey",topicKey);
                         startActivity(intent);
                         finish();
                     }
@@ -152,6 +155,7 @@ public class FeedbackActivity extends AppCompatActivity {
                             question.setFeedback(false);
                             Intent intent = new Intent(getApplicationContext(), simpleAnswerActivity.class);
                             intent.putExtra("questionKey",feedbackKey);
+                            intent.putExtra("topicKey",topicKey);
                             startActivity(intent);
                             DatabaseAddHelper.updateQuestion(FirebaseDatabase.getInstance(),question);
 
