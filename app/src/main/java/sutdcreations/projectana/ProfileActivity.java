@@ -52,7 +52,7 @@ public class ProfileActivity extends AppCompatActivity {
         repliesLabel = (TextView)findViewById(R.id.ReplyLabel);
 
         //Get the reference to grades label and text box
-        gradesLabel = (TextView)findViewById(R.id.ReplyLabel);
+        gradesLabel = (TextView)findViewById(R.id.GradesLabel);
         gradesTF = (TextView)findViewById(R.id.GradesTF);
 
 
