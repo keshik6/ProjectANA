@@ -173,6 +173,14 @@ public class simpleAnswerActivity extends AppCompatActivity {
         }
     }
 
+    //ensure to always go back to simpleQuestionActivity when back button pressed
+    @Override
+    public void onBackPressed(){
+        Intent intent = new Intent(this, simpleQuestionActivity.class);
+        intent.putExtra("topicTitle", getIntent().getStringExtra("topicKey"));
+        startActivity(intent);
+    }
+
     /*
 check if a list of users contains a certain user. The standard ArrayList.contains method will not work here
 as the references to the student object inside the list and outside the list will be different even though they are referring
@@ -296,6 +304,7 @@ to the same student, due to them being retrieved from Firebase at different time
         Intent intent = new Intent(this, addAnswerActivity.class);
         intent.putExtra("questionKey",getIntent().getStringExtra("questionKey"));
         intent.putExtra("askerUid",question.getAsker().getUid());
+        intent.putExtra("topicKey", getIntent().getStringExtra("topicKey"));
         startActivity(intent);
     }
 

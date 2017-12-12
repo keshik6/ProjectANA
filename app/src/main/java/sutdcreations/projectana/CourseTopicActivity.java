@@ -111,6 +111,13 @@ public class CourseTopicActivity extends AppCompatActivity {
 
     }
 
+    //ensure to always go reload MainActivity when back button pressed
+    @Override
+    public void onBackPressed(){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
     /*
     check if a list of users contains a certain user. The standard ArrayList.contains method will not work here
     as the references to the student object inside the list and outside the list will be different even though they are referring

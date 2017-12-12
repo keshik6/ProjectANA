@@ -164,6 +164,14 @@ public class simpleQuestionActivity extends AppCompatActivity {
         });
     }
 
+    //make sure back button goes back to CourseTopicActivity
+    @Override
+    public void onBackPressed(){
+        Intent intent = new Intent(this, CourseTopicActivity.class);
+        intent.putExtra("subjectCode",topicKey.split(" ")[0]);
+        startActivity(intent);
+    }
+
     /*
   check if a list of users contains a certain user. The standard ArrayList.contains method will not work here
   as the references to the student object inside the list and outside the list will be different even though they are referring
@@ -341,7 +349,7 @@ public class simpleQuestionActivity extends AppCompatActivity {
         }
     }
 
-    //functions that sets a list of questions to not live
+    //functions that sets a list of questions to not live. It also sets the subject to not live
     public void setQuestionsToNotLive(ArrayList<Question> questions){
         //generate a list of keys of the question to be set
         final ArrayList<String> keys = new ArrayList<>();
@@ -361,6 +369,22 @@ public class simpleQuestionActivity extends AppCompatActivity {
                         DatabaseAddHelper.updateQuestion(database,question);
                     }
                 }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        //set parent subject to not live
+        DatabaseReference subjRef = database.getReference().child("Subjects").child(topicKey.split(" ")[0]);
+        subjRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Subject subject = dataSnapshot.getValue(Subject.class);
+                subject.setIsLive(false);
+                DatabaseAddHelper.updateSubject(database,subject);
             }
 
             @Override

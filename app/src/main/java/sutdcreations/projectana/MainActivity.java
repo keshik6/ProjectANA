@@ -112,4 +112,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //logout on back pressed
+    @Override
+    public void onBackPressed(){
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
+
 }

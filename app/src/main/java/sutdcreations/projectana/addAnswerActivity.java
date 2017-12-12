@@ -89,6 +89,7 @@ public class addAnswerActivity extends AppCompatActivity {
         //go back to question
         Intent intent = new Intent(this, simpleAnswerActivity.class);
         intent.putExtra("questionKey",questionKey);
+        intent.putExtra("topicKey", getIntent().getStringExtra("topicKey"));
         startActivity(intent);
         finish();
     }
