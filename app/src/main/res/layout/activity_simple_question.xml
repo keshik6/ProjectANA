@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
 
     <Button
-        android:background="@drawable/redbuttonshape"
+   
         android:textColor="#FFFFFF"
         android:layout_width="130dp"
         android:layout_height="wrap_content"
@@ -32,6 +32,7 @@
         android:layout_gravity="center_horizontal"
         android:onClick="onClickAskQuestion"
         android:id="@+id/askQuestion"
+        android:background="@drawable/mybutton"
         android:layout_marginBottom="10dp"
         />
 
@@ -39,8 +40,8 @@
         android:id="@+id/deleteTopic"
         android:layout_width="140dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/redcircularbutton"
         android:layout_gravity="center_horizontal"
-        android:background="@drawable/redbuttonshape"
         android:text="Delete this topic"
         android:onClick="onClickDeleteTopic"
         android:textColor="#FFFFFF"
