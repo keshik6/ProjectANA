@@ -3,6 +3,7 @@ package sutdcreations.projectana;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.provider.ContactsContract;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -208,6 +209,8 @@ public class CourseTopicActivity extends AppCompatActivity {
             button.setBackgroundColor(white);
             button.setGravity(Gravity.CENTER_HORIZONTAL);
             button.setGravity(View.TEXT_ALIGNMENT_GRAVITY);
+            Typeface moonbold = Typeface.createFromAsset(button.getContext().getAssets(),"fonts/moon_bold.otf");
+            button.setTypeface(moonbold);
 
             final Topic final_topic = topic;
             final String topicTitle = topic.getTitle();

@@ -115,7 +115,6 @@ public class simpleAnswerActivity extends AppCompatActivity {
                     // give feedback
                     User user = ((GlobalData) getApplication()).getUser();
 
-
                     if (question.isLive()) { //feedback system only applicable to live questions
                         //Request feedback (teacher) or Give feedback (student)
                         if (user instanceof Teacher) {

@@ -43,7 +43,7 @@ import sutdcreations.classes.User;
 /**
  * A simple {@link Fragment} subclass.
  */
-@RequiresApi(api = Build.VERSION_CODES.O)
+
 public class MainFragment extends Fragment {
     Button snoopButton;
     FirebaseDatabase database;
@@ -60,6 +60,7 @@ public class MainFragment extends Fragment {
 
 //    Drawable pinkButtonShape = Drawable.createFromXml(getResources(R.drawable.pinkbuttonshape));
 //    Typeface opensans_regular = Typeface.createFromAsset(getActivity().getAssets(),"fonts/opensans_regular.ttf");
+
 
     public MainFragment() {
         // Required empty public constructor
@@ -216,6 +217,8 @@ public class MainFragment extends Fragment {
             button.setBackgroundColor(white);
             button.setGravity(Gravity.CENTER_HORIZONTAL);
             button.setGravity(View.TEXT_ALIGNMENT_GRAVITY);
+            Typeface moonbold = Typeface.createFromAsset(button.getContext().getAssets(),"fonts/moon_bold.otf");
+            button.setTypeface(moonbold);
 
 //            Font.MOON_BOLD.apply(getContext(),button);
 //            button.setTypeface(opensans_regular);

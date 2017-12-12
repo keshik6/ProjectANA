@@ -48,7 +48,7 @@
         tools:layout_editor_absoluteX="207dp"
         tools:layout_editor_absoluteY="35dp"
         android:drawableLeft="@drawable/ic_email3"
-       />
+        android:drawablePadding="5dp" />
 
     <EditText
         android:id="@+id/passwordTF"
@@ -62,8 +62,8 @@
         android:textColorHint="#6F6C6C"
         tools:layout_editor_absoluteX="207dp"
         tools:layout_editor_absoluteY="106dp"
-
-        android:drawableLeft="@drawable/ic_lock2"/>
+        android:drawableLeft="@drawable/ic_lock2"
+        android:drawablePadding="5dp" />
 
     <Button
         android:id="@+id/signInBt"
@@ -71,7 +71,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_gravity="center_horizontal"
-        android:singleLine="false"
         android:text="Sign in"
         android:textColor="#FFFFFF"
         android:background="@drawable/redbuttonshape"

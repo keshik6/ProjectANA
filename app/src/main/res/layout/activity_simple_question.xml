@@ -23,7 +23,6 @@
         android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
 
     <Button
-   
         android:textColor="#FFFFFF"
         android:layout_width="130dp"
         android:layout_height="wrap_content"
@@ -32,15 +31,27 @@
         android:layout_gravity="center_horizontal"
         android:onClick="onClickAskQuestion"
         android:id="@+id/askQuestion"
-        android:background="@drawable/mybutton"
+        android:background="@drawable/redbuttonshape"
         android:layout_marginBottom="10dp"
         />
+
+    <Button
+        android:textColor="#FFFFFF"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/moon_bold"
+        android:text="make topic live"
+        android:layout_gravity="center_horizontal"
+        android:onClick="onClickAskQuestion"
+        android:id="@+id/topicLive"
+        android:background="@drawable/redbuttonshape"
+        android:layout_marginBottom="10dp"/>
 
     <Button
         android:id="@+id/deleteTopic"
         android:layout_width="140dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/redcircularbutton"
+        android:background="@drawable/redbuttonshape"
         android:layout_gravity="center_horizontal"
         android:text="Delete this topic"
         android:onClick="onClickDeleteTopic"

@@ -87,7 +87,10 @@ public class simpleQuestionActivity extends AppCompatActivity {
             //similarly, make delete topic button invisible for students
             Button deleteTopic = findViewById(R.id.deleteTopic);
             deleteTopic.setVisibility(View.GONE);
+
         }
+
+
 
         //get Topic object from Firebase
         DatabaseReference topicRef = database.getReference().child("Topics").child(topicKey);

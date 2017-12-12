@@ -57,6 +57,7 @@
             android:id="@+id/addTag"
             android:onClick="onClickAddTag"
             android:text="Add tag"
+            android:singleLine="true"
             android:backgroundTint="#6F6FEE"
             android:fontFamily="@font/moon_bold"/>
     </LinearLayout>
