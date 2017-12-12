@@ -35,7 +35,6 @@ public class Topic {
         //add 1 to number of questions asked by student for this subject
         String courseCode = this.getKey().split(" ")[0];
         Log.i("debugAddQn",this.getKey());
-        question.getAsker().questionsMap.put(courseCode,question.getAsker().questionsMap.get(courseCode)+1);
     }
 
     public void toggleLive() {

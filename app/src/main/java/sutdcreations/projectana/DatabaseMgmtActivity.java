@@ -70,5 +70,6 @@ public class DatabaseMgmtActivity extends AppCompatActivity {
 //
 //            }
 //        });
+
      }
 }

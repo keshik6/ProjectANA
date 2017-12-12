@@ -82,17 +82,7 @@ public class Question {
         animalMap.put(answerer.getUid(),randAnimal);
         animalList.remove(randAnimal);
 
-        //add 1 to number of answers by student for this subject
-        if (answer.getAnswerer() instanceof Student){
-            Student student = (Student) answerer;
-            String courseCode = this.getKey().split(" ")[0];
-            if (student.answersMap.containsKey(courseCode)) {
-                student.answersMap.put(courseCode, student.answersMap.get(courseCode) + 1);
-            }
-            else{
-                student.answersMap.put(courseCode, 1);
-            }
-        }
+
 
     }
 

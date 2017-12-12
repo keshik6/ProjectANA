@@ -70,11 +70,14 @@ public class AskQuestionActivity extends AppCompatActivity {
             return;
         }
 
+        String topicKey = getIntent().getStringExtra("topicKey");
         Student asker = (Student) ((GlobalData) getApplication()).getUser();
-
+        String courseCode = topicKey.split(" ")[0];
+        asker.getQuestionsMap().put(courseCode,asker.getQuestionsMap().get(courseCode)+1);
+        DatabaseAddHelper.updateStudent(FirebaseDatabase.getInstance(),asker);
         //create question object and post it to Firebase
         final Question question = new Question(questionTitle.getText().toString(),questionBody.getText().toString(),tags,asker);
-        String topicKey = getIntent().getStringExtra("topicKey");
+
         DatabaseReference topicRef = FirebaseDatabase.getInstance().getReference().child("Topics").child(topicKey);
         topicRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

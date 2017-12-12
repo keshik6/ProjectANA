@@ -31,10 +31,25 @@ public class addAnswerActivity extends AppCompatActivity {
     public void onClickAddAnswer(View v){
         String answerString = answer.getText().toString();
         final String questionKey = getIntent().getStringExtra("questionKey");
+        final User answerer = ((GlobalData) getApplication()).getUser();
+
         //display toast if text box is empty
         if (answerString.equals("")){
             Toast.makeText(this,"Please enter your answer",Toast.LENGTH_SHORT).show();
             return;
+        }
+
+        //add 1 to number of answers by student for this subject
+        if (answerer instanceof Student){
+            Student student = (Student) answerer;
+            String courseCode = questionKey.split(" ")[0];
+            if (student.getAnswersMap().containsKey(courseCode)) {
+                student.getAnswersMap().put(courseCode, student.getAnswersMap().get(courseCode) + 1);
+            }
+            else{
+                student.getAnswersMap().put(courseCode, 1);
+            }
+            DatabaseAddHelper.updateStudent(FirebaseDatabase.getInstance(),student);
         }
 
         //create answer object, add to Firebase
