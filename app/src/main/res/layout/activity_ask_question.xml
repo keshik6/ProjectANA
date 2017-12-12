@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/questionTitle"
             android:hint="Enter question title"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="10dp"
             android:textAlignment="center"
             android:fontFamily="@font/opensans_regular"/>
     </LinearLayout>
@@ -67,7 +67,7 @@
             android:id="@+id/questionBody"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="10dp"
             android:fontFamily="@font/opensans_regular"
             android:hint="Enter question body"
             android:textAlignment="center" />
@@ -93,7 +93,7 @@
             android:layout_width="160dp"
             android:layout_height="match_parent"
             android:id="@+id/tag"
-            android:layout_marginLeft="44dp"
+            android:layout_marginLeft="24dp"
             android:hint="Enter tag"
             android:textAlignment="center"
             android:fontFamily="@font/opensans_regular"/>
