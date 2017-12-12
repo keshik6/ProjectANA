@@ -50,7 +50,7 @@ public class AskQuestionActivity extends AppCompatActivity {
 
         //add tag to ArrayList of tags, display tag on screen
         tags.add(tagString);
-        LinearLayout tagLayout = findViewById(R.id.tagLayout);
+        LinearLayout tagLayout = findViewById(R.id.toTagLayout);
         TextView tagView = new TextView(this);
         tagView.setText(tagString);
         tagView.setPadding(0,0,50,0);

@@ -4,11 +4,19 @@ package sutdcreations.projectana;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.DrawableContainer;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,15 +32,18 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import sutdcreations.classes.Font;
 import sutdcreations.classes.Student;
 import sutdcreations.classes.Subject;
 import sutdcreations.classes.Teacher;
 import sutdcreations.classes.User;
 
 
+
 /**
  * A simple {@link Fragment} subclass.
  */
+@RequiresApi(api = Build.VERSION_CODES.O)
 public class MainFragment extends Fragment {
     Button snoopButton;
     FirebaseDatabase database;
@@ -41,6 +52,14 @@ public class MainFragment extends Fragment {
     User user;
     Activity parentActivity;
     View parentView;
+
+    int white = Color.parseColor("#FFFFFF");
+//    int red = Color.parseColor("#AB0606");
+//    int turquoise = Color.parseColor("#60C3CE");
+    int black = Color.parseColor("#000000");
+
+//    Drawable pinkButtonShape = Drawable.createFromXml(getResources(R.drawable.pinkbuttonshape));
+//    Typeface opensans_regular = Typeface.createFromAsset(getActivity().getAssets(),"fonts/opensans_regular.ttf");
 
     public MainFragment() {
         // Required empty public constructor
@@ -75,7 +94,14 @@ public class MainFragment extends Fragment {
                 Intent intent = new Intent(getActivity().getApplicationContext(), ProfileActivity.class);
                 startActivity(intent);
             }
-        });
+        })
+        ;
+
+//        profileButton.setTextColor(white);
+//        profileButton.setBackgroundColor(red);
+//        profileButton.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+//        profileButton.setGravity(Gravity.CENTER_HORIZONTAL);
+
 
 
         snoopButton = (Button) getView().findViewById(R.id.testSnoop);
@@ -88,9 +114,6 @@ public class MainFragment extends Fragment {
         });
 
         snoopButton.setVisibility(View.INVISIBLE);
-
-
-
 
 
     }
@@ -182,6 +205,23 @@ public class MainFragment extends Fragment {
             Log.i("isLive",""+s.isLive());
             final Subject subj = s;
             Button button = new Button(parentActivity.getApplicationContext());
+
+
+            // BUTTON APPEARANCE
+//            button.setGravity(Gravity.CENTER_HORIZONTAL);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            params.setMargins(0,20,0,0);
+            button.setLayoutParams(params);
+            button.setTextColor(black);
+            button.setBackgroundColor(white);
+            button.setGravity(Gravity.CENTER_HORIZONTAL);
+            button.setGravity(View.TEXT_ALIGNMENT_GRAVITY);
+
+//            Font.MOON_BOLD.apply(getContext(),button);
+//            button.setTypeface(opensans_regular);
+
+//            button.setTypeface(Typeface.createFromFile("\"C:\\Users\\Trinh Vu Linh Chi\\Documents\\GitHub\\ProjectANA\\app\\src\\main\\res\\font\\moon_bold.otf\""));
+            // BUTTON APPEARANCE
             if (s.isLive()){
                 button.setText(s.getSubjectCode()+" "+s.getSubjectTitle() + " "+ "(Live)");
             }
@@ -197,6 +237,7 @@ public class MainFragment extends Fragment {
                 }
             });
             layout.addView(button);
+
         }
 
         //add button to create new subjects for teachers

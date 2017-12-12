@@ -1,20 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="sutdcreations.projectana.addAnswerActivity"
     android:orientation="vertical">
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/answer"
-        android:hint="Enter answer here"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Add answer"
-        android:onClick="onClickAddAnswer"/>
 
-</LinearLayout>
+    <ImageView
+        android:contentDescription="backgroundPhoto"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scaleY="1.2"
+        android:scaleX="1.2"
+        android:alpha="0.3"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:src="@drawable/background" />
+
+    <EditText
+        android:id="@+id/answer"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:hint="Enter answer here"
+        android:fontFamily="@font/opensans_regular"
+        android:layout_centerVertical="true"
+        android:textAlignment="center"
+        android:textColorHint="#6F6C6C" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/answer"
+        android:backgroundTint="#AB0606"
+        android:onClick="onClickAddAnswer"
+        android:text="Post answer"
+        android:fontFamily="@font/moon_bold"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold" />
+
+</RelativeLayout>

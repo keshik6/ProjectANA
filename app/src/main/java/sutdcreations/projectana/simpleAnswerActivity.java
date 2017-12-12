@@ -391,17 +391,17 @@ class MyAdapter2 extends RecyclerView.Adapter<MyAdapter2.myHolder2>{
         final ImageButton upVote=holder.upVote;
         final ImageButton downVote=holder.downVote;
         final myHolder2 final_holder = holder;
-        holder.postedBy.setText("Posted by: "+question.getAnimalMap().get(final_answer.getAnswerer().getUid()));
+        holder.postedBy.setText("Posted by: "+question.getAnimalMap().get(final_answer.getAnswerer().getUid()).toUpperCase());
         holder.answer.setText(final_answer.getBody());
         if (checkUpVoted(user,final_answer)) {
-            upVote.setBackgroundResource(R.drawable.upvote);
+            upVote.setBackgroundResource(R.drawable.up_arrow);
         } else {
-            upVote.setBackgroundResource(R.drawable.upvote_red);
+            upVote.setBackgroundResource(R.drawable.green_arrow);
         }
         if (checkDownVoted(user,final_answer)) {
-            downVote.setBackgroundResource(R.drawable.downvote);
+            downVote.setBackgroundResource(R.drawable.down_arrow);
         } else {
-            downVote.setBackgroundResource(R.drawable.downvote_blue);
+            downVote.setBackgroundResource(R.drawable.red_arrow);
         }
         final TextView voteCount=holder.voteCount;
         voteCount.setText(""+final_answer.getVotes());
@@ -414,20 +414,20 @@ class MyAdapter2 extends RecyclerView.Adapter<MyAdapter2.myHolder2>{
                             final_answer.removeDownVote(user);
                             final_answer.upVote(user);
                             DatabaseAddHelper.updateQuestion(FirebaseDatabase.getInstance(),question);
-                            upVote.setBackgroundResource(R.drawable.upvote);
-                            downVote.setBackgroundResource(R.drawable.downvote_blue);
+                            upVote.setBackgroundResource(R.drawable.up_arrow);
+                            downVote.setBackgroundResource(R.drawable.red_arrow);
                             voteCount.setText("" + final_answer.getVotes());
                         }
                         else if (checkUpVoted(user,final_answer)) {
                             final_answer.removeUpVote(user);
                             DatabaseAddHelper.updateQuestion(FirebaseDatabase.getInstance(),question);
-                            upVote.setBackgroundResource(R.drawable.upvote_red);
+                            upVote.setBackgroundResource(R.drawable.green_arrow);
                             voteCount.setText("" + final_answer.getVotes());
                         }
                         else {
                             final_answer.upVote((User) user);
                             DatabaseAddHelper.updateQuestion(FirebaseDatabase.getInstance(),question);
-                            upVote.setBackgroundResource(R.drawable.upvote);
+                            upVote.setBackgroundResource(R.drawable.up_arrow);
                             voteCount.setText("" + final_answer.getVotes());
                         }
                     }
@@ -441,18 +441,18 @@ class MyAdapter2 extends RecyclerView.Adapter<MyAdapter2.myHolder2>{
                             final_answer.removeUpVote(user);
                             final_answer.downVote(user);
                             DatabaseAddHelper.updateQuestion(FirebaseDatabase.getInstance(),question);
-                            upVote.setBackgroundResource(R.drawable.upvote_red);
-                            downVote.setBackgroundResource(R.drawable.downvote);
+                            upVote.setBackgroundResource(R.drawable.green_arrow);
+                            downVote.setBackgroundResource(R.drawable.down_arrow);
                             voteCount.setText("" + final_answer.getVotes());
                         }
                         else if (checkDownVoted(user,final_answer)) {
                             final_answer.removeDownVote(user);
                             DatabaseAddHelper.updateQuestion(FirebaseDatabase.getInstance(),question);
-                            downVote.setBackgroundResource(R.drawable.downvote_blue);
+                            downVote.setBackgroundResource(R.drawable.red_arrow);
                             voteCount.setText("" + final_answer.getVotes());
                         } else {
                             final_answer.downVote(user);
-                            downVote.setBackgroundResource(R.drawable.downvote);
+                            downVote.setBackgroundResource(R.drawable.down_arrow);
                             DatabaseAddHelper.updateQuestion(FirebaseDatabase.getInstance(),question);
                             voteCount.setText("" + final_answer.getVotes());
                         }

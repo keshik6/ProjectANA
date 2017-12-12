@@ -1,50 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:theme="@style/Theme.Design.Light"
     tools:context="sutdcreations.projectana.ProfileActivity"
     android:orientation="vertical">
 
+    <ImageView
+        android:contentDescription="backgroundPhoto"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scaleY="1.2"
+        android:scaleX="1.2"
+        android:alpha="0.3"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:src="@drawable/background" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
     <TextView
         android:id="@+id/settingsTF"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="SETTINGS"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:layout_height="50sp"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center"
+        android:text="PROFILE"
         android:textAlignment="center"
-        android:textStyle="bold"
-        android:layout_marginBottom="3dp"/>
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#000000"
+        android:textSize="30sp"
+        android:fontFamily="@font/moon_bold" />
 
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/profilepic"
-        android:layout_marginBottom="15dp"/>
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:scaleX="1.0"
+            android:scaleY="1.0"
+            android:src="@drawable/unhappy" />
 
     <LinearLayout
         android:id="@+id/Linlayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="30dp">
 
         <TextView
             android:id="@+id/NameLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:text="FULL NAME: "
-            android:textAppearance="@style/TextAppearance.AppCompat" />
+            android:layout_marginStart="50dp"
+            android:text="Full Name: "
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textSize="15sp"
+            android:fontFamily="@font/opensans_semibold" />
 
         <TextView
             android:id="@+id/NameTF"
+            android:textAllCaps="true"
+            android:fontFamily="@font/moon_light"
+            android:textColor="#000000"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+
     </LinearLayout>
 
 
@@ -52,21 +81,25 @@
         android:id="@+id/Linlayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
 
         <TextView
             android:id="@+id/CourseLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
-            android:text="COURSES: "
+            android:text="Courses: "
+            android:fontFamily="@font/opensans_semibold"
             android:textAppearance="@style/TextAppearance.AppCompat" />
 
         <TextView
             android:id="@+id/CoursesTF"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/moon_light"
+            android:textColor="#000000"
+            android:textAllCaps="true" />
     </LinearLayout>
 
 
@@ -74,21 +107,25 @@
         android:id="@+id/Linlayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="25dp">
 
         <TextView
             android:id="@+id/QuestionsLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
-            android:text="QUESTIONS: "
+            android:text="Questions: "
+            android:fontFamily="@font/opensans_semibold"
             android:textAppearance="@style/TextAppearance.AppCompat" />
 
         <TextView
             android:id="@+id/NoOfQuestionsTF"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/moon_light"
+            android:textColor="#000000"
+            android:textAllCaps="true" />
     </LinearLayout>
 
 
@@ -96,21 +133,25 @@
         android:id="@+id/Linlayout4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
 
         <TextView
             android:id="@+id/ReplyLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
-            android:text="REPLIES: "
+            android:text="Replies: "
+            android:fontFamily="@font/opensans_semibold"
             android:textAppearance="@style/TextAppearance.AppCompat" />
 
         <TextView
             android:id="@+id/NoOfRepliesTF"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/moon_light"
+            android:textColor="#000000"
+            android:textAllCaps="true" />
     </LinearLayout>
 
 
@@ -118,21 +159,36 @@
         android:id="@+id/Linlayout5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
 
         <TextView
             android:id="@+id/GradesLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
-            android:text="PARTICIPATION\nGRADES: "
+            android:text="Participation Grade: "
+            android:fontFamily="@font/opensans_semibold"
             android:textAppearance="@style/TextAppearance.AppCompat" />
 
         <TextView
             android:id="@+id/GradesTF"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/moon_light"
+            android:textColor="#000000"
+            android:textAllCaps="true" />
     </LinearLayout>
 
-</LinearLayout>
+    </LinearLayout>
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/Base.ThemeOverlay.AppCompat.Light"
+        android:layout_alignParentBottom="true"
+        app:itemIconTint="#000000"
+        app:itemTextColor="#000000"
+        app:menu="@menu/navigation" />
+
+</RelativeLayout>

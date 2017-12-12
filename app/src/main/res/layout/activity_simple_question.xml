@@ -14,6 +14,7 @@
         android:id="@+id/topicTitleQuestionList"
         android:textAlignment="center"
         android:textSize="30sp"
+        android:textColor="#000000"
         android:text="Loading..."/>
 
     <android.support.v7.widget.RecyclerView
@@ -22,9 +23,13 @@
         android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
 
     <Button
-        android:layout_width="match_parent"
+   
+        android:textColor="#FFFFFF"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/moon_bold"
         android:text="Ask a question"
+        android:layout_gravity="center_horizontal"
         android:onClick="onClickAskQuestion"
         android:id="@+id/askQuestion"
         android:background="@drawable/mybutton"
@@ -33,10 +38,12 @@
 
     <Button
         android:id="@+id/deleteTopic"
-        android:layout_width="match_parent"
+        android:layout_width="140dp"
         android:layout_height="wrap_content"
         android:background="@drawable/redcircularbutton"
+        android:layout_gravity="center_horizontal"
+        android:text="Delete this topic"
         android:onClick="onClickDeleteTopic"
-
-        android:text="Delete this topic" />
+        android:textColor="#FFFFFF"
+        android:fontFamily="@font/moon_bold"/>
 </LinearLayout>

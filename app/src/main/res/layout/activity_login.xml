@@ -1,35 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerVertical="true"
+    android:gravity="center"
+    android:background="@drawable/background"
+    android:orientation="vertical"
     tools:context="sutdcreations.projectana.LoginActivity">
 
-    <Button
-        android:id="@+id/signInBt"
+    <TextView
+        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="100dp"
-        android:background="@android:color/transparent"
+        android:layout_gravity="center_horizontal"
+        android:text="A.N.A"
+        android:fontFamily="@font/moon_bold"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textSize="80sp"
+        android:textStyle="bold"
+        android:textColor="#000000" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="40dp"
+        android:gravity="center"
+        android:text="DYNAMIC EDUCATIONAL PLATFORM"
+        android:fontFamily="@font/moon_bold"
+        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
         android:textColor="#000000"
-        android:singleLine="false"
-        android:text="Sign In"
-        tools:layout_editor_absoluteX="148dp"
-        tools:layout_editor_absoluteY="284dp" />
+        android:textSize="15sp" />
 
     <EditText
         android:id="@+id/emailTF"
         android:layout_width="220dp"
         android:layout_height="44dp"
-        android:layout_alignBottom="@+id/passwordTF"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="48dp"
+        android:layout_gravity="center_horizontal"
         android:ems="10"
         android:hint="Email"
         android:inputType="textPersonName"
+        android:fontFamily="@font/opensans_regular"
+        android:textColorHint="#6F6C6C"
         tools:layout_editor_absoluteX="207dp"
         tools:layout_editor_absoluteY="35dp"
         android:drawableLeft="@drawable/ic_email3"
@@ -39,39 +54,28 @@
         android:id="@+id/passwordTF"
         android:layout_width="220dp"
         android:layout_height="44dp"
-        android:layout_alignBottom="@+id/signInBt"
-        android:layout_alignEnd="@+id/emailTF"
-        android:layout_marginBottom="68dp"
+        android:layout_gravity="center_horizontal"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
+        android:fontFamily="@font/opensans_regular"
+        android:textColorHint="#6F6C6C"
         tools:layout_editor_absoluteX="207dp"
         tools:layout_editor_absoluteY="106dp"
 
         android:drawableLeft="@drawable/ic_lock2"/>
 
-    <TextView
-        android:id="@+id/textView2"
-        android:textStyle="bold"
-        android:layout_width="220dp"
-        android:layout_height="50dp"
-        android:layout_above="@+id/emailTF"
-        android:layout_alignEnd="@+id/emailTF"
-        android:layout_marginBottom="18dp"
-        android:gravity="center"
-        android:text="DYNAMIC EDUCATIONAL PLATFORM"
-        android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
+    <Button
+        android:id="@+id/signInBt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center_horizontal"
+        android:singleLine="false"
+        android:text="Sign in"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/redbuttonshape"
+        android:fontFamily="@font/moon_bold"/>
 
-    <TextView
-        android:id="@+id/textView1"
-        android:textStyle="bold"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_above="@+id/textView2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="13dp"
-        android:gravity="center_horizontal"
-        android:text="A. N. A"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
-</RelativeLayout>
+</LinearLayout>
