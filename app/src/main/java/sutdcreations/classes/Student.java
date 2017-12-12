@@ -5,16 +5,19 @@ package sutdcreations.classes;
  */
 import android.util.Log;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import sutdcreations.projectana.DatabaseAddHelper;
-
 public class Student extends User {
     double participation;
+    int student_id;
     int replies_count;
     int questions_count;
     Map<String,Integer> questionsMap = new HashMap<>();  //Subjects and no of questions asked
@@ -70,8 +73,8 @@ public class Student extends User {
 
     //Calculate grades for the courses individually using mean and standard deviation
     //In fact we are getting the average of the z scores of questions and answers
-
-    public String calculateScore(ArrayList<Topic> allTopics) {
+    String gradeTeacher = "";
+    public String calculateScore(ArrayList<Topic> allTopics,String type) {
         Map<String, Integer> qnsForCourses = new HashMap<>();
         for (Topic t : allTopics) {
             String key = t.getKey().split(" ")[0];
@@ -90,6 +93,12 @@ public class Student extends User {
             //double mean = (qnsForCourses.get(courseCode)) / (Subject.getTotalStudents(courseCode));
             double val = questionsMap.get(courseCode);
             scoresQn.put(courseCode, val);
+            gradeTeacher += courseCode.substring(0,2) + "." + courseCode.substring(2,courseCode.length()) + ":\t";
+            gradeTeacher += questionsMap.get(courseCode);
+
+            if (!courseCode.equals(questionsMap.keySet().equals(courseCode))){
+                gradeTeacher += "\n";
+            }
         }
 
 
@@ -113,11 +122,17 @@ public class Student extends User {
             }
         }
 
+        gradeTeacher += "|";
         for (String courseCode: answersMap.keySet()){
             Log.i("keshik",String.valueOf(ansForCourses.get(courseCode)));
             //double mean = (ansForCourses.get(courseCode))/(Subject.getTotalStudents(courseCode));
             double val = answersMap.get(courseCode);
             scoresAns.put(courseCode,val);
+            gradeTeacher += courseCode.substring(0,2) + "." + courseCode.substring(2,courseCode.length()) + ":\t";
+            gradeTeacher += answersMap.get(courseCode);
+            if (!courseCode.equals(answersMap.keySet().equals(courseCode))){
+                gradeTeacher += "\n";
+            }
         }
 
 
@@ -129,27 +144,32 @@ public class Student extends User {
 
 
         //Update this to beng haun's code
-        String grade = "";
+        String gradeStd = "";
+
         for (String courseCode: finalGrade.keySet()){
-            grade += courseCode.substring(0,2) + "." + courseCode.substring(2,courseCode.length()) + ":\t";
+            gradeStd += courseCode.substring(0,2) + "." + courseCode.substring(2,courseCode.length()) + ":\t";
             if (finalGrade.get(courseCode) >= 15){
-                grade += "A";
+                gradeStd += "A";
             }
             else if (finalGrade.get(courseCode) >= 10){
-                grade += "B";
+                gradeStd += "B";
             }
             else if (finalGrade.get(courseCode) >= 5){
-                grade += "C";
+                gradeStd += "C";
             }
             else{
-                grade += "D";
+                gradeStd += "D";
             }
 
             if (!courseCode.equals(finalGrade.keySet().equals(courseCode))){
-                grade += "\n";
+                gradeStd += "\n";
             }
         }
-        return grade;
+
+        if (type.equals("Teacher")){
+            return gradeTeacher;
+        }
+        return gradeStd;
     }
 
     //public getters and setters for Firebase
@@ -235,5 +255,15 @@ public class Student extends User {
     public void setNotifications(ArrayList<String> notifications) {
         this.notifications = notifications;
     }
+
+    public int getStudent_id(){
+        return student_id;
+    }
+
+    public void setStudent_id(int student_id){
+        this.student_id = student_id;
+    }
+
+
 
 }
