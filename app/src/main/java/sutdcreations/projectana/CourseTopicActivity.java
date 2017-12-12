@@ -38,10 +38,9 @@ public class CourseTopicActivity extends AppCompatActivity {
     private Subject subject;
     private User user;
     boolean inForeground = true;
-//    int purple = Color.parseColor("#CA6C94");
+
     int black = Color.parseColor("#000000");
     int white = Color.parseColor("#FFFFFF");
-    int red = Color.parseColor("#AB0606");
 
 
     @Override
@@ -204,9 +203,6 @@ public class CourseTopicActivity extends AppCompatActivity {
         subjectTitle.setTextColor(black);
         subjectTitle.setText(subject.getSubjectCode() + " " + subject.getSubjectTitle());
         subjectTitle.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-//        subjectTitle.setTypeface(Typeface.createFromAsset(subjectTitle.getContext().getAssets(),"fonts/moonbold.otf"));
-//        Typeface moonbold_subjectTitle = Typeface.createFromAsset(subjectTitle.getContext().getAssets(),"fonts/moonbold.otf");
-//        subjectTitle.setTypeface(moonbold_subjectTitle);
 
         subjectTitle.setTextSize(25);
         layout.addView(subjectTitle);
@@ -219,7 +215,6 @@ public class CourseTopicActivity extends AppCompatActivity {
             button.setLayoutParams(params);
             button.setTextColor(black);
             button.setBackgroundColor(white);
-//            button.setGravity(Gravity.CENTER);
             button.setGravity(View.TEXT_ALIGNMENT_GRAVITY);
             Typeface moonbold = Typeface.createFromAsset(button.getContext().getAssets(),"fonts/moon_bold.otf");
             button.setTypeface(moonbold);
@@ -243,13 +238,6 @@ public class CourseTopicActivity extends AppCompatActivity {
         if (user instanceof Teacher){
             Button newTopicButton = new Button(this);
             newTopicButton.setText("Create new topic");
-//            Typeface moonbold_newTopicButton = Typeface.createFromAsset(newTopicButton.getContext().getAssets(),"fonts/moonbold.otf");
-//            subjectTitle.setTypeface(moonbold_newTopicButton);
-//            newTopicButton.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-//            newTopicButton.setGravity(Gravity.CENTER_HORIZONTAL);
-//            newTopicButton.setTypeface(Typeface.createFromAsset(newTopicButton.getContext().getAssets(),"fonts/moon_bold.otf"));
-//            newTopicButton.setBackgroundColor(red);
-//            newTopicButton.setTextColor(white);
             newTopicButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
