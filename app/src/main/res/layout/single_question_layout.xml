@@ -28,6 +28,7 @@
             android:layout_below="@id/upVote"
             android:textAlignment="center"
             android:textSize="20sp"
+            android:fontFamily="@font/moon_bold"
             android:textColor="#000000"
             android:text="0" />
 
@@ -53,7 +54,7 @@
 
             android:text="question title"
             android:fontFamily="@font/opensans_semibold"
-            android:background="@drawable/purplebuttonshape"
+            android:backgroundTint="#FFFFFF"
             android:textSize="15sp" />
 
         <TextView

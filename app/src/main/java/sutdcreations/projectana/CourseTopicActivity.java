@@ -37,8 +37,9 @@ public class CourseTopicActivity extends AppCompatActivity {
     private Subject subject;
     private User user;
     boolean inForeground = true;
-    int purple = Color.parseColor("#CA6C94");
+//    int purple = Color.parseColor("#CA6C94");
     int black = Color.parseColor("#000000");
+    int white = Color.parseColor("#FFFFFF");
 
 
     @Override
@@ -204,7 +205,7 @@ public class CourseTopicActivity extends AppCompatActivity {
             params.setMargins(0,20,0,0);
             button.setLayoutParams(params);
             button.setTextColor(black);
-            button.setBackgroundColor(purple);
+            button.setBackgroundColor(white);
             button.setGravity(Gravity.CENTER_HORIZONTAL);
             button.setGravity(View.TEXT_ALIGNMENT_GRAVITY);
 

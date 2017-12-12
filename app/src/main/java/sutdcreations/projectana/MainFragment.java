@@ -39,6 +39,7 @@ import sutdcreations.classes.Teacher;
 import sutdcreations.classes.User;
 
 
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -52,10 +53,9 @@ public class MainFragment extends Fragment {
     Activity parentActivity;
     View parentView;
 
-//    int white = Color.parseColor("#FFFFFF");
+    int white = Color.parseColor("#FFFFFF");
 //    int red = Color.parseColor("#AB0606");
-
-    int turquoise = Color.parseColor("#60C3CE");
+//    int turquoise = Color.parseColor("#60C3CE");
     int black = Color.parseColor("#000000");
 
 //    Drawable pinkButtonShape = Drawable.createFromXml(getResources(R.drawable.pinkbuttonshape));
@@ -213,7 +213,7 @@ public class MainFragment extends Fragment {
             params.setMargins(0,20,0,0);
             button.setLayoutParams(params);
             button.setTextColor(black);
-            button.setBackgroundColor(turquoise);
+            button.setBackgroundColor(white);
             button.setGravity(Gravity.CENTER_HORIZONTAL);
             button.setGravity(View.TEXT_ALIGNMENT_GRAVITY);
 

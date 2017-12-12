@@ -13,7 +13,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/questionTopic"
         android:textAlignment="center"
-        android:textSize="30sp"
+        android:textSize="25sp"
+        android:textColor="#000000"
+        android:fontFamily="@font/opensans_semibold"
         android:text="Loading..."/>
 
     <TextView
@@ -22,6 +24,8 @@
         android:id="@+id/questionDetail"
         android:textAlignment="center"
         android:textSize="20sp"
+        android:textColor="#000000"
+        android:fontFamily="@font/opensans_regular"
         android:text="Loading..."/>
 
     <android.support.v7.widget.RecyclerView

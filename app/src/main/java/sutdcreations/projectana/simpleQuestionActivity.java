@@ -347,7 +347,7 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.myHolder>{
         final Question final_question=questions.get(position);
         final ImageButton upVote=holder.upVote;
         final ImageButton downVote=holder.downVote;
-        holder.postedBy.setText("Posted by: "+final_question.getAnimalMap().get(final_question.getAsker().getUid()));
+        holder.postedBy.setText("Posted by: "+final_question.getAnimalMap().get(final_question.getAsker().getUid()).toUpperCase());
         if (final_question.isLive()) holder.questionTitle.setText(final_question.getTitle()+ " (Live)");
         else holder.questionTitle.setText(final_question.getTitle());
         if (checkUpVoted(user,final_question)) {
