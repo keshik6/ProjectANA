@@ -2,19 +2,33 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-
+    android:background="@drawable/background"
     android:theme="@style/Theme.AppCompat.NoActionBar"
 
-    android:id="@+id/courseTopicLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    tools:context="sutdcreations.projectana.CourseTopicActivity"
-    tools:orientation="vertical"
-    android:background="@drawable/background">
+    android:orientation="vertical">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Topics available"
+        android:textColor="#000000"
+        android:textSize="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="40dp"
+        android:fontFamily="@font/moon_bold"
+        android:textAlignment="center"/>
 
-
+    <LinearLayout
+        android:id="@+id/courseTopicLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        tools:context="sutdcreations.projectana.CourseTopicActivity"
+        tools:orientation="vertical"
+        >
+    </LinearLayout>
 
 </LinearLayout>

@@ -1,67 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/feedbackLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/background"
     tools:context="sutdcreations.projectana.FeedbackActivity">
 
-    <ImageView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:alpha="0.3"
-        android:contentDescription="backgroundPhoto"
-        android:scaleX="1.2"
-        android:scaleY="1.2"
-        android:src="@drawable/background" />
-
     <TextView
-        android:id="@+id/understandTitle"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Understand:"
-        android:layout_centerHorizontal="true"
-        android:layout_above="@id/understand"
+        android:text="Student feedback"
+        android:fontFamily="@font/moon_bold"
         android:textColor="#000000"
-        android:textSize="30sp"
-        android:fontFamily="@font/opensans_bold"/>
-
-    <TextView
-        android:id="@+id/understand"
-        android:layout_width="wrap_content"
+        android:textSize="30dp"
+        android:textAlignment="center"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="40dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="0"
-        android:layout_centerHorizontal="true"
-        android:textColor="#6F6FEE"
-        android:textSize="30sp"
-        android:fontFamily="@font/opensans_bold"
-        android:layout_above="@id/dontUnderstandTitle"/>
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="30dp">
+        <TextView
+            android:id="@+id/understandTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Understand"
+            android:textColor="#000000"
+            android:fontFamily="@font/moon_bold"
+            android:layout_marginRight="60dp"/>
 
-    <TextView
-        android:id="@+id/dontUnderstandTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Don't Understand:"
-        android:layout_centerHorizontal="true"
-        android:textColor="#000000"
-        android:textSize="30sp"
-        android:fontFamily="@font/opensans_bold"
-        android:layout_above="@id/dontUnderstand"/>
+        <TextView
+            android:id="@+id/understand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="20dp"
+            android:textColor="#58BB12"
+            android:fontFamily="@font/moon_bold"
+            />
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/dontUnderstand"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="0"
-        android:layout_centerInParent="true"
-        android:textColor="#AB0606"
-        android:textSize="30sp"
-        android:fontFamily="@font/opensans_bold"
-        android:layout_centerHorizontal="true"/>
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="30dp">
+        <TextView
+            android:id="@+id/dontUnderstandTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Don't Understand"
+            android:textColor="#000000"
+            android:layout_marginRight="10dp"
+            android:fontFamily="@font/moon_bold" />
+
+        <TextView
+            android:id="@+id/dontUnderstand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textColor="#AB0606"
+            android:textSize="20dp"
+            android:fontFamily="@font/moon_bold" />
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/secondaryFeedbackLayout"
@@ -73,4 +80,4 @@
     </LinearLayout>
 
 
-</RelativeLayout>
+</LinearLayout>

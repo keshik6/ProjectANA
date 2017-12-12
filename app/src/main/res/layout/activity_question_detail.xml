@@ -4,19 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:background="@drawable/background"
     tools:context="sutdcreations.projectana.QuestionDetailActivity"
     tools:ignore="MergeRootFrame">
-
-    <ImageView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:alpha="0.3"
-        android:contentDescription="backgroundPhoto"
-        android:scaleX="1.2"
-        android:scaleY="1.2"
-        android:src="@drawable/background" />
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"

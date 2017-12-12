@@ -4,84 +4,130 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:background="@drawable/background"
     tools:context="sutdcreations.projectana.SnoopActivity"
     android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Snoop"
+        android:textColor="#000000"
+        android:textSize="30dp"
+        android:fontFamily="@font/moon_bold"
+        android:textAlignment="center"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-        
+        android:orientation="vertical"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-    
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Student Name"
+                android:fontFamily="@font/moon_bold"
+                android:textColor="#000000"
+                android:layout_marginRight="30dp"/>
             <EditText
                 android:id="@+id/studentSearch"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Enter student name" />
-    
-            <Button
-                android:id="@+id/searchBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Search"/>
+                android:fontFamily="@font/opensans_regular"
+                android:hint="Enter student name"
+                android:textAlignment="center"/>
         
         </LinearLayout>
-        
+
+        <Button
+            android:id="@+id/searchBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Search"
+            android:textColor="#FFFFFF"
+            android:layout_gravity="center"
+            android:backgroundTint="#AB0606"
+            android:layout_marginBottom="20dp"/>
     
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp">
             
             <TextView
                 android:id="@+id/studentName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Student Name: "/>
+                android:text="Student Name"
+                android:fontFamily="@font/moon_bold"
+                android:textColor="#000000"
+                android:layout_marginRight="30dp"/>
             
             <TextView
                 android:id="@+id/studentNameTF"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/moon_light"
+                android:textColor="#000000"/>
             
         </LinearLayout>
         
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp">
 
             <TextView
                 android:id="@+id/noOfQtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Questions: " />
+                android:text="Questions"
+                android:fontFamily="@font/moon_bold"
+                android:textColor="#000000"
+                android:layout_marginRight="30dp"/>
 
             <TextView
                 android:id="@+id/noOfQtnTF"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/moon_light"
+                android:textColor="#000000"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp">
 
             <TextView
                 android:id="@+id/noOfAns"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Replies: "/>
+                android:text="Replies"
+                android:fontFamily="@font/moon_bold"
+                android:textColor="#000000"
+                android:layout_marginRight="30dp"/>
 
             <TextView
                 android:id="@+id/noOfAnsTF"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/moon_light"
+                android:textColor="#000000"/>
         </LinearLayout>
 
     </LinearLayout>

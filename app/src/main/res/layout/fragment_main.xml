@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
+    android:gravity="center_horizontal"
     android:background="@drawable/background"
     android:theme="@style/AppTheme.NoActionBar"
     tools:context="sutdcreations.projectana.MainActivity">
@@ -19,16 +19,35 @@
         android:gravity="center_horizontal"
         app:layout_constraintTop_toTopOf="parent">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="View your profile"
+            android:fontFamily="@font/moon_bold"
+            android:textColor="#000000"
+            android:textSize="20dp"
+            android:textAlignment="center"
+            android:layout_marginTop="20dp"/>
         <Button
             android:id="@+id/testProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="My profile"
-            android:layout_marginTop="80dp"
+            android:fontFamily="@font/moon_bold"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#6F6FEE"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Choose a course"
             android:fontFamily="@font/moon_bold"
             android:textColor="#000000"
-            android:background="@drawable/bluebuttonshape"/>
+            android:textAlignment="center"
+            android:layout_marginTop="20dp"
+            android:textSize="20dp"
+            android:layout_marginBottom="10dp"/>
 
         <Button
             android:id="@+id/testCourse"
@@ -37,9 +56,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="See my courses"
-            android:visibility="invisible"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="43dp" />
+            android:visibility="invisible" />
 
         <Button
             android:id="@+id/testFeedback"
@@ -56,8 +73,9 @@
             android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/pinkbuttonshape"
-            android:text="(Prof) Snoop on my students" />
-    </LinearLayout>
+            android:backgroundTint="#AB0606"
+            android:textColor="#FFFFFF"
+            android:text="Snoop on my students" />
 
+</LinearLayout>
 </LinearLayout>

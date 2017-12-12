@@ -1,47 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="sutdcreations.projectana.AddSubjectActivity">
+    android:gravity="center_horizontal"
+    tools:context="sutdcreations.projectana.AddSubjectActivity"
+    android:background="@drawable/background">
 
-    <ImageView
-        android:contentDescription="backgroundPhoto"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:scaleY="1.2"
-        android:scaleX="1.2"
-        android:alpha="0.3"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:src="@drawable/background" />
-
-    <EditText
-        android:id="@+id/subjectCode"
-        android:layout_width="300dp"
+    <TextView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/button3"
-        android:layout_centerInParent="true"
-        android:layout_marginBottom="45dp"
-        android:hint="Enter subject code"
+        android:text="Add a subject"
+        android:textColor="#000000"
+        android:fontFamily="@font/moon_bold"
+        android:textSize="30dp"
         android:textAlignment="center"
-        android:fontFamily="@font/opensans_regular"
-        android:textColorHint="#6F6C6C" />
-
-    <EditText
-        android:id="@+id/subjectTitle"
-        android:layout_width="300dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="40dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/subjectCode"
-        android:layout_marginTop="243dp"
-        android:hint="Enter subject title"
-        android:fontFamily="@font/opensans_regular"
-        android:textAlignment="center"
-        android:textColorHint="#6F6C6C" />
+        android:orientation="horizontal"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="30dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Code"
+            android:textColor="#000000"
+            android:fontFamily="@font/moon_bold"
+            android:layout_marginRight="30dp"/>
+        <EditText
+            android:id="@+id/subjectCode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter subject code"
+            android:textAlignment="center"
+            android:fontFamily="@font/opensans_regular"
+            android:textColorHint="#6F6C6C" />
+    </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="30dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Title"
+            android:fontFamily="@font/moon_bold"
+            android:textColor="#000000"/>
+        <EditText
+            android:id="@+id/subjectTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:hint="Enter subject title"
+            android:fontFamily="@font/opensans_regular"
+            android:textAlignment="center"
+            android:textColorHint="#6F6C6C" />
+
+    </LinearLayout>
     <Button
         android:id="@+id/button3"
         android:layout_width="wrap_content"
@@ -54,4 +79,4 @@
         android:fontFamily="@font/moon_bold"
         android:textColor="#FFFFFF" />
 
-</RelativeLayout>
+</LinearLayout>

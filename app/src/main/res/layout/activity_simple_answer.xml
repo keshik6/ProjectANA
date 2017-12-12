@@ -5,58 +5,106 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/background"
     android:id="@+id/simpleAnswerLayout"
     tools:context="sutdcreations.projectana.simpleAnswerActivity">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/questionTopic"
-        android:textAlignment="center"
-        android:textSize="25sp"
-        android:textColor="#000000"
-        android:fontFamily="@font/opensans_semibold"
-        android:text="Loading..."/>
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="10dp">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/questionDetail"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textColor="#000000"
-        android:fontFamily="@font/opensans_regular"
-        android:text="Loading..."/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Question"
+            android:fontFamily="@font/moon_bold"
+            android:textColor="#000000"
+            android:layout_marginRight="30dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/questionTopic"
+            android:textColor="#000000"
+            android:textSize="20dp"
+            android:fontFamily="@font/opensans_semibold"
+            android:text="Loading..."/>
+    </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/answerRecyclerView"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Detail"
+            android:fontFamily="@font/moon_bold"
+            android:textColor="#000000"
+            android:layout_marginRight="55dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/questionDetail"
+            android:textColor="#000000"
+            android:fontFamily="@font/opensans_regular"
+            android:text="Loading..."/>
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/newAnswerBut"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:onClick="onClickGoToAddAnswer"
-        android:textColor="#FFFFFF"
-        android:fontFamily="@font/moon_bold"
-        android:text="Add answer"
-        android:layout_gravity="center"
-        android:background="@drawable/redbuttonshape"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/answerRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/requestFeedback"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Request for feedback"
-        android:visibility="gone"/>
-    
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Delete question"
-        android:background="@drawable/redbuttonshape"
-        android:id="@+id/deleteQuestion"
-        android:onClick="onClickDeleteQuestion"
-        android:visibility="gone"/>
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="20dp">
+
+        <Button
+            android:id="@+id/requestFeedback"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#AB0606"
+            android:textSize="10dp"
+            android:textColor="#FFFFFF"
+            android:text="Request for feedback"
+            android:visibility="gone"/>
+
+        <Button
+            android:id="@+id/newAnswerBut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onClickGoToAddAnswer"
+            android:textColor="#FFFFFF"
+            android:fontFamily="@font/moon_bold"
+            android:text="Add answer"
+            android:backgroundTint="#AB0606"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delete question"
+            android:textSize="10dp"
+            android:backgroundTint="#AB0606"
+            android:textColor="#FFFFFF"
+            android:id="@+id/deleteQuestion"
+            android:onClick="onClickDeleteQuestion"
+            android:visibility="gone"/>
+
+    </LinearLayout>
 </LinearLayout>

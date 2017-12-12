@@ -1,54 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/background"
     tools:context="sutdcreations.projectana.AskQuestionActivity">
 
-    <ImageView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:alpha="0.3"
-        android:contentDescription="backgroundPhoto"
-        android:scaleX="1.2"
-        android:scaleY="1.2"
-        android:src="@drawable/background" />
-
-    <EditText
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/questionTitle"
-        android:hint="Enter question title here"
-        android:layout_above="@+id/questionBody"
-        android:layout_marginHorizontal="30dp"
-        android:textAlignment="center"
-        android:fontFamily="@font/opensans_regular"/>
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="40dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ask a question"
+            android:fontFamily="@font/moon_bold"
+            android:textColor="#000000"
+            android:textSize="30dp" />
+    </LinearLayout>
 
-    <EditText
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/toTagLayout"
-        android:id="@+id/questionBody"
-        android:layout_marginHorizontal="30dp"
-        android:textAlignment="center"
-        android:fontFamily="@font/opensans_regular"
-        android:hint = "Enter question body here"/>
+        android:orientation="horizontal"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="30dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Title "
+            android:fontFamily="@font/moon_bold"
+            android:textColor="#000000"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/questionTitle"
+            android:hint="Enter question title"
+            android:layout_marginLeft="30dp"
+            android:textAlignment="center"
+            android:fontFamily="@font/opensans_regular"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="30dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginRight="30dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:fontFamily="@font/moon_bold"
+            android:textColor="#000000"
+            android:layout_height="wrap_content"
+            android:text="Body "/>
+
+        <EditText
+            android:id="@+id/questionBody"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:fontFamily="@font/opensans_regular"
+            android:hint="Enter question body"
+            android:textAlignment="center" />
+    </LinearLayout>
+
     <LinearLayout
         android:id="@+id/toTagLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginHorizontal="30dp"
-        android:layout_centerInParent="true">
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tag"
+            android:fontFamily="@font/moon_bold"
+            android:textColor="#000000"/>
+
         <EditText
-            android:layout_width="230dp"
+            android:layout_width="160dp"
             android:layout_height="match_parent"
             android:id="@+id/tag"
-            android:hint="Enter tag here"
+            android:layout_marginLeft="44dp"
+            android:hint="Enter tag"
             android:textAlignment="center"
             android:fontFamily="@font/opensans_regular"/>
         <Button
@@ -56,12 +102,13 @@
             android:layout_height="wrap_content"
             android:id="@+id/addTag"
             android:onClick="onClickAddTag"
+            android:layout_gravity="center_vertical"
             android:text="Add tag"
             android:singleLine="true"
+            android:textColor="#FFFFFF"
             android:backgroundTint="#6F6FEE"
             android:fontFamily="@font/moon_bold"/>
     </LinearLayout>
-
 
 
     <Button
@@ -69,9 +116,9 @@
         android:layout_height="wrap_content"
         android:text="Post question"
         android:onClick="onClickPostQuestion"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/toTagLayout"
         android:backgroundTint="#AB0606"
         android:fontFamily="@font/moon_bold"
-        android:textColor="#FFFFFF"/>
-</RelativeLayout>
+        android:layout_marginTop="15dp"
+        android:textColor="#FFFFFF"
+        android:layout_gravity="center_horizontal"/>
+</LinearLayout>
