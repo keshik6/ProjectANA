@@ -37,17 +37,6 @@
             android:textColor="#FFFFFF"
             android:backgroundTint="#6F6FEE"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Choose a course"
-            android:fontFamily="@font/moon_bold"
-            android:textColor="#000000"
-            android:textAlignment="center"
-            android:layout_marginTop="10dp"
-            android:textSize="15dp"
-            android:layout_marginBottom="10dp"/>
-
         <Button
             android:id="@+id/testCourse"
             android:layout_width="wrap_content"
@@ -74,6 +63,17 @@
             android:backgroundTint="#AB0606"
             android:textColor="#FFFFFF"
             android:text="Snoop on my students" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Choose a course"
+            android:fontFamily="@font/moon_bold"
+            android:textColor="#000000"
+            android:textAlignment="center"
+            android:layout_marginTop="10dp"
+            android:textSize="15dp"
+            android:layout_marginBottom="10dp"/>
 
 </LinearLayout>
 </LinearLayout>
