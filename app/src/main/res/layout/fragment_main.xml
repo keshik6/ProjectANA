@@ -61,6 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="#AB0606"
+            android:fontFamily="@font/moon_bold"
             android:textColor="#FFFFFF"
             android:text="Snoop on my students" />
 
@@ -73,7 +74,7 @@
             android:textAlignment="center"
             android:layout_marginTop="10dp"
             android:textSize="15dp"
-            android:layout_marginBottom="10dp"/>
+           />
 
 </LinearLayout>
 </LinearLayout>
