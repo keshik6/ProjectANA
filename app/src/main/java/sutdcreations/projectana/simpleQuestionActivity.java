@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -30,6 +31,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import sutdcreations.classes.Feedback;
 import sutdcreations.classes.Question;
@@ -49,6 +53,7 @@ public class simpleQuestionActivity extends AppCompatActivity {
     boolean inForeground = true;
     String topicKey;
     Button topicLive;
+    EditText searchBar;
 
     @Override
     protected void onPause(){
@@ -67,6 +72,7 @@ public class simpleQuestionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_simple_question);
+        searchBar = findViewById(R.id.searchBar);
         topicKey  = getIntent().getStringExtra("topicTitle");
         database = FirebaseDatabase.getInstance();
         System.out.println("start");
@@ -155,11 +161,31 @@ public class simpleQuestionActivity extends AppCompatActivity {
                 //addQuestionsToLayout();
                 adapter.notifyDataSetChanged();
                 adapter.notifyItemMoved(0,questions.size()-1);
+                r1.setHasFixedSize(true);
+                startSearchScheduler();
+
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
+            }
+        });
+    }
+
+    //start scheduling search function every second
+    public void startSearchScheduler(){
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+                scheduler.scheduleAtFixedRate
+                        (new Runnable() {
+                            public void run() {
+                                searchByTag();//keep looking at searchbar string regularly and update layout depending on search
+
+                            }
+                        }, 0, 1, TimeUnit.SECONDS);
             }
         });
     }
@@ -409,6 +435,38 @@ public class simpleQuestionActivity extends AppCompatActivity {
         });
     }
 
+    //function that performs search by tag
+    public void searchByTag() {
+        try {
+            Log.i("debugSearch", "search carried out");
+            ArrayList<Question> newQuestions = new ArrayList<>();
+            String searchText = searchBar.getText().toString();
+            if (!searchText.matches("")) { //search being carried out
+                searchText = searchBar.getText().toString();
+                for (Question question : questions) {
+                    if (question.getTags().contains(searchText)) {
+                        Log.i("debugSearch", "adding question to search");
+                        newQuestions.add(question);
+                    }
+                }
+                adapter.setQuestions(newQuestions);
+                //adapter.notifyDataSetChanged();
+                r1.smoothScrollToPosition(0);
+            } else { //no search being carried out
+                Log.i("debugSearch", "resetting questions");
+                adapter.setQuestions(questions);
+                //adapter.notifyDataSetChanged();
+                r1.smoothScrollToPosition(0);
+            }
+        }
+        catch (Exception e){
+            Log.i("debugSearch","exception caught");
+            if (e.getMessage()!= null){
+                Log.i("debugSearch",e.getMessage());
+            }
+        }
+    }
+
     // Compare questions by vote counts, also puts live questions first
     class QuestionComparator implements Comparator<Question> {
 
@@ -445,6 +503,11 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.myHolder>{
         this.questions=questions;
         this.user=user;
         this.topicKey = topicKey;
+    }
+
+    public void setQuestions(ArrayList<Question> questions){
+        this.questions = questions;
+        notifyDataSetChanged();
     }
 
     @Override
