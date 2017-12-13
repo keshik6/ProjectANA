@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ProjectANA</string>
+    <string name="app_name">A.N.A</string>
     <string name="title_activity_main">Home Screen</string>
     <string name="title_home">Buttons for debugging:</string>
     <string name="title_dashboard">Dashboard</string>
