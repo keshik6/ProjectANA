@@ -435,6 +435,16 @@ public class simpleQuestionActivity extends AppCompatActivity {
         });
     }
 
+    //function that checks if a list contains a string that is case-insensitive. Used in search function to match search terms with tags.
+    public boolean containsCaseInsensitive(String string, ArrayList<String> list) {
+        for (String str:list) {
+            if (str.equalsIgnoreCase(string)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     //function that performs search by tag
     public void searchByTag() {
         try {
@@ -444,7 +454,7 @@ public class simpleQuestionActivity extends AppCompatActivity {
             if (!searchText.matches("")) { //search being carried out
                 searchText = searchBar.getText().toString();
                 for (Question question : questions) {
-                    if (question.getTags().contains(searchText)) {
+                    if (containsCaseInsensitive(searchText,question.getTags())) {
                         Log.i("debugSearch", "adding question to search");
                         newQuestions.add(question);
                     }
