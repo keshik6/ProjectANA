@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -26,7 +27,6 @@ import sutdcreations.classes.Subject;
 import sutdcreations.classes.Topic;
 
 public class SnoopActivity extends AppCompatActivity {
-
     EditText StudentIDEditText;
     Button SearchBtn;
     TextView StudentNameTF;
@@ -38,6 +38,8 @@ public class SnoopActivity extends AppCompatActivity {
         setContentView(R.layout.activity_snoop);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        //Get the object references
         StudentIDEditText = (EditText)findViewById(R.id.studentSearch);
         SearchBtn = (Button)findViewById(R.id.searchBtn);
         StudentNameTF = (TextView)findViewById(R.id.studentNameTF);
@@ -46,9 +48,11 @@ public class SnoopActivity extends AppCompatActivity {
 
         ArrayList<Topic> topics;
 
+        //Set on click listener for the search button
         SearchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Get the objects from firebase
                 DatabaseReference allTopicsRef = FirebaseDatabase.getInstance().getReference().child("Topics");
                 allTopicsRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -73,7 +77,7 @@ public class SnoopActivity extends AppCompatActivity {
     }
 
     public void getStudentScore(final ArrayList<Topic> topics, final String student_id){
-        Log.i("inside get Studentscore","test1");
+        //Get the objects from firebase
         DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("UserInfo");
         userRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -83,19 +87,26 @@ public class SnoopActivity extends AppCompatActivity {
                     Student student = childSnapshot.getValue(Student.class);
                     students.add(student);
                 }
-                //do whatever u want with the ArrayList of all students here
-                for (Student s: students){
 
+                //Search for the grades using the student id
+                for (Student s: students){
                     if (String.valueOf(s.getStudent_id()).equals(null)){
                         continue;
                     }
-                    if (String.valueOf(s.getStudent_id()).equals(student_id)){
-                        Log.i("loop",String.valueOf(s.getStudent_id()));
+                    else if (String.valueOf(s.getStudent_id()).equals(student_id)){
+                        //Log.i("loop",String.valueOf(s.getStudent_id()));
                         StudentNameTF.setText(s.getUser_name());
                         //Log.i("Here",s.calculateScore(topics,"Teacher"));
                         NoOfQns.setText(s.calculateScore(topics,"Teacher")[0]);
                         NoOfAns.setText(s.calculateScore(topics,"Teacher")[1]);
                         break;
+                    }
+                    else if(s == students.get(students.size()-1)){
+                        Toast.makeText(SnoopActivity.this, "Invalid Student ID",
+                                Toast.LENGTH_SHORT).show();
+                        StudentNameTF.setText("");
+                        NoOfQns.setText("");
+                        NoOfAns.setText("");
                     }
                 }
             }
@@ -106,8 +117,5 @@ public class SnoopActivity extends AppCompatActivity {
             }
         });
     }
-
-
-
 
 }

@@ -71,9 +71,11 @@ public class Student extends User {
         return replies_count;
     }
 
-    //Calculate grades for the courses individually using mean and standard deviation
-    //In fact we are getting the average of the z scores of questions and answers
 
+    //This function calculates the student grades. The second argument determines the grades for
+    //invoker type (Student or Teacher).
+    //questionsMap : Hash map that contains course code and the corresponding number of questions
+    //answersMap : Hash map that contains course code and the corresponding number of answers
     public String[] calculateScore(ArrayList<Topic> allTopics,String type) {
         Map<String, Integer> qnsForCourses = new HashMap<>();
         for (Topic t : allTopics) {
@@ -128,10 +130,9 @@ public class Student extends User {
         for (String courseCode: answersMap.keySet()){
             finalGrade.put(courseCode,(scoresAns.get(courseCode) + scoresQn.get(courseCode))/2.0);
         }
-        //All the answers are stored in the finalGrade hash map
 
 
-        //Update this to beng haun's code
+        //Determine the grade using the threshold points defined for the data analytics portion
         String gradeStd = "";
         String gradeTeacherQn = "";
         String gradeTeacherAns = "";

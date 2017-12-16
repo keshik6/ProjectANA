@@ -43,13 +43,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         //Set On click Listener
         signInButton.setOnClickListener(this);
-      /*  try{
-            server = new ChatServer();
-            server.start();
-        }
-        catch(Exception e){
-            Log.i("Server not started", e.getMessage());
-        }*/
+
 
     }
 

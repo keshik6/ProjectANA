@@ -73,6 +73,8 @@ public class ProfileActivity extends AppCompatActivity {
             }
         }
         coursesTF.setText(courseCodes);
+
+        //Get the objects from the database
         DatabaseReference allTopicsRef = FirebaseDatabase.getInstance().getReference().child("Topics");
         allTopicsRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -94,6 +96,8 @@ public class ProfileActivity extends AppCompatActivity {
 
     }
 
+
+    //Update the scores subsequently
     private void updateScore(ArrayList<Topic> topics){
         //Get the no.Of Questions and replies
         if (user instanceof Student){
@@ -103,6 +107,7 @@ public class ProfileActivity extends AppCompatActivity {
             gradesTF.setText(student.calculateScore(topics,"Student")[0]);
         }
         else{
+            //Set these fields to invisible for the teacher's version
             noOfQuestionsTF.setVisibility(View.INVISIBLE);
             noOfRepliesTF.setVisibility(View.INVISIBLE);
             questionsLabel.setVisibility(View.INVISIBLE);
