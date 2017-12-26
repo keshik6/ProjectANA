@@ -1,2 +1,2 @@
 # ProjectANA
-Interactive Learning
+Dynamic Learning Platform
