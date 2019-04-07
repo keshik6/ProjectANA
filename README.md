@@ -60,12 +60,13 @@ Objects were stored in and retrieved from Firebase as JSON objects, which the Fi
 As mentioned above, we made use of a modified Observer design pattern, which meant that intuitively, many of these nodes can all be combined into one node as all Topic objects can be under the Subjects node, all Question objects can be under the Topic objects which are in turn under the Subjects node, and so on. However, this would make navigating to the specific objects consume a large bandwidth and computational power. As a result, we decided to structure the database with many nodes rather than have everything stored under one node.
 
 ## How to use the application
-The application is very intuitive to use. Use the authentication steps below to login to the app.| User type | Email                     | Password |
-|-----------|---------------------------|----------|
-| Student   | s@g.com                   | Password |
-| Student   | examplestudent@school.com | Password |
-| Teacher   | t@g.com                   | Password |
-| Teacher   | exampleteacher@school.com | Password |
+The application is very intuitive to use. Use the authentication steps below to login to the app.
+| User type | Email                     | Password |  
+|-----------|---------------------------|----------|  
+| Student   | s@g.com                   | Password |  
+| Student   | examplestudent@school.com | Password |  
+| Teacher   | t@g.com                   | Password |  
+| Teacher   | exampleteacher@school.com | Password |  
 
 ╚ Do note that the project is not under active development and the firebase api endpoints are deprecated.
 
