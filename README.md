@@ -1,6 +1,8 @@
 # ProjectANA: Ask and Answer
 # Dynamic Learning Platform
 
+![ana](https://user-images.githubusercontent.com/21276946/55679511-45c71f00-593f-11e9-84e3-f4bc68881ded.jpg)
+
 ## Problem statement
 How interactive are our classroom activities? Why are some classes interactive and others being dead silent? Do we find our grades declining semester after semester? Are the teaching strategies we had always relied on not working as well as they once did? These are some of the tantalizing questions that spontaneously seemed to emerge during our discussion of classroom experience. We found it extremely important to address the needs of both students and teachers for efficient learning experience.
 
