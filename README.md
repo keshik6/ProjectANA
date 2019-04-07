@@ -61,6 +61,7 @@ As mentioned above, we made use of a modified Observer design pattern, which mea
 
 ## How to use the application
 The application is very intuitive to use. Use the authentication steps below to login to the app.
+
 | User type        | Email           | Password  |
 | ------------- |:-------------:| -----:|
 | Student      | s@g.com | Password |
