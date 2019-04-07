@@ -61,12 +61,12 @@ As mentioned above, we made use of a modified Observer design pattern, which mea
 
 ## How to use the application
 The application is very intuitive to use. Use the authentication steps below to login to the app.
-| User type | Email                     | Password |  
-|-----------|---------------------------|----------|  
-| Student   | s@g.com                   | Password |  
-| Student   | examplestudent@school.com | Password |  
-| Teacher   | t@g.com                   | Password |  
-| Teacher   | exampleteacher@school.com | Password |  
+| User type        | Email           | Password  |
+| ------------- |:-------------:| -----:|
+| Student      | s@g.com | Password |
+| Student      | examplestudent@school.com      |   Password |
+| Teacher | t@g.com      |    Password |
+| Teacher | exampleteacher@school.com      |    Password |
 
 ╚ Do note that the project is not under active development and the firebase api endpoints are deprecated.
 
