@@ -64,12 +64,12 @@ The application is very intuitive to use. Use the authentication steps below to 
 
 | User type        | Email           | Password  |
 | ------------- |:-------------:| -----:|
-| Student      | s@g.com | Password |
-| Student      | examplestudent@school.com      |   Password |
-| Teacher | t@g.com      |    Password |
-| Teacher | exampleteacher@school.com      |    Password |
+| Student      | s@g.com | bE+m!E^9n;7GW_w# |
+| Student      | examplestudent@school.com      |   bE+m!E^9n;7GW_w# |
+| Teacher | t@g.com      |    bE+m!E^9n;7GW_w# |
+| Teacher | exampleteacher@school.com      |    bE+m!E^9n;7GW_w# |
 
-╚ Do note that the project is not under active development and the firebase api endpoints are deprecated.
+╚ **Do note that the project is not under active development and the firebase api endpoints are deprecated.**
 
 ## Future work
 In the initial phase of the project, we planned to have our own server system to store data and reduce bandwidth costs with the aim of hosting it in the local environment, and we designed a server-client architecture as well. But due to issues with non-blocking sockets in java we proceeded to use Firebase cloud storage. So, in the future, we are planning to design our own server as well as develop the UI of the application aesthetically with additional features such as users being able to use their desired pictures as profile pictures, giving ratings to users based on how active they are etc.
